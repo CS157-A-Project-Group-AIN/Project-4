@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLBuild {
-    public static String USERNAME = new String("admin");
-    public static String PASSWORD = new String("asddsa");
-    public static String DB_URL = new String("jdbc:mysql://localhost:3306/e_trt"); //e_trt
-    public static String JDBC_DRIVER = new String("com.mysql.cj.jdbc.Driver");
+    public static String USERNAME = Config.USERNAME;
+    public static String PASSWORD = Config.PASSWORD;
+    public static String DB_URL = Config.DB_URL; //e_trt
+    public static String JDBC_DRIVER = Config.JDBC_DRIVER;
     static String[] Tables = {
             "create table REF_DISEASE (" +
                     "disease_id SMALLINT NOT NULL," +
