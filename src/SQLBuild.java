@@ -140,18 +140,12 @@ public class SQLBuild {
 	public static void
 	main(String[] args) throws ClassNotFoundException
 	{
-		
 		// Load the Driver
-		//Class.forName("oracle.jdbc.driver.OracleDriver");
 		Class.forName(JDBC_DRIVER);
-
 		try
 		{
-		          // Get a connection from the connection factory
-			Connection con = DriverManager.getConnection(
-			DB_URL,
-			  //"jdbc:oracle:thin:@dbaprod1:1521:SHR1_PRD",
-USERNAME, PASSWORD);
+		    // Get a connection from the connection factory
+			Connection con = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 	
 			// Show some database/driver metadata
 			SQLUtil.printDriverInfo(con);
@@ -159,7 +153,7 @@ USERNAME, PASSWORD);
 			// Create a Statement object so we can submit SQL statements to the driver
 			Statement stmt = con.createStatement();
 
-			// Submit the statement
+			// Create tables
 			for (int i=0; i<Tables.length; ++i)
 			{
 				System.out.print(Tables[i] + "...");
