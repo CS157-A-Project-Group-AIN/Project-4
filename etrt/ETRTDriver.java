@@ -1084,6 +1084,7 @@ public class ETRTDriver {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
                 cardLayout.show(panelContainer, "pharmData");
+                
             }
         });
         
