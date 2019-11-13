@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -92,16 +93,18 @@ public class ETRTDriver {
 	//pharmacology data page
 	private JPanel pharmDataPanel;
 	private JButton pdBtnBack;
+	private JButton pdBtnAEChemical;
 	
 	//Add/Edit Chemicals page
 	private JPanel aeChemDataPanel;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField chmTextField;
+	private JTextField chmTextField_1;
 	private JTextField chmTextField_2;
 	private JTextField chmTextField_3;
 	private JTextField chmTextField_4;
 	private JTextField chmTextField_5;
 	private JTable chmResTable;
+	private JButton chmBtnBack;
 
     public ETRTDriver() {
     	frame = new JFrame("CardLayout demo");
@@ -297,7 +300,7 @@ public class ETRTDriver {
 		JButton avBtnAudiology = new JButton("Audiology");
 		avSecondGroup.add(avBtnAudiology);
 		
-		JButton avBtnMedical = new JButton("Medical Other");
+		JButton avBtnMedical = new JButton("Pharmocology");
 		avSecondGroup.add(avBtnMedical);
 		
 		JButton avBtnDiagnose = new JButton("Diagnose");
@@ -735,13 +738,237 @@ public class ETRTDriver {
 		gbc_pdBtnAEDisease.gridy = 3;
 		pharmDataPanel.add(pdBtnAEDisease, gbc_pdBtnAEDisease);
 		
-		JButton pdBtnAEChemical = new JButton("Add/Edit Chemical Category");
+		pdBtnAEChemical = new JButton("Add/Edit Chemical Category");
 		GridBagConstraints gbc_pdBtnAEChemical = new GridBagConstraints();
 		gbc_pdBtnAEChemical.fill = GridBagConstraints.BOTH;
 		gbc_pdBtnAEChemical.insets = new Insets(0, 0, 5, 5);
 		gbc_pdBtnAEChemical.gridx = 3;
 		gbc_pdBtnAEChemical.gridy = 3;
 		pharmDataPanel.add(pdBtnAEChemical, gbc_pdBtnAEChemical);
+		
+		//CHEMICAL ADD/EDIT PAGE********************************************************************************************************************
+		aeChemDataPanel = new JPanel();
+		GridBagLayout gbl_aeChemDataPanel = new GridBagLayout();
+		gbl_aeChemDataPanel.columnWidths = new int[]{0, 0};
+		gbl_aeChemDataPanel.rowHeights = new int[]{0, 0, 0};
+		gbl_aeChemDataPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_aeChemDataPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		aeChemDataPanel.setLayout(gbl_aeChemDataPanel);
+		
+		chmBtnBack = new JButton("Back");
+		GridBagConstraints gbc_chmBtnBack = new GridBagConstraints();
+		gbc_chmBtnBack.anchor = GridBagConstraints.WEST;
+		gbc_chmBtnBack.insets = new Insets(0, 0, 5, 0);
+		gbc_chmBtnBack.gridx = 0;
+		gbc_chmBtnBack.gridy = 0;
+		aeChemDataPanel.add(chmBtnBack, gbc_chmBtnBack);
+		
+		JTabbedPane chmTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		GridBagConstraints gbc_chmTabbedPane = new GridBagConstraints();
+		gbc_chmTabbedPane.fill = GridBagConstraints.BOTH;
+		gbc_chmTabbedPane.gridx = 0;
+		gbc_chmTabbedPane.gridy = 1;
+		aeChemDataPanel.add(chmTabbedPane, gbc_chmTabbedPane);
+		
+		JPanel addChemPanel = new JPanel();
+		chmTabbedPane.addTab("Add Chemical", null, addChemPanel, null);
+		GridBagLayout gbl_addChemPanel = new GridBagLayout();
+		gbl_addChemPanel.columnWidths = new int[]{0, 0, 0};
+		gbl_addChemPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_addChemPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_addChemPanel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		addChemPanel.setLayout(gbl_addChemPanel);
+		
+		JLabel chmlblId = new JLabel("ID ");
+		GridBagConstraints gbc_chmlblId = new GridBagConstraints();
+		gbc_chmlblId.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblId.anchor = GridBagConstraints.EAST;
+		gbc_chmlblId.gridx = 0;
+		gbc_chmlblId.gridy = 0;
+		addChemPanel.add(chmlblId, gbc_chmlblId);
+		
+		chmTextField = new JTextField();
+		GridBagConstraints gbc_chmTextField = new GridBagConstraints();
+		gbc_chmTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_chmTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmTextField.gridx = 1;
+		gbc_chmTextField.gridy = 0;
+		addChemPanel.add(chmTextField, gbc_chmTextField);
+		chmTextField.setColumns(10);
+		
+		JLabel chmlblName = new JLabel("Name ");
+		GridBagConstraints gbc_chmlblName = new GridBagConstraints();
+		gbc_chmlblName.anchor = GridBagConstraints.EAST;
+		gbc_chmlblName.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblName.gridx = 0;
+		gbc_chmlblName.gridy = 1;
+		addChemPanel.add(chmlblName, gbc_chmlblName);
+		
+		chmTextField_1 = new JTextField();
+		GridBagConstraints gbc_chmTextField_1 = new GridBagConstraints();
+		gbc_chmTextField_1.insets = new Insets(0, 0, 5, 0);
+		gbc_chmTextField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmTextField_1.gridx = 1;
+		gbc_chmTextField_1.gridy = 1;
+		addChemPanel.add(chmTextField_1, gbc_chmTextField_1);
+		chmTextField_1.setColumns(10);
+		
+		JLabel chmlblDescription = new JLabel("Description ");
+		GridBagConstraints gbc_chmlblDescription = new GridBagConstraints();
+		gbc_chmlblDescription.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblDescription.gridx = 0;
+		gbc_chmlblDescription.gridy = 2;
+		addChemPanel.add(chmlblDescription, gbc_chmlblDescription);
+		
+		JScrollPane chmscrollPane = new JScrollPane();
+		GridBagConstraints gbc_chmscrollPane = new GridBagConstraints();
+		gbc_chmscrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_chmscrollPane.fill = GridBagConstraints.BOTH;
+		gbc_chmscrollPane.gridx = 1;
+		gbc_chmscrollPane.gridy = 2;
+		addChemPanel.add(chmscrollPane, gbc_chmscrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		chmscrollPane.setViewportView(textArea);
+		
+		JButton chmBtnAdd = new JButton("Add");
+		GridBagConstraints gbc_chmBtnAdd = new GridBagConstraints();
+		gbc_chmBtnAdd.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmBtnAdd.gridwidth = 2;
+		gbc_chmBtnAdd.insets = new Insets(0, 0, 0, 5);
+		gbc_chmBtnAdd.gridx = 0;
+		gbc_chmBtnAdd.gridy = 3;
+		addChemPanel.add(chmBtnAdd, gbc_chmBtnAdd);
+		
+		JPanel editChemPanel = new JPanel();
+		chmTabbedPane.addTab("Edit Chemical", null, editChemPanel, null);
+		GridBagLayout gbl_editChemPanel = new GridBagLayout();
+		gbl_editChemPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_editChemPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_editChemPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_editChemPanel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		editChemPanel.setLayout(gbl_editChemPanel);
+		
+		JLabel chmlblId_1 = new JLabel("ID ");
+		GridBagConstraints gbc_chmlblId_1 = new GridBagConstraints();
+		gbc_chmlblId_1.anchor = GridBagConstraints.EAST;
+		gbc_chmlblId_1.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblId_1.gridx = 0;
+		gbc_chmlblId_1.gridy = 0;
+		editChemPanel.add(chmlblId_1, gbc_chmlblId_1);
+		
+		chmTextField_3 = new JTextField();
+		GridBagConstraints gbc_chmTextField_3 = new GridBagConstraints();
+		gbc_chmTextField_3.insets = new Insets(0, 0, 5, 5);
+		gbc_chmTextField_3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmTextField_3.gridx = 1;
+		gbc_chmTextField_3.gridy = 0;
+		editChemPanel.add(chmTextField_3, gbc_chmTextField_3);
+		chmTextField_3.setColumns(10);
+		
+		JLabel chmlblName_1 = new JLabel("Name");
+		GridBagConstraints gbc_chmlblName_1 = new GridBagConstraints();
+		gbc_chmlblName_1.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblName_1.anchor = GridBagConstraints.EAST;
+		gbc_chmlblName_1.gridx = 2;
+		gbc_chmlblName_1.gridy = 0;
+		editChemPanel.add(chmlblName_1, gbc_chmlblName_1);
+		
+		chmTextField_2 = new JTextField();
+		GridBagConstraints gbc_chmTextField_2 = new GridBagConstraints();
+		gbc_chmTextField_2.insets = new Insets(0, 0, 5, 0);
+		gbc_chmTextField_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmTextField_2.gridx = 3;
+		gbc_chmTextField_2.gridy = 0;
+		editChemPanel.add(chmTextField_2, gbc_chmTextField_2);
+		chmTextField_2.setColumns(10);
+		
+		JButton chmBtnSearch = new JButton("Search");
+		GridBagConstraints gbc_chmBtnSearch = new GridBagConstraints();
+		gbc_chmBtnSearch.insets = new Insets(0, 0, 5, 0);
+		gbc_chmBtnSearch.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmBtnSearch.gridwidth = 3;
+		gbc_chmBtnSearch.gridx = 1;
+		gbc_chmBtnSearch.gridy = 1;
+		editChemPanel.add(chmBtnSearch, gbc_chmBtnSearch);
+		
+		JScrollPane chmscrollPane_2 = new JScrollPane();
+		GridBagConstraints gbc_chmscrollPane_2 = new GridBagConstraints();
+		gbc_chmscrollPane_2.gridwidth = 3;
+		gbc_chmscrollPane_2.insets = new Insets(0, 0, 5, 5);
+		gbc_chmscrollPane_2.fill = GridBagConstraints.BOTH;
+		gbc_chmscrollPane_2.gridx = 1;
+		gbc_chmscrollPane_2.gridy = 2;
+		editChemPanel.add(chmscrollPane_2, gbc_chmscrollPane_2);
+		
+		//RESULT TABLE HERE***************************
+		chmResTable = new JTable();
+		chmResTable.setFillsViewportHeight(true);
+		chmscrollPane_2.setViewportView(chmResTable);
+		
+		JLabel chmlblId_2 = new JLabel("ID ");
+		GridBagConstraints gbc_chmlblId_2 = new GridBagConstraints();
+		gbc_chmlblId_2.anchor = GridBagConstraints.EAST;
+		gbc_chmlblId_2.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblId_2.gridx = 0;
+		gbc_chmlblId_2.gridy = 3;
+		editChemPanel.add(chmlblId_2, gbc_chmlblId_2);
+		
+		chmTextField_4 = new JTextField();
+		GridBagConstraints gbc_chmTextField_4 = new GridBagConstraints();
+		gbc_chmTextField_4.insets = new Insets(0, 0, 5, 0);
+		gbc_chmTextField_4.gridwidth = 3;
+		gbc_chmTextField_4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmTextField_4.gridx = 1;
+		gbc_chmTextField_4.gridy = 3;
+		editChemPanel.add(chmTextField_4, gbc_chmTextField_4);
+		chmTextField_4.setColumns(10);
+		
+		JLabel chmlblName_2 = new JLabel("Name ");
+		GridBagConstraints gbc_chmlblName_2 = new GridBagConstraints();
+		gbc_chmlblName_2.anchor = GridBagConstraints.EAST;
+		gbc_chmlblName_2.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblName_2.gridx = 0;
+		gbc_chmlblName_2.gridy = 4;
+		editChemPanel.add(chmlblName_2, gbc_chmlblName_2);
+		
+		chmTextField_5 = new JTextField();
+		GridBagConstraints gbc_chmTextField_5 = new GridBagConstraints();
+		gbc_chmTextField_5.insets = new Insets(0, 0, 5, 0);
+		gbc_chmTextField_5.gridwidth = 3;
+		gbc_chmTextField_5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmTextField_5.gridx = 1;
+		gbc_chmTextField_5.gridy = 4;
+		editChemPanel.add(chmTextField_5, gbc_chmTextField_5);
+		chmTextField_5.setColumns(10);
+		
+		JLabel chmlblDescription_1 = new JLabel("Description");
+		GridBagConstraints gbc_chmlblDescription_1 = new GridBagConstraints();
+		gbc_chmlblDescription_1.insets = new Insets(0, 0, 5, 5);
+		gbc_chmlblDescription_1.gridx = 0;
+		gbc_chmlblDescription_1.gridy = 5;
+		editChemPanel.add(chmlblDescription_1, gbc_chmlblDescription_1);
+		
+		JScrollPane chmscrollPane_1 = new JScrollPane();
+		GridBagConstraints gbc_chmscrollPane_1 = new GridBagConstraints();
+		gbc_chmscrollPane_1.gridwidth = 3;
+		gbc_chmscrollPane_1.insets = new Insets(0, 0, 5, 0);
+		gbc_chmscrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_chmscrollPane_1.gridx = 1;
+		gbc_chmscrollPane_1.gridy = 5;
+		editChemPanel.add(chmscrollPane_1, gbc_chmscrollPane_1);
+		
+		JTextArea textArea_1 = new JTextArea();
+		chmscrollPane_1.setViewportView(textArea_1);
+		
+		JButton chmBtnSubmit = new JButton("Submit");
+		GridBagConstraints gbc_chmBtnSubmit = new GridBagConstraints();
+		gbc_chmBtnSubmit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_chmBtnSubmit.gridwidth = 4;
+		gbc_chmBtnSubmit.gridx = 0;
+		gbc_chmBtnSubmit.gridy = 6;
+		editChemPanel.add(chmBtnSubmit, gbc_chmBtnSubmit);
+		
 		
 		
 		//add views********************************************************************************************************************
@@ -755,6 +982,7 @@ public class ETRTDriver {
         panelContainer.add(addVisitPanel, "addVisits");
         panelContainer.add(otherPanel, "other");
         panelContainer.add(pharmDataPanel, "pharmData");
+        panelContainer.add(aeChemDataPanel, "chemData");
         
         cardLayout.show(panelContainer, "main");
 		
@@ -844,6 +1072,21 @@ public class ETRTDriver {
                 cardLayout.show(panelContainer, "other");
             }
         });
+        
+        pdBtnAEChemical.addActionListener(new ActionListener() {
+        	@Override
+            public void actionPerformed(ActionEvent arg0) {
+                cardLayout.show(panelContainer, "chemData");
+            }
+        });
+        
+        chmBtnBack.addActionListener(new ActionListener() {
+        	@Override
+            public void actionPerformed(ActionEvent arg0) {
+                cardLayout.show(panelContainer, "pharmData");
+            }
+        });
+        
         
         frame.add(panelContainer);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
