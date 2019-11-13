@@ -44,13 +44,26 @@ public class SQLBuild {
                     "FOREIGN KEY (disease_id) REFERENCES REF_DISEASE (disease_id)" +
                     "" +
                     ");"
-            ,
+                    ,
+           "create table PATIENT (" +
+        		   	"thc VARCHAR(16) NOT NULL," +
+                    "surname VARCHAR(25)," +
+                    "first_name VARCHAR(25)," +
+                    "middle_name VARCHAR(25)," +
+                    "SSN VARCHAR(10)," +
+                    "DOB DATE," +
+                    "Insurance VARCHAR(25)," +
+                    "PRIMARY KEY (thc)" +
+                    ");"
+                    ,
             "create table VISIT (" +
                     "visit_id INTEGER NOT NULL," +
+            		"thc VARCHAR(16) NOT NULL," +
                     "visit_nr SMALLINT NOT NULL," +
                     "date DATETIME," +
                     "comments VARCHAR(16000)," +
-                    "PRIMARY KEY (visit_id)" +
+                    "PRIMARY KEY (visit_id)," +
+                    "FOREIGN KEY (thc) REFERENCES PATIENT (thc)" +
                     ");"
             ,
             "create table PHARMACOLOGY (" +
@@ -131,13 +144,14 @@ public class SQLBuild {
                     ");"
     };
     static String[] drop = {
-            "DROP TABLE `testdb`.`pharmacology`;",
-            "DROP TABLE `testdb`.`audiological`;",
-            "DROP TABLE `testdb`.`visit`;",
-            "DROP TABLE `testdb`.`ref_medicament`;",
-            "DROP TABLE `testdb`.`ref_disease`;",
-            "DROP TABLE `testdb`.`ref_generic`;",
-            "DROP TABLE `testdb`.`ref_chemical`;"
+            "DROP TABLE `e_trt`.`pharmacology`;",
+            "DROP TABLE `e_trt`.`audiological`;",
+            "DROP TABLE `e_trt`.`visit`;",
+            "DROP TABLE `e_trt`.`patient`;",
+            "DROP TABLE `e_trt`.`ref_medicament`;",
+            "DROP TABLE `e_trt`.`ref_disease`;",
+            "DROP TABLE `e_trt`.`ref_generic`;",
+            "DROP TABLE `e_trt`.`ref_chemical`;"
     };
 
     public static void main(String[] args) throws ClassNotFoundException {
@@ -163,7 +177,6 @@ public class SQLBuild {
                 if (rowsAffected == 0)    // DDL statements return rowcount of 0
                     System.out.println("OK");
             }
-
             // Close the statement
             stmt.close();
 
