@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -86,6 +87,21 @@ public class ETRTDriver {
 	//other page
 	private JPanel otherPanel;
 	private JButton oBtnBack;
+	private JButton oBtnPharmData;
+	
+	//pharmacology data page
+	private JPanel pharmDataPanel;
+	private JButton pdBtnBack;
+	
+	//Add/Edit Chemicals page
+	private JPanel aeChemDataPanel;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField chmTextField_2;
+	private JTextField chmTextField_3;
+	private JTextField chmTextField_4;
+	private JTextField chmTextField_5;
+	private JTable chmResTable;
 
     public ETRTDriver() {
     	frame = new JFrame("CardLayout demo");
@@ -662,13 +678,13 @@ public class ETRTDriver {
 		gbc_btnNewButton_1.gridy = 3;
 		otherPanel.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnPharmacologyData = new JButton("Pharmacology Data");
-		GridBagConstraints gbc_btnPharmacologyData = new GridBagConstraints();
-		gbc_btnPharmacologyData.fill = GridBagConstraints.BOTH;
-		gbc_btnPharmacologyData.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPharmacologyData.gridx = 3;
-		gbc_btnPharmacologyData.gridy = 3;
-		otherPanel.add(btnPharmacologyData, gbc_btnPharmacologyData);
+		oBtnPharmData = new JButton("Pharmacology Data");
+		GridBagConstraints gbc_oBtnPharmData = new GridBagConstraints();
+		gbc_oBtnPharmData.fill = GridBagConstraints.BOTH;
+		gbc_oBtnPharmData.insets = new Insets(0, 0, 5, 5);
+		gbc_oBtnPharmData.gridx = 3;
+		gbc_oBtnPharmData.gridy = 3;
+		otherPanel.add(oBtnPharmData, gbc_oBtnPharmData);
 		
 		JButton btnInstruments = new JButton("Instruments");
 		GridBagConstraints gbc_btnInstruments = new GridBagConstraints();
@@ -678,6 +694,55 @@ public class ETRTDriver {
 		gbc_btnInstruments.gridx = 2;
 		gbc_btnInstruments.gridy = 4;
 		otherPanel.add(btnInstruments, gbc_btnInstruments);
+		
+		//PHARMACOLOGY DATA PAGE********************************************************************************************************************
+		pharmDataPanel = new JPanel();
+		GridBagLayout gbl_pharmDataPanel = new GridBagLayout();
+		gbl_pharmDataPanel.columnWidths = new int[]{0, 0, 220, 220, 50, 0};
+		gbl_pharmDataPanel.rowHeights = new int[]{0, 50, 0, 0, 50, 0};
+		gbl_pharmDataPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_pharmDataPanel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		pharmDataPanel.setLayout(gbl_pharmDataPanel);
+		
+		pdBtnBack = new JButton("Back");
+		GridBagConstraints gbc_pdBtnBack = new GridBagConstraints();
+		gbc_pdBtnBack.insets = new Insets(0, 0, 5, 5);
+		gbc_pdBtnBack.gridx = 0;
+		gbc_pdBtnBack.gridy = 0;
+		pharmDataPanel.add(pdBtnBack, gbc_pdBtnBack);
+		
+		JButton pdBtnAEMedication = new JButton("Add/Edit Medication");
+		GridBagConstraints gbc_pdBtnAEMedication = new GridBagConstraints();
+		gbc_pdBtnAEMedication.fill = GridBagConstraints.BOTH;
+		gbc_pdBtnAEMedication.insets = new Insets(0, 0, 5, 5);
+		gbc_pdBtnAEMedication.gridx = 2;
+		gbc_pdBtnAEMedication.gridy = 2;
+		pharmDataPanel.add(pdBtnAEMedication, gbc_pdBtnAEMedication);
+		
+		JButton pdBtnAEGeneric = new JButton("Add/Edit Generic");
+		GridBagConstraints gbc_pdBtnAEGeneric = new GridBagConstraints();
+		gbc_pdBtnAEGeneric.fill = GridBagConstraints.BOTH;
+		gbc_pdBtnAEGeneric.insets = new Insets(0, 0, 5, 5);
+		gbc_pdBtnAEGeneric.gridx = 3;
+		gbc_pdBtnAEGeneric.gridy = 2;
+		pharmDataPanel.add(pdBtnAEGeneric, gbc_pdBtnAEGeneric);
+		
+		JButton pdBtnAEDisease = new JButton("Add/Edit Disease");
+		GridBagConstraints gbc_pdBtnAEDisease = new GridBagConstraints();
+		gbc_pdBtnAEDisease.fill = GridBagConstraints.BOTH;
+		gbc_pdBtnAEDisease.insets = new Insets(0, 0, 5, 5);
+		gbc_pdBtnAEDisease.gridx = 2;
+		gbc_pdBtnAEDisease.gridy = 3;
+		pharmDataPanel.add(pdBtnAEDisease, gbc_pdBtnAEDisease);
+		
+		JButton pdBtnAEChemical = new JButton("Add/Edit Chemical Category");
+		GridBagConstraints gbc_pdBtnAEChemical = new GridBagConstraints();
+		gbc_pdBtnAEChemical.fill = GridBagConstraints.BOTH;
+		gbc_pdBtnAEChemical.insets = new Insets(0, 0, 5, 5);
+		gbc_pdBtnAEChemical.gridx = 3;
+		gbc_pdBtnAEChemical.gridy = 3;
+		pharmDataPanel.add(pdBtnAEChemical, gbc_pdBtnAEChemical);
+		
 		
 		//add views********************************************************************************************************************
 		panelContainer = new JPanel();
@@ -689,6 +754,7 @@ public class ETRTDriver {
         panelContainer.add(visitsPanel, "visits");
         panelContainer.add(addVisitPanel, "addVisits");
         panelContainer.add(otherPanel, "other");
+        panelContainer.add(pharmDataPanel, "pharmData");
         
         cardLayout.show(panelContainer, "main");
 		
@@ -747,14 +813,14 @@ public class ETRTDriver {
         apBtnCancel.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
-                cardLayout.show(panelContainer, "main");
+                cardLayout.show(panelContainer, "patients");
             }
         });
 
         avBtnCancel.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
-                cardLayout.show(panelContainer, "main");
+                cardLayout.show(panelContainer, "visits");
             }
         });
         
@@ -762,6 +828,20 @@ public class ETRTDriver {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
                 cardLayout.show(panelContainer, "main");
+            }
+        });
+        
+        oBtnPharmData.addActionListener(new ActionListener() {
+        	@Override
+            public void actionPerformed(ActionEvent arg0) {
+                cardLayout.show(panelContainer, "pharmData");
+            }
+        });
+        
+        pdBtnBack.addActionListener(new ActionListener() {
+        	@Override
+            public void actionPerformed(ActionEvent arg0) {
+                cardLayout.show(panelContainer, "other");
             }
         });
         

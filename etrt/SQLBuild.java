@@ -34,10 +34,12 @@ public class SQLBuild {
             ,
             "create table REF_MEDICAMENT (" +
                     "medicament_id SMALLINT NOT NULL," +
+                    "name VARCHAR(25), " +
+                    "description VARCHAR(16000)," +
+                    "usual_dose NUMERIC(28)," +
                     "generic_id SMALLINT," +
                     "chem_id SMALLINT," +
                     "disease_id SMALLINT," +
-                    "usual_dose NUMERIC(28)," +
                     "PRIMARY KEY (medicament_id)," +
                     "FOREIGN KEY (generic_id) REFERENCES REF_GENERIC (generic_id)," +
                     "FOREIGN KEY (chem_id) REFERENCES REF_CHEMICAL (chem_id)," +
