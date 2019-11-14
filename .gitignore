@@ -1,3 +1,5 @@
 /bin/
-./etrt/Config.java
+./src/Utils/Config.java
 .classpath
+.project
+.idea
