@@ -14,6 +14,7 @@ import java.util.UUID;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +24,6 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
 public class ETRTDriver {
 	private JFrame frame;
@@ -130,6 +130,19 @@ public class ETRTDriver {
 	private JTextField disTextField_5;
 	private JTable disResTable;
 	private JButton disBtnBack;
+	
+	//Add/Edit Medication page
+	private JPanel aeMedDataPanel;
+	private JTextField medTextField;
+	private JTextField medTextField_1;
+	private JTextField medTextField_4;
+	private JTextField medTextField_3;
+	private JTextField medTextField_5;
+	private JTextField medTextField_6;
+	private JTable medResTable;
+	private JTextField medTextField_2;
+	private JTextField medTextField_7;
+	private JButton medBtnBack;
 
     public ETRTDriver() {
     	frame = new JFrame("CardLayout demo");
@@ -920,7 +933,7 @@ public class ETRTDriver {
 		editChemPanel.add(chmTextField_3, gbc_chmTextField_3);
 		chmTextField_3.setColumns(10);
 		
-		JLabel chmlblName_1 = new JLabel("Name");
+		JLabel chmlblName_1 = new JLabel("Name ");
 		GridBagConstraints gbc_chmlblName_1 = new GridBagConstraints();
 		gbc_chmlblName_1.insets = new Insets(0, 0, 5, 5);
 		gbc_chmlblName_1.anchor = GridBagConstraints.EAST;
@@ -941,17 +954,17 @@ public class ETRTDriver {
 		GridBagConstraints gbc_chmBtnSearch = new GridBagConstraints();
 		gbc_chmBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_chmBtnSearch.fill = GridBagConstraints.HORIZONTAL;
-		gbc_chmBtnSearch.gridwidth = 3;
-		gbc_chmBtnSearch.gridx = 1;
+		gbc_chmBtnSearch.gridwidth = 4;
+		gbc_chmBtnSearch.gridx = 0;
 		gbc_chmBtnSearch.gridy = 1;
 		editChemPanel.add(chmBtnSearch, gbc_chmBtnSearch);
 		
 		JScrollPane chmscrollPane_2 = new JScrollPane();
 		GridBagConstraints gbc_chmscrollPane_2 = new GridBagConstraints();
-		gbc_chmscrollPane_2.gridwidth = 3;
+		gbc_chmscrollPane_2.gridwidth = 4;
 		gbc_chmscrollPane_2.insets = new Insets(0, 0, 5, 5);
 		gbc_chmscrollPane_2.fill = GridBagConstraints.BOTH;
-		gbc_chmscrollPane_2.gridx = 1;
+		gbc_chmscrollPane_2.gridx = 0;
 		gbc_chmscrollPane_2.gridy = 2;
 		editChemPanel.add(chmscrollPane_2, gbc_chmscrollPane_2);
 		
@@ -1165,17 +1178,17 @@ public class ETRTDriver {
 		GridBagConstraints gbc_genBtnSearch = new GridBagConstraints();
 		gbc_genBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_genBtnSearch.fill = GridBagConstraints.HORIZONTAL;
-		gbc_genBtnSearch.gridwidth = 3;
-		gbc_genBtnSearch.gridx = 1;
+		gbc_genBtnSearch.gridwidth = 4;
+		gbc_genBtnSearch.gridx = 0;
 		gbc_genBtnSearch.gridy = 1;
 		editgenPanel.add(genBtnSearch, gbc_genBtnSearch);
 		
 		JScrollPane genscrollPane_2 = new JScrollPane();
 		GridBagConstraints gbc_genscrollPane_2 = new GridBagConstraints();
-		gbc_genscrollPane_2.gridwidth = 3;
+		gbc_genscrollPane_2.gridwidth = 4;
 		gbc_genscrollPane_2.insets = new Insets(0, 0, 5, 5);
 		gbc_genscrollPane_2.fill = GridBagConstraints.BOTH;
-		gbc_genscrollPane_2.gridx = 1;
+		gbc_genscrollPane_2.gridx = 0;
 		gbc_genscrollPane_2.gridy = 2;
 		editgenPanel.add(genscrollPane_2, gbc_genscrollPane_2);
 		
@@ -1389,17 +1402,17 @@ public class ETRTDriver {
 		GridBagConstraints gbc_disBtnSearch = new GridBagConstraints();
 		gbc_disBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_disBtnSearch.fill = GridBagConstraints.HORIZONTAL;
-		gbc_disBtnSearch.gridwidth = 3;
-		gbc_disBtnSearch.gridx = 1;
+		gbc_disBtnSearch.gridwidth = 4;
+		gbc_disBtnSearch.gridx = 0;
 		gbc_disBtnSearch.gridy = 1;
 		editDisPanel.add(disBtnSearch, gbc_disBtnSearch);
 		
 		JScrollPane disscrollPane_2 = new JScrollPane();
 		GridBagConstraints gbc_disscrollPane_2 = new GridBagConstraints();
-		gbc_disscrollPane_2.gridwidth = 3;
+		gbc_disscrollPane_2.gridwidth = 4;
 		gbc_disscrollPane_2.insets = new Insets(0, 0, 5, 5);
 		gbc_disscrollPane_2.fill = GridBagConstraints.BOTH;
-		gbc_disscrollPane_2.gridx = 1;
+		gbc_disscrollPane_2.gridx = 0;
 		gbc_disscrollPane_2.gridy = 2;
 		editDisPanel.add(disscrollPane_2, gbc_disscrollPane_2);
 		
@@ -1471,6 +1484,360 @@ public class ETRTDriver {
 		gbc_disBtnSubmit.gridy = 6;
 		editDisPanel.add(disBtnSubmit, gbc_disBtnSubmit);
 		
+		//MEDICAMENT ADD/EDIT PAGE********************************************************************************************************************
+		
+		aeMedDataPanel = new JPanel();
+		GridBagLayout gbl_aeMedDataPanel = new GridBagLayout();
+		gbl_aeMedDataPanel.columnWidths = new int[]{0, 0};
+		gbl_aeMedDataPanel.rowHeights = new int[]{0, 0, 0};
+		gbl_aeMedDataPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_aeMedDataPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		aeMedDataPanel.setLayout(gbl_aeMedDataPanel);
+		
+		medBtnBack = new JButton("Back");
+		GridBagConstraints gbc_medBtnBack = new GridBagConstraints();
+		gbc_medBtnBack.anchor = GridBagConstraints.WEST;
+		gbc_medBtnBack.insets = new Insets(0, 0, 5, 0);
+		gbc_medBtnBack.gridx = 0;
+		gbc_medBtnBack.gridy = 0;
+		aeMedDataPanel.add(medBtnBack, gbc_medBtnBack);
+		
+		JTabbedPane medTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		GridBagConstraints gbc_medTabbedPane = new GridBagConstraints();
+		gbc_medTabbedPane.fill = GridBagConstraints.BOTH;
+		gbc_medTabbedPane.gridx = 0;
+		gbc_medTabbedPane.gridy = 1;
+		aeMedDataPanel.add(medTabbedPane, gbc_medTabbedPane);
+		
+		JPanel addMedPanel = new JPanel();
+		medTabbedPane.addTab("Add Medication", null, addMedPanel, null);
+		GridBagLayout gbl_addMedPanel = new GridBagLayout();
+		gbl_addMedPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_addMedPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_addMedPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_addMedPanel.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		addMedPanel.setLayout(gbl_addMedPanel);
+		
+		JLabel medlblId = new JLabel("ID ");
+		GridBagConstraints gbc_medlblId = new GridBagConstraints();
+		gbc_medlblId.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblId.anchor = GridBagConstraints.EAST;
+		gbc_medlblId.gridx = 0;
+		gbc_medlblId.gridy = 0;
+		addMedPanel.add(medlblId, gbc_medlblId);
+		
+		medTextField = new JTextField();
+		GridBagConstraints gbc_medTextField = new GridBagConstraints();
+		gbc_medTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_medTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField.gridx = 1;
+		gbc_medTextField.gridy = 0;
+		addMedPanel.add(medTextField, gbc_medTextField);
+		medTextField.setColumns(10);
+		
+		JLabel medlblName = new JLabel("Name ");
+		GridBagConstraints gbc_medlblName = new GridBagConstraints();
+		gbc_medlblName.anchor = GridBagConstraints.EAST;
+		gbc_medlblName.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblName.gridx = 2;
+		gbc_medlblName.gridy = 0;
+		addMedPanel.add(medlblName, gbc_medlblName);
+		
+		medTextField_1 = new JTextField();
+		GridBagConstraints gbc_medTextField_1 = new GridBagConstraints();
+		gbc_medTextField_1.insets = new Insets(0, 0, 5, 0);
+		gbc_medTextField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField_1.gridx = 3;
+		gbc_medTextField_1.gridy = 0;
+		addMedPanel.add(medTextField_1, gbc_medTextField_1);
+		medTextField_1.setColumns(10);
+		
+		JLabel medlblDescription = new JLabel("Description ");
+		GridBagConstraints gbc_medlblDescription = new GridBagConstraints();
+		gbc_medlblDescription.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblDescription.gridx = 0;
+		gbc_medlblDescription.gridy = 1;
+		addMedPanel.add(medlblDescription, gbc_medlblDescription);
+		
+		JScrollPane medscrollPane = new JScrollPane();
+		GridBagConstraints gbc_medscrollPane = new GridBagConstraints();
+		gbc_medscrollPane.gridwidth = 3;
+		gbc_medscrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_medscrollPane.fill = GridBagConstraints.BOTH;
+		gbc_medscrollPane.gridx = 1;
+		gbc_medscrollPane.gridy = 1;
+		addMedPanel.add(medscrollPane, gbc_medscrollPane);
+		
+		JTextArea medtextArea = new JTextArea();
+		medscrollPane.setViewportView(medtextArea);
+		
+		JLabel medlblUsualDose = new JLabel("Usual Dose ");
+		GridBagConstraints gbc_medlblUsualDose = new GridBagConstraints();
+		gbc_medlblUsualDose.anchor = GridBagConstraints.EAST;
+		gbc_medlblUsualDose.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblUsualDose.gridx = 0;
+		gbc_medlblUsualDose.gridy = 2;
+		addMedPanel.add(medlblUsualDose, gbc_medlblUsualDose);
+		
+		medTextField_2 = new JTextField();
+		GridBagConstraints gbc_medTextField_2 = new GridBagConstraints();
+		gbc_medTextField_2.insets = new Insets(0, 0, 5, 5);
+		gbc_medTextField_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField_2.gridx = 1;
+		gbc_medTextField_2.gridy = 2;
+		addMedPanel.add(medTextField_2, gbc_medTextField_2);
+		medTextField_2.setColumns(10);
+		
+		JLabel medlblGenericId = new JLabel("Generic ");
+		GridBagConstraints gbc_medlblGenericId = new GridBagConstraints();
+		gbc_medlblGenericId.anchor = GridBagConstraints.EAST;
+		gbc_medlblGenericId.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblGenericId.gridx = 2;
+		gbc_medlblGenericId.gridy = 2;
+		addMedPanel.add(medlblGenericId, gbc_medlblGenericId);
+		
+		JComboBox medcomboBox = new JComboBox();
+		GridBagConstraints gbc_medcomboBox = new GridBagConstraints();
+		gbc_medcomboBox.insets = new Insets(0, 0, 5, 0);
+		gbc_medcomboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medcomboBox.gridx = 3;
+		gbc_medcomboBox.gridy = 2;
+		addMedPanel.add(medcomboBox, gbc_medcomboBox);
+		
+		JLabel medlblChemicalCategory = new JLabel("Chemical Category ");
+		GridBagConstraints gbc_medlblChemicalCategory = new GridBagConstraints();
+		gbc_medlblChemicalCategory.anchor = GridBagConstraints.EAST;
+		gbc_medlblChemicalCategory.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblChemicalCategory.gridx = 0;
+		gbc_medlblChemicalCategory.gridy = 3;
+		addMedPanel.add(medlblChemicalCategory, gbc_medlblChemicalCategory);
+		
+		JComboBox medcomboBox_1 = new JComboBox();
+		GridBagConstraints gbc_medcomboBox_1 = new GridBagConstraints();
+		gbc_medcomboBox_1.insets = new Insets(0, 0, 5, 5);
+		gbc_medcomboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medcomboBox_1.gridx = 1;
+		gbc_medcomboBox_1.gridy = 3;
+		addMedPanel.add(medcomboBox_1, gbc_medcomboBox_1);
+		
+		JLabel medlblDisease = new JLabel("Disease ");
+		GridBagConstraints gbc_medlblDisease = new GridBagConstraints();
+		gbc_medlblDisease.anchor = GridBagConstraints.EAST;
+		gbc_medlblDisease.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblDisease.gridx = 2;
+		gbc_medlblDisease.gridy = 3;
+		addMedPanel.add(medlblDisease, gbc_medlblDisease);
+		
+		JComboBox medcomboBox_2 = new JComboBox();
+		GridBagConstraints gbc_medcomboBox_2 = new GridBagConstraints();
+		gbc_medcomboBox_2.insets = new Insets(0, 0, 5, 0);
+		gbc_medcomboBox_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medcomboBox_2.gridx = 3;
+		gbc_medcomboBox_2.gridy = 3;
+		addMedPanel.add(medcomboBox_2, gbc_medcomboBox_2);
+		
+		JButton medBtnAdd = new JButton("Add");
+		GridBagConstraints gbc_medBtnAdd = new GridBagConstraints();
+		gbc_medBtnAdd.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medBtnAdd.gridwidth = 4;
+		gbc_medBtnAdd.gridx = 0;
+		gbc_medBtnAdd.gridy = 4;
+		addMedPanel.add(medBtnAdd, gbc_medBtnAdd);
+		
+		JPanel editMedPanel = new JPanel();
+		medTabbedPane.addTab("Edit Medication", null, editMedPanel, null);
+		GridBagLayout gbl_editMedPanel = new GridBagLayout();
+		gbl_editMedPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_editMedPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_editMedPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_editMedPanel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		editMedPanel.setLayout(gbl_editMedPanel);
+		
+		JLabel medlblId_1 = new JLabel("ID ");
+		GridBagConstraints gbc_medlblId_1 = new GridBagConstraints();
+		gbc_medlblId_1.anchor = GridBagConstraints.EAST;
+		gbc_medlblId_1.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblId_1.gridx = 0;
+		gbc_medlblId_1.gridy = 0;
+		editMedPanel.add(medlblId_1, gbc_medlblId_1);
+		
+		medTextField_3 = new JTextField();
+		GridBagConstraints gbc_medTextField_3 = new GridBagConstraints();
+		gbc_medTextField_3.insets = new Insets(0, 0, 5, 5);
+		gbc_medTextField_3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField_3.gridx = 1;
+		gbc_medTextField_3.gridy = 0;
+		editMedPanel.add(medTextField_3, gbc_medTextField_3);
+		medTextField_3.setColumns(10);
+		
+		JLabel medlblName_1 = new JLabel("Name ");
+		GridBagConstraints gbc_medlblName_1 = new GridBagConstraints();
+		gbc_medlblName_1.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblName_1.anchor = GridBagConstraints.EAST;
+		gbc_medlblName_1.gridx = 2;
+		gbc_medlblName_1.gridy = 0;
+		editMedPanel.add(medlblName_1, gbc_medlblName_1);
+		
+		medTextField_4 = new JTextField();
+		GridBagConstraints gbc_medTextField_4 = new GridBagConstraints();
+		gbc_medTextField_4.insets = new Insets(0, 0, 5, 0);
+		gbc_medTextField_4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField_4.gridx = 3;
+		gbc_medTextField_4.gridy = 0;
+		editMedPanel.add(medTextField_4, gbc_medTextField_4);
+		medTextField_4.setColumns(10);
+		
+		JButton medBtnSearch = new JButton("Search");
+		GridBagConstraints gbc_medBtnSearch = new GridBagConstraints();
+		gbc_medBtnSearch.insets = new Insets(0, 0, 5, 0);
+		gbc_medBtnSearch.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medBtnSearch.gridwidth = 4;
+		gbc_medBtnSearch.gridx = 0;
+		gbc_medBtnSearch.gridy = 1;
+		editMedPanel.add(medBtnSearch, gbc_medBtnSearch);
+		
+		JScrollPane medscrollPane_2 = new JScrollPane();
+		GridBagConstraints gbc_medscrollPane_2 = new GridBagConstraints();
+		gbc_medscrollPane_2.gridwidth = 4;
+		gbc_medscrollPane_2.insets = new Insets(0, 0, 5, 0);
+		gbc_medscrollPane_2.fill = GridBagConstraints.BOTH;
+		gbc_medscrollPane_2.gridx = 0;
+		gbc_medscrollPane_2.gridy = 2;
+		editMedPanel.add(medscrollPane_2, gbc_medscrollPane_2);
+		
+		//RESULT TABLE HERE***************************
+		medResTable = new JTable();
+		medResTable.setFillsViewportHeight(true);
+		medscrollPane_2.setViewportView(medResTable);
+		
+		JLabel medlblId_2 = new JLabel("ID ");
+		GridBagConstraints gbc_medlblId_2 = new GridBagConstraints();
+		gbc_medlblId_2.anchor = GridBagConstraints.EAST;
+		gbc_medlblId_2.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblId_2.gridx = 0;
+		gbc_medlblId_2.gridy = 3;
+		editMedPanel.add(medlblId_2, gbc_medlblId_2);
+		
+		medTextField_5 = new JTextField();
+		GridBagConstraints gbc_medTextField_5 = new GridBagConstraints();
+		gbc_medTextField_5.insets = new Insets(0, 0, 5, 5);
+		gbc_medTextField_5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField_5.gridx = 1;
+		gbc_medTextField_5.gridy = 3;
+		editMedPanel.add(medTextField_5, gbc_medTextField_5);
+		medTextField_5.setColumns(10);
+		
+		JLabel medlblName_2 = new JLabel("Name ");
+		GridBagConstraints gbc_medlblName_2 = new GridBagConstraints();
+		gbc_medlblName_2.anchor = GridBagConstraints.EAST;
+		gbc_medlblName_2.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblName_2.gridx = 2;
+		gbc_medlblName_2.gridy = 3;
+		editMedPanel.add(medlblName_2, gbc_medlblName_2);
+		
+		medTextField_6 = new JTextField();
+		GridBagConstraints gbc_medTextField_6 = new GridBagConstraints();
+		gbc_medTextField_6.insets = new Insets(0, 0, 5, 0);
+		gbc_medTextField_6.gridwidth = 3;
+		gbc_medTextField_6.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField_6.gridx = 3;
+		gbc_medTextField_6.gridy = 3;
+		editMedPanel.add(medTextField_6, gbc_medTextField_6);
+		medTextField_6.setColumns(10);
+		
+		JLabel medlblDescription_1 = new JLabel("Description ");
+		GridBagConstraints gbc_medlblDescription_1 = new GridBagConstraints();
+		gbc_medlblDescription_1.anchor = GridBagConstraints.EAST;
+		gbc_medlblDescription_1.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblDescription_1.gridx = 0;
+		gbc_medlblDescription_1.gridy = 4;
+		editMedPanel.add(medlblDescription_1, gbc_medlblDescription_1);
+		
+		JScrollPane medscrollPane_1 = new JScrollPane();
+		GridBagConstraints gbc_medscrollPane_1 = new GridBagConstraints();
+		gbc_medscrollPane_1.gridwidth = 3;
+		gbc_medscrollPane_1.insets = new Insets(0, 0, 5, 0);
+		gbc_medscrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_medscrollPane_1.gridx = 1;
+		gbc_medscrollPane_1.gridy = 4;
+		editMedPanel.add(medscrollPane_1, gbc_medscrollPane_1);
+		
+		JTextArea medtextArea_2 = new JTextArea();
+		medscrollPane_1.setViewportView(medtextArea_2);
+		
+		JLabel medlblUsualDose_2 = new JLabel("Usual Dose ");
+		GridBagConstraints gbc_medlblUsualDose_2 = new GridBagConstraints();
+		gbc_medlblUsualDose_2.anchor = GridBagConstraints.EAST;
+		gbc_medlblUsualDose_2.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblUsualDose_2.gridx = 0;
+		gbc_medlblUsualDose_2.gridy = 5;
+		editMedPanel.add(medlblUsualDose_2, gbc_medlblUsualDose_2);
+		
+		medTextField_7 = new JTextField();
+		medTextField_7.setColumns(10);
+		GridBagConstraints gbc_medTextField_7 = new GridBagConstraints();
+		gbc_medTextField_7.insets = new Insets(0, 0, 5, 5);
+		gbc_medTextField_7.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medTextField_7.gridx = 1;
+		gbc_medTextField_7.gridy = 5;
+		editMedPanel.add(medTextField_7, gbc_medTextField_7);
+		
+		JLabel medlblGeneric = new JLabel("Generic ");
+		GridBagConstraints gbc_medlblGeneric = new GridBagConstraints();
+		gbc_medlblGeneric.anchor = GridBagConstraints.EAST;
+		gbc_medlblGeneric.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblGeneric.gridx = 2;
+		gbc_medlblGeneric.gridy = 5;
+		editMedPanel.add(medlblGeneric, gbc_medlblGeneric);
+		
+		JComboBox medcomboBox_3 = new JComboBox();
+		GridBagConstraints gbc_medcomboBox_3 = new GridBagConstraints();
+		gbc_medcomboBox_3.insets = new Insets(0, 0, 5, 0);
+		gbc_medcomboBox_3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medcomboBox_3.gridx = 3;
+		gbc_medcomboBox_3.gridy = 5;
+		editMedPanel.add(medcomboBox_3, gbc_medcomboBox_3);
+		
+		JLabel medlblChemicalCategory_1 = new JLabel("Chemical Category ");
+		GridBagConstraints gbc_medlblChemicalCategory_1 = new GridBagConstraints();
+		gbc_medlblChemicalCategory_1.anchor = GridBagConstraints.EAST;
+		gbc_medlblChemicalCategory_1.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblChemicalCategory_1.gridx = 0;
+		gbc_medlblChemicalCategory_1.gridy = 6;
+		editMedPanel.add(medlblChemicalCategory_1, gbc_medlblChemicalCategory_1);
+		
+		JComboBox medcomboBox_4 = new JComboBox();
+		GridBagConstraints gbc_medcomboBox_4 = new GridBagConstraints();
+		gbc_medcomboBox_4.insets = new Insets(0, 0, 5, 5);
+		gbc_medcomboBox_4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medcomboBox_4.gridx = 1;
+		gbc_medcomboBox_4.gridy = 6;
+		editMedPanel.add(medcomboBox_4, gbc_medcomboBox_4);
+		
+		JLabel medlblDisease_1 = new JLabel("Disease ");
+		GridBagConstraints gbc_medlblDisease_1 = new GridBagConstraints();
+		gbc_medlblDisease_1.anchor = GridBagConstraints.EAST;
+		gbc_medlblDisease_1.insets = new Insets(0, 0, 5, 5);
+		gbc_medlblDisease_1.gridx = 2;
+		gbc_medlblDisease_1.gridy = 6;
+		editMedPanel.add(medlblDisease_1, gbc_medlblDisease_1);
+		
+		JComboBox medcomboBox_5 = new JComboBox();
+		GridBagConstraints gbc_medcomboBox_5 = new GridBagConstraints();
+		gbc_medcomboBox_5.insets = new Insets(0, 0, 5, 0);
+		gbc_medcomboBox_5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medcomboBox_5.gridx = 3;
+		gbc_medcomboBox_5.gridy = 6;
+		editMedPanel.add(medcomboBox_5, gbc_medcomboBox_5);
+		
+		JButton medBtnSubmit = new JButton("Submit");
+		GridBagConstraints gbc_medBtnSubmit = new GridBagConstraints();
+		gbc_medBtnSubmit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medBtnSubmit.gridwidth = 4;
+		gbc_medBtnSubmit.gridx = 0;
+		gbc_medBtnSubmit.gridy = 7;
+		editMedPanel.add(medBtnSubmit, gbc_medBtnSubmit);
+		
 		
 		//add views********************************************************************************************************************
 		panelContainer = new JPanel();
@@ -1486,6 +1853,8 @@ public class ETRTDriver {
         panelContainer.add(aeChemDataPanel, "chemData");
         panelContainer.add(aeGenDataPanel, "genData");
         panelContainer.add(aeDisDataPanel, "disData");
+        panelContainer.add(aeMedDataPanel, "medData");
+        
         
         cardLayout.show(panelContainer, "main");
 		
@@ -1598,7 +1967,7 @@ public class ETRTDriver {
     	pdBtnAEMedication.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
-
+        		cardLayout.show(panelContainer, "medData");
             }
         });
         
@@ -1619,6 +1988,14 @@ public class ETRTDriver {
         });
         
         disBtnBack.addActionListener(new ActionListener() {
+        	@Override
+            public void actionPerformed(ActionEvent arg0) {
+                cardLayout.show(panelContainer, "pharmData");
+                
+            }
+        });
+        
+        medBtnBack.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
                 cardLayout.show(panelContainer, "pharmData");
