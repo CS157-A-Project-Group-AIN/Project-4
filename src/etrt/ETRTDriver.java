@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 public class ETRTDriver {
+	//******************************************All global variables are here******************************************************
 	private JFrame frame;
     private JPanel panelContainer;
     
@@ -147,6 +148,13 @@ public class ETRTDriver {
     public ETRTDriver() {
     	frame = new JFrame("CardLayout demo");
     	frame.setSize(600, 400);
+    	
+    	//******************************************This section contains all GUI code*************************************************
+    	//If you need to read or push data to/from a component in a view, look for its label in the section below. Change it from a local
+    	//variable to a global by putting its declaration in the header above this constructor. Some are already there by default. Then
+    	//you can use that variable in the ActionListener section.
+    	//Note that any variables with the prefix gbl_ or gbc_ are constraints for the GUI, and will not be used functionally
+    	//*****************************************************************************************************************************
     	
         //MAIN PAGE********************************************************************************************************************
     	mainPanel = new JPanel();
@@ -813,7 +821,7 @@ public class ETRTDriver {
 		gbc_pdBtnAEChemical.gridy = 3;
 		pharmDataPanel.add(pdBtnAEChemical, gbc_pdBtnAEChemical);
 		
-		//CHEMICAL ADD/EDIT PAGE********************************************************************************************************************
+		//CHEMICAL PAGE********************************************************************************************************************
 		aeChemDataPanel = new JPanel();
 		GridBagLayout gbl_aeChemDataPanel = new GridBagLayout();
 		gbl_aeChemDataPanel.columnWidths = new int[]{0, 0};
@@ -1037,7 +1045,7 @@ public class ETRTDriver {
 		editChemPanel.add(chmBtnSubmit, gbc_chmBtnSubmit);
 		
 		
-		//GENERIC ADD/EDIT PAGE********************************************************************************************************************
+		//GENERIC PAGE********************************************************************************************************************
 		aeGenDataPanel = new JPanel();
 		GridBagLayout gbl_aeGenDataPanel = new GridBagLayout();
 		gbl_aeGenDataPanel.columnWidths = new int[]{0, 0};
@@ -1261,7 +1269,7 @@ public class ETRTDriver {
 		editgenPanel.add(genBtnSubmit, gbc_genBtnSubmit);
 		
 		
-		//DISEASE ADD/EDIT PAGE********************************************************************************************************************
+		//DISEASE PAGE********************************************************************************************************************
 		aeDisDataPanel = new JPanel();
 		GridBagLayout gbl_aeDisDataPanel = new GridBagLayout();
 		gbl_aeDisDataPanel.columnWidths = new int[]{0, 0};
@@ -1484,7 +1492,7 @@ public class ETRTDriver {
 		gbc_disBtnSubmit.gridy = 6;
 		editDisPanel.add(disBtnSubmit, gbc_disBtnSubmit);
 		
-		//MEDICAMENT ADD/EDIT PAGE********************************************************************************************************************
+		//MEDICAMENT PAGE********************************************************************************************************************
 		
 		aeMedDataPanel = new JPanel();
 		GridBagLayout gbl_aeMedDataPanel = new GridBagLayout();
@@ -1855,10 +1863,13 @@ public class ETRTDriver {
         panelContainer.add(aeDisDataPanel, "disData");
         panelContainer.add(aeMedDataPanel, "medData");
         
-        
+    	//**************************************This section contains all action listeners*********************************************
+    	//Here you can attach action listeners to GUI components. If you want to access a database, use the handlers in the src.handlers
+        //package. Try to keep the action listeners grouped by the page they belong to.
+    	//*****************************************************************************************************************************
         cardLayout.show(panelContainer, "main");
-		
-		//switch view********************************************************************************************************************
+        
+        //MAIN PAGE LISTENERS
         mainPatientsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1880,6 +1891,7 @@ public class ETRTDriver {
             }
         });
         
+        //VISIT PAGE LISTENERS
         visitsBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1894,6 +1906,7 @@ public class ETRTDriver {
             }
         });
 
+        //PATIENT PAGE LISTENERS
         patientsBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1910,6 +1923,7 @@ public class ETRTDriver {
             }
         });
         
+        //ADD PATIENT PAGE LISTENERS
         apBtnCancel.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1917,6 +1931,7 @@ public class ETRTDriver {
             }
         });
 
+        //ADD VISIT PAGE LISTENERS
         avBtnCancel.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1924,6 +1939,7 @@ public class ETRTDriver {
             }
         });
         
+        //OPTION PAGE LISTENERS
         oBtnBack.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1938,6 +1954,7 @@ public class ETRTDriver {
             }
         });
         
+        //PHARMACOLOGY DATA PAGE
         pdBtnBack.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1971,6 +1988,7 @@ public class ETRTDriver {
             }
         });
         
+    	//CHEMICAL DATA PAGE
         chmBtnBack.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1979,6 +1997,7 @@ public class ETRTDriver {
             }
         });
         
+        //GENERIC DATA PAGE
         genBtnBack.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1987,6 +2006,7 @@ public class ETRTDriver {
             }
         });
         
+        //DISEASE DATA PAGE
         disBtnBack.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
@@ -1995,6 +2015,7 @@ public class ETRTDriver {
             }
         });
         
+        //MEDICAL DATA PAGE
         medBtnBack.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent arg0) {
