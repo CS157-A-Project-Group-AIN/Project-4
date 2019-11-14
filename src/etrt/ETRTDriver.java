@@ -115,6 +115,7 @@ public class ETRTDriver {
         mainPatientsButton = new JButton("Patients");
         mainVisitsButton = new JButton("Visits");
         mainAnalyticsButton = new JButton("Analytics");
+        mainAnalyticsButton.setEnabled(false);
         mainOtherButton = new JButton("Other");
         mainPanel.add(mainPatientsButton);
         mainPanel.add(mainVisitsButton);
@@ -154,6 +155,7 @@ public class ETRTDriver {
 		patientsPanel.add(patientsAddNew, gbc_apBtnAddNew);
 		
 		patientsViewEdit = new JButton("View/Edit Patients");
+		patientsViewEdit.setEnabled(false);
 		GridBagConstraints gbc_apBtnEditview = new GridBagConstraints();
 		gbc_apBtnEditview.fill = GridBagConstraints.BOTH;
 		gbc_apBtnEditview.insets = new Insets(0, 0, 5, 5);
@@ -182,6 +184,7 @@ public class ETRTDriver {
 		visitsPanel.add(visitsAddNew, gbc_vBtnAddNew);
 		
 		visitsViewEdit = new JButton("View/Edit Visits");
+		visitsViewEdit.setEnabled(false);
 		GridBagConstraints gbc_vBtnEditview = new GridBagConstraints();
 		gbc_vBtnEditview.fill = GridBagConstraints.BOTH;
 		gbc_vBtnEditview.insets = new Insets(0, 0, 5, 5);
@@ -295,6 +298,7 @@ public class ETRTDriver {
 		avSecondGroup.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton avBtnInterview = new JButton("Interview");
+		avBtnInterview.setEnabled(false);
 		avSecondGroup.add(avBtnInterview);
 		
 		JButton avBtnAudiology = new JButton("Audiology");
@@ -304,6 +308,7 @@ public class ETRTDriver {
 		avSecondGroup.add(avBtnMedical);
 		
 		JButton avBtnDiagnose = new JButton("Diagnose");
+		avBtnDiagnose.setEnabled(false);
 		avSecondGroup.add(avBtnDiagnose);
 		
 		JLabel lblNewLabel_1 = new JLabel("Problem ");
@@ -315,6 +320,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		avTextField_5 = new JTextField();
+		avTextField_5.setEditable(false);
 		GridBagConstraints gbc_avTextField_5 = new GridBagConstraints();
 		gbc_avTextField_5.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_5.fill = GridBagConstraints.HORIZONTAL;
@@ -332,6 +338,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblCategory, gbc_lblCategory);
 		
 		avTextField_6 = new JTextField();
+		avTextField_6.setEditable(false);
 		GridBagConstraints gbc_avTextField_6 = new GridBagConstraints();
 		gbc_avTextField_6.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_6.fill = GridBagConstraints.HORIZONTAL;
@@ -349,6 +356,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblProtocol, gbc_lblProtocol);
 		
 		avTextField_7 = new JTextField();
+		avTextField_7.setEditable(false);
 		GridBagConstraints gbc_avTextField_7 = new GridBagConstraints();
 		gbc_avTextField_7.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_7.fill = GridBagConstraints.HORIZONTAL;
@@ -366,6 +374,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblFu, gbc_lblFu);
 		
 		avTextField_8 = new JTextField();
+		avTextField_8.setEditable(false);
 		GridBagConstraints gbc_avTextField_8 = new GridBagConstraints();
 		gbc_avTextField_8.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_8.fill = GridBagConstraints.HORIZONTAL;
@@ -383,6 +392,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblInstrument, gbc_lblInstrument);
 		
 		avTextField_9 = new JTextField();
+		avTextField_9.setEditable(false);
 		GridBagConstraints gbc_avTextField_9 = new GridBagConstraints();
 		gbc_avTextField_9.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_9.fill = GridBagConstraints.HORIZONTAL;
@@ -400,6 +410,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblRem, gbc_lblRem);
 		
 		JCheckBox avChckbxREM = new JCheckBox("");
+		avChckbxREM.setEnabled(false);
 		GridBagConstraints gbc_avChckbxREM = new GridBagConstraints();
 		gbc_avChckbxREM.anchor = GridBagConstraints.WEST;
 		gbc_avChckbxREM.insets = new Insets(0, 0, 5, 5);
@@ -425,6 +436,7 @@ public class ETRTDriver {
 		addVisitPanel.add(scrollPane, gbc_scrollPane);
 		
 		JTextArea avTextAreaComments = new JTextArea();
+		avTextAreaComments.setEditable(false);
 		scrollPane.setViewportView(avTextAreaComments);
 		
 		JLabel lblNextVisit = new JLabel("Next Visit ");
@@ -436,6 +448,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblNextVisit, gbc_lblNextVisit);
 		
 		avTextField_10 = new JTextField();
+		avTextField_10.setEditable(false);
 		GridBagConstraints gbc_avTextField_10 = new GridBagConstraints();
 		gbc_avTextField_10.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_10.fill = GridBagConstraints.HORIZONTAL;
@@ -455,15 +468,19 @@ public class ETRTDriver {
 		avFourthGroup.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton avBtnInstrumentDetails = new JButton("Instrument Details");
+		avBtnInstrumentDetails.setEnabled(false);
 		avFourthGroup.add(avBtnInstrumentDetails);
 		
 		JButton avBtnRemDetails = new JButton("REM Details");
+		avBtnRemDetails.setEnabled(false);
 		avFourthGroup.add(avBtnRemDetails);
 		
 		JButton avBtnCounselingDetails = new JButton("Counseling Details");
+		avBtnCounselingDetails.setEnabled(false);
 		avFourthGroup.add(avBtnCounselingDetails);
 		
 		JButton avBtnRecommendTreatment = new JButton("Recommend Treatment");
+		avBtnRecommendTreatment.setEnabled(false);
 		avFourthGroup.add(avBtnRecommendTreatment);
 		
 		avBtnSave = new JButton("Save");
@@ -519,6 +536,7 @@ public class ETRTDriver {
 		addPatientPanel.add(apLblFirstName, gbc_apLblFirstName);
 		
 		apTextField_1 = new JTextField();
+		apTextField_1.setEditable(false);
 		GridBagConstraints gbc_apTextField_1 = new GridBagConstraints();
 		gbc_apTextField_1.gridwidth = 4;
 		gbc_apTextField_1.insets = new Insets(0, 0, 5, 0);
@@ -537,6 +555,7 @@ public class ETRTDriver {
 		addPatientPanel.add(apLblFirstName_1, gbc_apLblFirstName_1);
 		
 		apTextField_2 = new JTextField();
+		apTextField_2.setEditable(false);
 		GridBagConstraints gbc_apTextField_2 = new GridBagConstraints();
 		gbc_apTextField_2.gridwidth = 4;
 		gbc_apTextField_2.insets = new Insets(0, 0, 5, 0);
@@ -555,6 +574,7 @@ public class ETRTDriver {
 		addPatientPanel.add(apLblMiddleName, gbc_apLblMiddleName);
 		
 		apTextField_3 = new JTextField();
+		apTextField_3.setEditable(false);
 		GridBagConstraints gbc_apTextField_3 = new GridBagConstraints();
 		gbc_apTextField_3.gridwidth = 4;
 		gbc_apTextField_3.insets = new Insets(0, 0, 5, 0);
@@ -573,6 +593,7 @@ public class ETRTDriver {
 		addPatientPanel.add(apLblDateOfBirth, gbc_apLblDateOfBirth);
 		
 		apTextField_4 = new JTextField();
+		apTextField_4.setEditable(false);
 		GridBagConstraints gbc_apTextField_4 = new GridBagConstraints();
 		gbc_apTextField_4.gridwidth = 4;
 		gbc_apTextField_4.insets = new Insets(0, 0, 5, 0);
@@ -591,6 +612,7 @@ public class ETRTDriver {
 		addPatientPanel.add(apLblSsn, gbc_apLblSsn);
 		
 		apTextField_5 = new JTextField();
+		apTextField_5.setEditable(false);
 		GridBagConstraints gbc_apTextField_5 = new GridBagConstraints();
 		gbc_apTextField_5.gridwidth = 4;
 		gbc_apTextField_5.insets = new Insets(0, 0, 5, 0);
@@ -609,6 +631,7 @@ public class ETRTDriver {
 		addPatientPanel.add(apLblInsurance, gbc_apLblInsurance);
 		
 		apTextField_6 = new JTextField();
+		apTextField_6.setEditable(false);
 		GridBagConstraints gbc_apTextField_6 = new GridBagConstraints();
 		gbc_apTextField_6.gridwidth = 4;
 		gbc_apTextField_6.insets = new Insets(0, 0, 5, 0);
@@ -619,6 +642,7 @@ public class ETRTDriver {
 		apTextField_6.setColumns(10);
 		
 		apBtnSave = new JButton("Save");
+		apBtnSave.setEnabled(false);
 		GridBagConstraints gbc_apBtnSave = new GridBagConstraints();
 		gbc_apBtnSave.anchor = GridBagConstraints.EAST;
 		gbc_apBtnSave.insets = new Insets(0, 0, 0, 5);
@@ -627,6 +651,7 @@ public class ETRTDriver {
 		addPatientPanel.add(apBtnSave, gbc_apBtnSave);
 		
 		apBtnAddVisit = new JButton("Add Visit");
+		apBtnAddVisit.setEnabled(false);
 		GridBagConstraints gbc_apBtnAddVisit = new GridBagConstraints();
 		gbc_apBtnAddVisit.insets = new Insets(0, 0, 0, 5);
 		gbc_apBtnAddVisit.gridx = 3;
@@ -651,21 +676,23 @@ public class ETRTDriver {
 		otherPanel.setLayout(gbl_otherPanel);
 		
 		oBtnBack = new JButton("Back");
-		GridBagConstraints gbc_button = new GridBagConstraints();
-		gbc_button.insets = new Insets(0, 0, 5, 5);
-		gbc_button.gridx = 0;
-		gbc_button.gridy = 0;
-		otherPanel.add(oBtnBack, gbc_button);
+		GridBagConstraints gbc_oBtnBack = new GridBagConstraints();
+		gbc_oBtnBack.insets = new Insets(0, 0, 5, 5);
+		gbc_oBtnBack.gridx = 0;
+		gbc_oBtnBack.gridy = 0;
+		otherPanel.add(oBtnBack, gbc_oBtnBack);
 		
-		JButton btnNewButton = new JButton("Location Data");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 2;
-		gbc_btnNewButton.gridy = 2;
-		otherPanel.add(btnNewButton, gbc_btnNewButton);
+		JButton oBtnLocatData = new JButton("Location Data");
+		oBtnLocatData.setEnabled(false);
+		GridBagConstraints gbc_oBtnLocatData = new GridBagConstraints();
+		gbc_oBtnLocatData.fill = GridBagConstraints.BOTH;
+		gbc_oBtnLocatData.insets = new Insets(0, 0, 5, 5);
+		gbc_oBtnLocatData.gridx = 2;
+		gbc_oBtnLocatData.gridy = 2;
+		otherPanel.add(oBtnLocatData, gbc_oBtnLocatData);
 		
 		JButton btnDemographicsData = new JButton("Demographics Data");
+		btnDemographicsData.setEnabled(false);
 		GridBagConstraints gbc_btnDemographicsData = new GridBagConstraints();
 		gbc_btnDemographicsData.fill = GridBagConstraints.BOTH;
 		gbc_btnDemographicsData.insets = new Insets(0, 0, 5, 5);
@@ -673,13 +700,14 @@ public class ETRTDriver {
 		gbc_btnDemographicsData.gridy = 2;
 		otherPanel.add(btnDemographicsData, gbc_btnDemographicsData);
 		
-		JButton btnNewButton_1 = new JButton("Medical Data");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 2;
-		gbc_btnNewButton_1.gridy = 3;
-		otherPanel.add(btnNewButton_1, gbc_btnNewButton_1);
+		JButton oBtnMedData = new JButton("Medical Data");
+		oBtnMedData.setEnabled(false);
+		GridBagConstraints gbc_oBtnMedData = new GridBagConstraints();
+		gbc_oBtnMedData.fill = GridBagConstraints.BOTH;
+		gbc_oBtnMedData.insets = new Insets(0, 0, 5, 5);
+		gbc_oBtnMedData.gridx = 2;
+		gbc_oBtnMedData.gridy = 3;
+		otherPanel.add(oBtnMedData, gbc_oBtnMedData);
 		
 		oBtnPharmData = new JButton("Pharmacology Data");
 		GridBagConstraints gbc_oBtnPharmData = new GridBagConstraints();
@@ -690,6 +718,7 @@ public class ETRTDriver {
 		otherPanel.add(oBtnPharmData, gbc_oBtnPharmData);
 		
 		JButton btnInstruments = new JButton("Instruments");
+		btnInstruments.setEnabled(false);
 		GridBagConstraints gbc_btnInstruments = new GridBagConstraints();
 		gbc_btnInstruments.fill = GridBagConstraints.BOTH;
 		gbc_btnInstruments.insets = new Insets(0, 0, 5, 0);
