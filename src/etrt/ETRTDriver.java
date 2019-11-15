@@ -27,6 +27,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import handers.GenericRefHandler;
+
 public class ETRTDriver {
 	// ******************************************All global variables are
 	// here******************************************************
@@ -130,14 +132,16 @@ public class ETRTDriver {
 
 	// Add/Edit Generics page
 	private JPanel aeGenDataPanel;
-	private JTextField genTextField;
-	private JTextField genTextField_1;
+	private JTextField genTextField_id;
+	private JTextField genTextField_name;
+	private JTextArea gentextArea_description;
 	private JTextField genTextField_2;
 	private JTextField genTextField_3;
 	private JTextField genTextField_4;
 	private JTextField genTextField_5;
 	private JTable genResTable;
 	private JButton genBtnBack;
+	private JButton genBtnAdd;
 
 	// Add/Edit Disease page
 	private JPanel aeDisDataPanel;
@@ -1313,14 +1317,14 @@ public class ETRTDriver {
 		gbc_genlblId.gridy = 0;
 		addgenPanel.add(genlblId, gbc_genlblId);
 
-		genTextField = new JTextField();
+		genTextField_id = new JTextField();
 		GridBagConstraints gbc_genTextField = new GridBagConstraints();
 		gbc_genTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_genTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genTextField.gridx = 1;
 		gbc_genTextField.gridy = 0;
-		addgenPanel.add(genTextField, gbc_genTextField);
-		genTextField.setColumns(10);
+		addgenPanel.add(genTextField_id, gbc_genTextField);
+		genTextField_id.setColumns(10);
 
 		JLabel genlblName = new JLabel("Name ");
 		GridBagConstraints gbc_genlblName = new GridBagConstraints();
@@ -1330,14 +1334,14 @@ public class ETRTDriver {
 		gbc_genlblName.gridy = 1;
 		addgenPanel.add(genlblName, gbc_genlblName);
 
-		genTextField_1 = new JTextField();
+		genTextField_name = new JTextField();
 		GridBagConstraints gbc_genTextField_1 = new GridBagConstraints();
 		gbc_genTextField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_genTextField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genTextField_1.gridx = 1;
 		gbc_genTextField_1.gridy = 1;
-		addgenPanel.add(genTextField_1, gbc_genTextField_1);
-		genTextField_1.setColumns(10);
+		addgenPanel.add(genTextField_name, gbc_genTextField_1);
+		genTextField_name.setColumns(10);
 
 		JLabel genlblDescription = new JLabel("Description ");
 		GridBagConstraints gbc_genlblDescription = new GridBagConstraints();
@@ -1354,10 +1358,10 @@ public class ETRTDriver {
 		gbc_genscrollPane.gridy = 2;
 		addgenPanel.add(genscrollPane, gbc_genscrollPane);
 
-		JTextArea gentextArea = new JTextArea();
-		genscrollPane.setViewportView(gentextArea);
+		gentextArea_description = new JTextArea();
+		genscrollPane.setViewportView(gentextArea_description);
 
-		JButton genBtnAdd = new JButton("Add");
+		genBtnAdd = new JButton("Add");
 		GridBagConstraints gbc_genBtnAdd = new GridBagConstraints();
 		gbc_genBtnAdd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genBtnAdd.gridwidth = 2;
@@ -3509,6 +3513,26 @@ public class ETRTDriver {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.show(panelContainer, "pharmData");
+
+			}
+		});
+		/*
+		private JTextField genTextField_id;
+		private JTextField genTextField_name;
+		private JTextArea gentextArea_description;
+		*/
+		genBtnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = genTextField_id.getText();
+				String name = genTextField_name.getText();
+				String description = gentextArea_description.getText();
+				try {
+					GenericRefHandler.insert(id, name, description);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		});
