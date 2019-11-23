@@ -7,3 +7,28 @@ Requirements here: https://docs.google.com/document/d/1CLizG4tGB7wuvsnL7NXZcS1Z1
 
 Andres Cortes Commit for Quiz 11/13
 Irina Voronova Commit for Quiz 11/13 #2
+
+Enviroment Setup:
+
+1. Download and install MySql and create an instance with whatever name you want https://dev.mysql.com/downloads/mysql/
+2. Download and save the mysql-connector-java https://dev.mysql.com/downloads/connector/j/5.1.html
+3. Add mysql-connector-java into your project
+4. Insert your mysql instance credentials and location in the config file Located in ./src/Utils.Config
+
+
+DataBase Initialization:
+
+1.Run SQLBuild script inside ./src/Utils/SQLBuild
+
+2.Since our requirements don't require us to implement full patient
+functionality you will need to run a seed script that
+adds initial patient data. this script is located in ./src/Utils/Seed
+!!!Make Sure this is run in a terminal that won't close on completion!!!
+!!!You will need to gather the outputted details for later use!!!
+!!!These details include patient data to use for the Visit Screen!!!
+
+
+
+Running Front end Program:
+
+Run the ETRTDriver located in ./src/etrt/ETRTDriver
