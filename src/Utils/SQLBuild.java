@@ -20,8 +20,8 @@ public class SQLBuild {
                     ");"
             ,
             "create table REF_GENERIC (" +
-                    "generic_id SMALLINT NOT NULL, " +
-                    "name VARCHAR(25), " +
+                    "generic_id SMALLINT NOT NULL," +
+                    "name VARCHAR(25) UNIQUE, " +
                     "description VARCHAR(16000)," +
                     "PRIMARY KEY (generic_id)" +
                     ");"
