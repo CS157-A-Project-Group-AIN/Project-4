@@ -9,8 +9,8 @@ public class ExampleHandlerUse {
 
     public static void main (String args[]){
 
-        final String id = "111";
-        final String name = "Drug183";
+        final String id = "233";
+        final String name = "Drug233";
         final String description = "Gets you lit!";
 
         final Handler handlers = new Handler();
