@@ -142,6 +142,7 @@ public class ETRTDriver {
 	private JTable genResTable;
 	private JButton genBtnBack;
 	private JButton genBtnAdd;
+	private JButton genBtnSearch;
 
 	// Add/Edit Disease page
 	private JPanel aeDisDataPanel;
@@ -1413,7 +1414,7 @@ public class ETRTDriver {
 		editgenPanel.add(genTextField_2, gbc_genTextField_2);
 		genTextField_2.setColumns(10);
 
-		JButton genBtnSearch = new JButton("Search");
+		genBtnSearch = new JButton("Search");
 		GridBagConstraints gbc_genBtnSearch = new GridBagConstraints();
 		gbc_genBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_genBtnSearch.fill = GridBagConstraints.HORIZONTAL;

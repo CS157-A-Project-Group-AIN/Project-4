@@ -24,7 +24,6 @@ public class GenericRefHandler {
 			// Create a Statement object so we can submit SQL statements to the driver
 			Statement stmt = con.createStatement();
 			// Submit the statement
-			//insert into STATE values ('AK','Alaska',null,'Juneau','West', 589757, null, null)
 			String insertStmt = "insert into REF_GENERIC values ('" + 
 					id + "','" +
 					name + "','"+
