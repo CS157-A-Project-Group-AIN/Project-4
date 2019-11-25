@@ -43,7 +43,7 @@ public class ChemicalRefHandler {
 
 		try {
 			Statement stmt = con.createStatement();
-			String insertStmt = "UPDATE REF_CHEMICAL SET name = '"+ name + "'," + "description = " + "'" + description + "' WHERE chemical_id = " + id + ";";
+			String insertStmt = "UPDATE REF_CHEMICAL SET name = '"+ name + "'," + "description = " + "'" + description + "' WHERE chem_id = " + id + ";";
 			System.out.println("Updating Chemical with id: " + id);
 			int status = stmt.executeUpdate(insertStmt);
 			stmt.close();
@@ -63,11 +63,11 @@ public class ChemicalRefHandler {
 
 		try {
 			Statement stmt = con.createStatement();
-			String query = "SELECT * FROM REF_CHEMICAL WHERE chemical_id = " + id ;
+			String query = "SELECT * FROM REF_CHEMICAL WHERE chem_id = " + id ;
 			System.out.println("Getting Chemical with id: " + id);
-			ResultSet res = stmt.executeQuery("SELECT * FROM REF_CHEMICAL WHERE chemical_id = " + id );
+			ResultSet res = stmt.executeQuery("SELECT * FROM REF_CHEMICAL WHERE chem_id = " + id );
 			res.next();//crucial, you will get a SQ100 Error if you do not do this function call
-			ChemicalRefResponse populatedRes = new ChemicalRefResponse(res.getInt("chemical_id"), res.getString("name"), res.getString("description"));
+			ChemicalRefResponse populatedRes = new ChemicalRefResponse(res.getInt("chem_id"), res.getString("name"), res.getString("description"));
 			stmt.close();
 			//con.close();
 			return populatedRes;
@@ -86,7 +86,7 @@ public class ChemicalRefHandler {
 			System.out.println("Getting Chemical with name: " + name);
 			ResultSet res = stmt.executeQuery(query);
 			res.next();//crucial, you will get an Error if you do not do this function call
-			ChemicalRefResponse populatedRes = new ChemicalRefResponse(res.getInt("chemical_id"), res.getString("name"), res.getString("description"));
+			ChemicalRefResponse populatedRes = new ChemicalRefResponse(res.getInt("chem_id"), res.getString("name"), res.getString("description"));
 			stmt.close();
 			//con.close();
 			return populatedRes;
