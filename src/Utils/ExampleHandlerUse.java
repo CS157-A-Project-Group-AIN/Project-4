@@ -1,6 +1,6 @@
-package Utils;
-import ResponseObjects.GenericRefResponse;
-import handlers.Handler;
+package src.Utils;
+import src.ResponseObjects.GenericRefResponse;
+import src.handlers.Handler;
 
 import java.lang.reflect.Field;
 
@@ -9,8 +9,8 @@ public class ExampleHandlerUse {
 
     public static void main (String args[]){
 
-        final String id = "183";
-        final String name = "Drug183";
+        final String id = "186";
+        final String name = "Drug186";
         final String description = "Gets you lit!";
 
         final Handler handlers = new Handler();

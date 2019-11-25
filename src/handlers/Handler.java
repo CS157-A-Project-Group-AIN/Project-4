@@ -1,5 +1,5 @@
-package handlers;
-import Utils.Config;
+package src.handlers;
+import src.Utils.Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

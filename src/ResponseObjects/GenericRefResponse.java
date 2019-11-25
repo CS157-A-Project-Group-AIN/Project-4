@@ -1,4 +1,4 @@
-package ResponseObjects;
+package src.ResponseObjects;
 
 public class GenericRefResponse {
     public int  generic_id;

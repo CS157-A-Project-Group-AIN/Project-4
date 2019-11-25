@@ -1,4 +1,4 @@
-package etrt;
+package src.etrt;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -26,7 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
-import handlers.GenericRefHandler;
+import src.handlers.GenericRefHandler;
 
 public class ETRTDriver {
 	// ******************************************All global variables are
@@ -3519,23 +3519,24 @@ public class ETRTDriver {
 		private JTextField genTextField_id;
 		private JTextField genTextField_name;
 		private JTextArea gentextArea_description;
-		*/
-//		genBtnAdd.addActionListener(new ActionListener() {
+		
+	genBtnAdd.addActionListener(new ActionListener() {
 //			@Override
-//			public void actionPerformed(ActionEvent arg0) {
-//				String id = genTextField_id.getText();
-//				String name = genTextField_name.getText();
-//				String description = gentextArea_description.getText();
-//				try {
-//					//Generic handler insert
-//				} catch (ClassNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//
-//			}
-//		});
+			public void actionPerformed(ActionEvent arg0) {
+				String id = genTextField_id.getText();
+				String name = genTextField_name.getText();
+				String description = gentextArea_description.getText();
+				try {
+					//Generic handler insert
+					GenericRefHandler.insertGeneric(id, name, description);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
+			}
+		});
+*/
 		// DISEASE DATA PAGE
 		disBtnBack.addActionListener(new ActionListener() {
 			@Override
