@@ -10,12 +10,12 @@ public class GenericRefHandler {
 	public GenericRefHandler(Connection con){
 		this.con = con;
 	}
-	
+
 	public boolean insertGeneric(String id, String name, String description) throws ClassNotFoundException {
 
 		try {
 			Statement stmt = con.createStatement();
-			String insertStmt = "insert into REF_GENERIC values ('" + 
+			String insertStmt = "insert into REF_GENERIC values ('" +
 					id + "','" +
 					name + "','"+
 					description + "')";
@@ -29,7 +29,7 @@ public class GenericRefHandler {
 		}
 		catch (SQLException e) {
           	 	SQLUtil.printSQLExceptions(e);
-		}	
+		}
 		return false;
 	}
 
@@ -91,5 +91,5 @@ public class GenericRefHandler {
 
 
 
-		
+
 }

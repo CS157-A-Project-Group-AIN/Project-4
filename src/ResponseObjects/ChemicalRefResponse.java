@@ -1,12 +1,13 @@
-package ResponseObjects;
+package src.ResponseObjects;
 
 public class ChemicalRefResponse {
-    public int  chem_id;
+
+	public int  chemical_id;
     public String name;
     public String description;
 
-    public ChemicalRefResponse (int generic_id, String name, String description){
-        this.chem_id = generic_id;
+    public ChemicalRefResponse (int chemical_id, String name, String description){
+        this.chemical_id = chemical_id;
         this.name = name;
         this.description = description;
     }

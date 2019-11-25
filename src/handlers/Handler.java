@@ -1,5 +1,5 @@
-package handlers;
-import Utils.Config;
+package src.handlers;
+import src.Utils.Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,9 +26,9 @@ public class Handler {
             this.diseaseRefHandler = new DiseaseRefHandler(con);
             this.chemicalRefHandler = new ChemicalRefHandler(con);
             this.audiologyHandler = new AudiologyHandler(con);
+
         } catch (SQLException e){
             e.printStackTrace();
-
         }
 
     }}
