@@ -1,11 +1,11 @@
-package Utils;
+package src.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static Utils.Config.*;
+import static src.Utils.Config.*;
 
 class Patient {
     public static String THC = "1236";
