@@ -1,4 +1,4 @@
-package src.handlers;
+package handlers;
 
 import java.sql.Connection;
 
