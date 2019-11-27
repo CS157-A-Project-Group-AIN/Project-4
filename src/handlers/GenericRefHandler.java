@@ -1,7 +1,7 @@
-package handlers;
+package src.handlers;
 import java.sql.*;
-import Utils.SQLUtil;
-import ResponseObjects.GenericRefResponse;
+import src.Utils.SQLUtil;
+import src.ResponseObjects.GenericRefResponse;
 
 public class GenericRefHandler {
 

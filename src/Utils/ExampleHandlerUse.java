@@ -1,6 +1,6 @@
-package Utils;
-import ResponseObjects.GenericRefResponse;
-import handlers.Handler;//Import handlers here
+package src.Utils;
+import src.ResponseObjects.GenericRefResponse;
+import src.handlers.Handler;//Import handlers here
 
 import java.lang.reflect.Field;
 
