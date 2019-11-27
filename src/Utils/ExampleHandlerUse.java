@@ -9,9 +9,9 @@ public class ExampleHandlerUse {
 
     public static void main (String args[]){
 
-        final String id = "233";
-        final String name = "Drug233";
-        final String description = "Gets you lit!";
+        final String id = "13";
+        final String name = "Drug13";
+        final String description = "This is drug 13";
 
         final Handler handlers = new Handler();
 
@@ -30,6 +30,10 @@ public class ExampleHandlerUse {
 
         } catch (ClassNotFoundException | IllegalAccessException e){
             e.printStackTrace();
+        }
+
+        for (String s: handlers.genericRefHandler.getAllGenericNames()) {
+            System.out.println(s);
         }
 
 

@@ -1,5 +1,7 @@
 package handlers;
 import java.sql.*;
+import java.util.ArrayList;
+
 import Utils.SQLUtil;
 import ResponseObjects.GenericRefResponse;
 
@@ -50,6 +52,29 @@ public class GenericRefHandler {
 			SQLUtil.printSQLExceptions(e);
 		}
 		return false;
+	}
+
+	public String[] getAllGenericNames(){
+
+		String names[];
+		try {
+			ArrayList<String> genericNames = new ArrayList<String>();
+			Statement stmt = con.createStatement();
+			String query = "SELECT * FROM REF_GENERIC;";
+			System.out.println("Getting Generics");
+			ResultSet res = stmt.executeQuery(query);
+			while(res.next()) {
+				genericNames.add(res.getString("name"));
+			}
+			stmt.close();
+
+			return genericNames.toArray(new String[genericNames.size()]);
+		}
+		catch (SQLException e) {
+			SQLUtil.printSQLExceptions(e);
+		}
+
+		return new String[0];
 	}
 
 	public GenericRefResponse finById(String id) throws ClassNotFoundException {
