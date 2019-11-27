@@ -1,4 +1,4 @@
-package src.ResponseObjects;
+package ResponseObjects;
 
 public class ChemicalRefResponse {
 

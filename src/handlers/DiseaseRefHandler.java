@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import src.ResponseObjects.DiseaseRefResponse;
-import src.Utils.SQLUtil;
+import ResponseObjects.DiseaseRefResponse;
+import Utils.SQLUtil;
 
 public class DiseaseRefHandler {
     Connection con;

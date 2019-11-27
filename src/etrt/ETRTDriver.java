@@ -1,4 +1,4 @@
-package src.etrt;
+package etrt;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -27,7 +27,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
 //import src.handlers.GenericRefHandler;
-import src.handlers.Handler;
+import handlers.Handler;
 
 public class ETRTDriver {
 	// ******************************************All global variables are

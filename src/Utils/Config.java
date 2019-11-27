@@ -1,4 +1,4 @@
-package src.Utils;
+package Utils;
 
 public class Config {
     public static String USERNAME = "irina";
