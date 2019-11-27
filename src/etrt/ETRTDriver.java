@@ -1,4 +1,4 @@
-package src.etrt;
+package etrt;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -26,7 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
-import src.handlers.GenericRefHandler;
+import handlers.GenericRefHandler;
 
 public class ETRTDriver {
 	// ******************************************All global variables are
@@ -3323,7 +3323,7 @@ public class ETRTDriver {
 
 		// **************************************This section contains all action listeners*********************************************
 		// Here you can attach action listeners to GUI components. If you want to access
-		// a database, use the handlers in the src.handlers
+		// a database, use the handlers in the handlers
 		// package. Try to keep the action listeners grouped by the page they belong to.
 		// *****************************************************************************************************************************
 		cardLayout.show(panelContainer, "main");
@@ -3498,6 +3498,7 @@ public class ETRTDriver {
 			}
 		});
 
+
 		// CHEMICAL DATA PAGE
 		chmBtnBack.addActionListener(new ActionListener() {
 			@Override
@@ -3512,9 +3513,16 @@ public class ETRTDriver {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.show(panelContainer, "pharmData");
-
 			}
 		});
+
+		genBtnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		/*------------------------------------------------------------------------------------------------------------*/
 		/*
 		private JTextField genTextField_id;
 		private JTextField genTextField_name;

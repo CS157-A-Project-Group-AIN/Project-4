@@ -1,4 +1,4 @@
-package src.ResponseObjects;
+package ResponseObjects;
 
 public class DiseaseRefResponse {
 	public int  disease_id;
