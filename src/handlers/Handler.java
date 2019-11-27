@@ -16,6 +16,9 @@ public class Handler {
     public  MedicamentRefHandler medicamentRefHandler;
     public  PharmocologyHandler pharmocologyHandler;
     public  GenericRefHandler genericRefHandler;
+    public PatientHandler patientHandler;
+    public VisitHandler visitHandler;
+
 
     public Handler() {
         try {
@@ -26,6 +29,8 @@ public class Handler {
             this.diseaseRefHandler = new DiseaseRefHandler(con);
             this.chemicalRefHandler = new ChemicalRefHandler(con);
             this.audiologyHandler = new AudiologyHandler(con);
+            this.patientHandler = new PatientHandler(con);
+            this.visitHandler = new VisitHandler(con);
 
         } catch (SQLException e){
             e.printStackTrace();

@@ -48,4 +48,67 @@ public class VisitHandler {
 
     }
 
+    public boolean updateVisit(
+            String visit_id,
+            String thc,
+            String visit_nr,
+            String date,
+            String comments) throws ClassNotFoundException {
+
+        try {
+            Statement stmt = con.createStatement();
+            String insertStmt = "UPDATE Visit SET" +
+                    "thc = '"+ thc + "'," +
+                    "visit_nr = " + "'" + visit_nr + "'" +
+                    "date = " + "'" + date + "'" +
+                    "comments = " + "'" + comments + "'" +
+                    "WHERE visit_id = " + visit_id + ";";
+            System.out.println("Updating Visit with visit_id: " + visit_id);
+            int status = stmt.executeUpdate(insertStmt);
+            stmt.close();
+            //con.close();
+            if(status == 1) {
+                System.out.println("Status: 200");
+                return true;
+            }
+        }
+        catch (SQLException e) {
+            SQLUtil.printSQLExceptions(e);
+        }
+        return false;
+    }
+
+    public boolean visit(
+            String visit_id,
+            String thc,
+            String visit_nr,
+            String date,
+            String comments) throws ClassNotFoundException {
+
+        try {
+            Statement stmt = con.createStatement();
+            String insertStmt = "insert into REF_CHEMICAL values ('" +
+                    generateId() + "','" +
+                    thc + "','"+
+                    visit_nr + "','"+
+                    date + "','"+
+                    comments + "')";
+            System.out.println(insertStmt);
+            int status = stmt.executeUpdate(insertStmt);
+            stmt.close();
+            if(status == 1) {
+                System.out.println("Status: 200");
+                return true;
+            }
+        }
+        catch (SQLException e) {
+            SQLUtil.printSQLExceptions(e);
+        }
+        return false;
+    }
+
+    private int generateId(){
+        return 1;
+    }
+
 }

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-import src.ResponseObjects.ChemicalRefResponse;
-import src.Utils.SQLUtil;
+import ResponseObjects.ChemicalRefResponse;
+import Utils.SQLUtil;
 
 public class ChemicalRefHandler {
     Connection con;
