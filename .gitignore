@@ -1,7 +1,7 @@
 /bin/
 ./src/Utils/Config.java
 .classpath
-.class
-.project
+*.class
+*.project
 .idea
 *.iml
