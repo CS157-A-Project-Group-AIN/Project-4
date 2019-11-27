@@ -1,4 +1,4 @@
-package src.Utils;
+package Utils;
 
 
 import java.sql.Connection;
@@ -158,7 +158,6 @@ public class SQLBuild {
     };
 
     public static void main(String[] args) throws ClassNotFoundException {
-
 
         //Class.forName("oracle.jdbc.driver.OracleDriver");
         Class.forName(JDBC_DRIVER);
