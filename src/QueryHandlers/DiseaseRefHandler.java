@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import ResponseObjects.DiseaseRefResponse;
 import Utils.SQLUtil;
 
+/** Handler for queries on the Disease Table
+ * @author Irina Voronova
+ * @version 1.0
+ */
 public class DiseaseRefHandler {
     Connection con;
 

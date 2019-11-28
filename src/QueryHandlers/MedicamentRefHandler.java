@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/** Handler for queries on the Medicament Table
+ * @author Andres Cortez
+ * @version 1.0
+ */
 public class MedicamentRefHandler {
 
     private Connection con;

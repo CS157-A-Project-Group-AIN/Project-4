@@ -8,6 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/** Handler for queries on the Patient Table
+ * @author Nathaniel Boas
+ * @version 1.0
+ */
 public class PatientHandler {
     Connection con;
 

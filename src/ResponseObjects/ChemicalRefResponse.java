@@ -1,5 +1,10 @@
 package ResponseObjects;
 
+
+/** Represents a column for a chemical in the chemical table.
+ * @author Irina
+ * @version 1.0
+ */
 public class ChemicalRefResponse {
 
 	public int  chemical_id;

@@ -1,5 +1,9 @@
 package ResponseObjects;
 
+/** Represents a column for a disease in the disease table.
+ * @author Irina
+ * @version 1.0
+ */
 public class DiseaseRefResponse {
 	public int  disease_id;
     public String name;

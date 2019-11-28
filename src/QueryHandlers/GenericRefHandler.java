@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import Utils.SQLUtil;
 import ResponseObjects.GenericRefResponse;
 
+/** Handler for queries on the Generic Table
+ * @author Nathaniel Boas
+ * @version 1.0
+ */
 public class GenericRefHandler {
 
 	private Connection con;

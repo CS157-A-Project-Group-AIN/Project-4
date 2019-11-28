@@ -1,5 +1,9 @@
 package ResponseObjects;
 
+/** Represents a column for a medicament in the medicament table.
+ * @author Andres Cortez
+ * @version 1.0
+ */
 public class MedicamentRefResponse {
     public int medicament_id;
     public String name;

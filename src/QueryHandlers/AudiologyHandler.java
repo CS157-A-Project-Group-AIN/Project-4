@@ -3,6 +3,10 @@ package QueryHandlers;
 import java.sql.Connection;
 import java.sql.Statement;
 
+/** Handler for queries on the Audiology Table
+ * @author Nathaniel Boas
+ * @version 1.0
+ */
 public class AudiologyHandler {
     Connection con;
 

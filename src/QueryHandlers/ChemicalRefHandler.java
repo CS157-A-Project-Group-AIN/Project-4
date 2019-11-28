@@ -9,7 +9,10 @@ import java.util.ArrayList;
 
 import ResponseObjects.ChemicalRefResponse;
 import Utils.SQLUtil;
-
+/** Handler for queries on the Chemical Table
+ * @author Irina Voronova
+ * @version 1.0
+ */
 public class ChemicalRefHandler {
     Connection con;
 
