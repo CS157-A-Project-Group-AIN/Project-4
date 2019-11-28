@@ -1,6 +1,6 @@
 package Utils;
 import  ResponseObjects.GenericRefResponse;
-import handlers.Handler;
+import sqlhandlers.Handler;
 
 import java.lang.reflect.Field;
 

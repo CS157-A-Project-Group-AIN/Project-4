@@ -1,6 +1,6 @@
 package Utils;
 
-import handlers.Handler;
+import sqlhandlers.Handler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,8 +24,9 @@ public class Seed {
     private static Handler handler;
 
     public static void main(String args[]) {
-        addPatient();
-        addGenerics();
+//        addPatient();
+//        addGenerics();
+        addVisit();
     }
 
     private static void addPatient() {
@@ -80,5 +81,34 @@ public class Seed {
         }
 
     }
+
+    private static void addVisit() {
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection con = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = con.createStatement();
+
+
+            String insertStmt = "insert into Visit values (" +
+                    1 + "," +
+                    1 + ",'" +
+                    "2019-11-27" + "'," +
+                    "'This is comments'"+
+                    ");";
+
+            System.out.println(insertStmt);
+
+            int status = stmt.executeUpdate(insertStmt);
+            stmt.close();
+            con.close();
+            if (status == 1) {
+                System.out.println("Satus: 200");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

@@ -29,8 +29,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
 import ResponseObjects.PatientResponse;
-import handlers.GenericRefHandler;
-import handlers.Handler;
+import sqlhandlers.Handler;
 
 public class ETRTDriver {
 	// ******************************************All global variables are
@@ -1740,7 +1739,7 @@ public class ETRTDriver {
 		audioPanel.setLayout(new BorderLayout(0, 0));
 
 		audPrePopTextFields = new JTextField[4];
-		audInpTextFields = new JTextField[64];
+		audInpTextFields = new JTextField[61];
 		JScrollPane audMainScrollPane = new JScrollPane();
 		audMainScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		audioPanel.add(audMainScrollPane, BorderLayout.CENTER);
@@ -2137,7 +2136,7 @@ public class ETRTDriver {
 		gbc_audTextField_20.gridy = 8;
 		audInnerPanel.add(audInpTextFields[16], gbc_audTextField_20);
 
-		JLabel lblL_6 = new JLabel("L7 ");
+		JLabel lblL_6 = new JLabel("L8 ");
 		GridBagConstraints gbc_audlblL_6 = new GridBagConstraints();
 		gbc_audlblL_6.insets = new Insets(0, 0, 5, 5);
 		gbc_audlblL_6.anchor = GridBagConstraints.EAST;
@@ -2420,15 +2419,6 @@ public class ETRTDriver {
 		gbc_audlblMinimalMaskingLevel.gridy = 17;
 		audInnerPanel.add(lblMinimalMaskingLevel, gbc_audlblMinimalMaskingLevel);
 
-		JLabel lblRight = new JLabel("Right Ear:");
-		GridBagConstraints gbc_audlblRight = new GridBagConstraints();
-		gbc_audlblRight.gridwidth = 2;
-		gbc_audlblRight.anchor = GridBagConstraints.EAST;
-		gbc_audlblRight.insets = new Insets(0, 0, 5, 5);
-		gbc_audlblRight.gridx = 0;
-		gbc_audlblRight.gridy = 18;
-		audInnerPanel.add(lblRight, gbc_audlblRight);
-
 		JLabel lblNewLabel_2 = new JLabel("MRR ");
 		GridBagConstraints gbc_audlblNewLabel_2 = new GridBagConstraints();
 		gbc_audlblNewLabel_2.anchor = GridBagConstraints.EAST;
@@ -2446,7 +2436,7 @@ public class ETRTDriver {
 		gbc_audTextField_36.gridy = 18;
 		audInnerPanel.add(audInpTextFields[32], gbc_audTextField_36);
 
-		JLabel lblMrb = new JLabel("MRB ");
+		JLabel lblMrb = new JLabel("MRL ");
 		GridBagConstraints gbc_audlblMrb = new GridBagConstraints();
 		gbc_audlblMrb.insets = new Insets(0, 0, 5, 5);
 		gbc_audlblMrb.anchor = GridBagConstraints.EAST;
@@ -2463,7 +2453,7 @@ public class ETRTDriver {
 		gbc_audTextField_37.gridy = 18;
 		audInnerPanel.add(audInpTextFields[33], gbc_audTextField_37);
 
-		JLabel lblMbr = new JLabel("MBR ");
+		JLabel lblMbr = new JLabel("MRB ");
 		GridBagConstraints gbc_audlblMbr = new GridBagConstraints();
 		gbc_audlblMbr.insets = new Insets(0, 0, 5, 5);
 		gbc_audlblMbr.anchor = GridBagConstraints.EAST;
@@ -2480,16 +2470,7 @@ public class ETRTDriver {
 		gbc_audTextField_38.gridy = 18;
 		audInnerPanel.add(audInpTextFields[34], gbc_audTextField_38);
 
-		JLabel lblLeftEar = new JLabel("Left Ear:");
-		GridBagConstraints gbc_audlblLeftEar = new GridBagConstraints();
-		gbc_audlblLeftEar.gridwidth = 2;
-		gbc_audlblLeftEar.anchor = GridBagConstraints.EAST;
-		gbc_audlblLeftEar.insets = new Insets(0, 0, 5, 5);
-		gbc_audlblLeftEar.gridx = 0;
-		gbc_audlblLeftEar.gridy = 19;
-		audInnerPanel.add(lblLeftEar, gbc_audlblLeftEar);
-
-		JLabel lblMrl = new JLabel("MRL ");
+		JLabel lblMrl = new JLabel("MLR ");
 		GridBagConstraints gbc_audlblMrl = new GridBagConstraints();
 		gbc_audlblMrl.anchor = GridBagConstraints.EAST;
 		gbc_audlblMrl.insets = new Insets(0, 0, 5, 5);
@@ -2506,7 +2487,7 @@ public class ETRTDriver {
 		gbc_audTextField_39.gridy = 19;
 		audInnerPanel.add(audInpTextFields[35], gbc_audTextField_39);
 
-		JLabel lblMlb = new JLabel("MLB ");
+		JLabel lblMlb = new JLabel("MLL ");
 		GridBagConstraints gbc_audlblMlb = new GridBagConstraints();
 		gbc_audlblMlb.anchor = GridBagConstraints.EAST;
 		gbc_audlblMlb.insets = new Insets(0, 0, 5, 5);
@@ -2523,7 +2504,7 @@ public class ETRTDriver {
 		gbc_audTextField_40.gridy = 19;
 		audInnerPanel.add(audInpTextFields[36], gbc_audTextField_40);
 
-		JLabel lblMbl = new JLabel("MBL ");
+		JLabel lblMbl = new JLabel("MLB ");
 		GridBagConstraints gbc_audlblMbl = new GridBagConstraints();
 		gbc_audlblMbl.anchor = GridBagConstraints.EAST;
 		gbc_audlblMbl.insets = new Insets(0, 0, 5, 5);
@@ -2540,7 +2521,7 @@ public class ETRTDriver {
 		gbc_audTextField_41.gridy = 19;
 		audInnerPanel.add(audInpTextFields[37], gbc_audTextField_41);
 
-		JLabel lblMBl = new JLabel("M BL ");
+		JLabel lblMBl = new JLabel("MBR ");
 		GridBagConstraints gbc_audlblMBl = new GridBagConstraints();
 		gbc_audlblMBl.anchor = GridBagConstraints.EAST;
 		gbc_audlblMBl.insets = new Insets(0, 0, 5, 5);
@@ -2557,7 +2538,7 @@ public class ETRTDriver {
 		gbc_audTextField_42.gridy = 20;
 		audInnerPanel.add(audInpTextFields[38], gbc_audTextField_42);
 
-		JLabel lblMBb = new JLabel("M BB ");
+		JLabel lblMBb = new JLabel("M BL ");
 		GridBagConstraints gbc_audlblMBb = new GridBagConstraints();
 		gbc_audlblMBb.anchor = GridBagConstraints.EAST;
 		gbc_audlblMBb.insets = new Insets(0, 0, 5, 5);
@@ -2574,6 +2555,23 @@ public class ETRTDriver {
 		gbc_audTextField_43.gridy = 20;
 		audInnerPanel.add(audInpTextFields[39], gbc_audTextField_43);
 
+		JLabel lblMBbb = new JLabel("M BB ");
+		GridBagConstraints gbc_audlblMBbb = new GridBagConstraints();
+		gbc_audlblMBbb.anchor = GridBagConstraints.EAST;
+		gbc_audlblMBbb.insets = new Insets(0, 0, 5, 5);
+		gbc_audlblMBbb.gridx = 6;
+		gbc_audlblMBbb.gridy = 20;
+		audInnerPanel.add(lblMBbb, gbc_audlblMBbb);
+
+		audInpTextFields[40] = new JTextField();
+		audInpTextFields[40].setColumns(5);
+		GridBagConstraints gbc_audTextField_a = new GridBagConstraints();
+		gbc_audTextField_a.insets = new Insets(0, 0, 5, 0);
+		gbc_audTextField_a.anchor = GridBagConstraints.WEST;
+		gbc_audTextField_a.gridx = 7;
+		gbc_audTextField_a.gridy = 20;
+		audInnerPanel.add(audInpTextFields[40], gbc_audTextField_a);
+
 		JLabel lblRsd = new JLabel("RSD ");
 		GridBagConstraints gbc_audlblRsd = new GridBagConstraints();
 		gbc_audlblRsd.anchor = GridBagConstraints.EAST;
@@ -2582,14 +2580,14 @@ public class ETRTDriver {
 		gbc_audlblRsd.gridy = 21;
 		audInnerPanel.add(lblRsd, gbc_audlblRsd);
 
-		audInpTextFields[40] = new JTextField();
-		audInpTextFields[40].setColumns(5);
+		audInpTextFields[41] = new JTextField();
+		audInpTextFields[41].setColumns(5);
 		GridBagConstraints gbc_audTextField_44 = new GridBagConstraints();
 		gbc_audTextField_44.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_44.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_44.gridx = 3;
 		gbc_audTextField_44.gridy = 21;
-		audInnerPanel.add(audInpTextFields[40], gbc_audTextField_44);
+		audInnerPanel.add(audInpTextFields[41], gbc_audTextField_44);
 
 		JLabel lblLsd = new JLabel("LSD ");
 		GridBagConstraints gbc_audlblLsd = new GridBagConstraints();
@@ -2599,14 +2597,14 @@ public class ETRTDriver {
 		gbc_audlblLsd.gridy = 21;
 		audInnerPanel.add(lblLsd, gbc_audlblLsd);
 
-		audInpTextFields[41] = new JTextField();
-		audInpTextFields[41].setColumns(5);
+		audInpTextFields[42] = new JTextField();
+		audInpTextFields[42].setColumns(5);
 		GridBagConstraints gbc_audTextField_45 = new GridBagConstraints();
 		gbc_audTextField_45.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_45.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_45.gridx = 5;
 		gbc_audTextField_45.gridy = 21;
-		audInnerPanel.add(audInpTextFields[41], gbc_audTextField_45);
+		audInnerPanel.add(audInpTextFields[42], gbc_audTextField_45);
 
 		JLabel lblPuretoneLoudnessDiscomfort = new JLabel(
 				"Pure-tone Loudness Discomfort Levels (LDL) tests for the right (R)");
@@ -2625,14 +2623,14 @@ public class ETRTDriver {
 		gbc_audlblLr.gridy = 23;
 		audInnerPanel.add(lblLr, gbc_audlblLr);
 
-		audInpTextFields[42] = new JTextField();
-		audInpTextFields[42].setColumns(5);
+		audInpTextFields[43] = new JTextField();
+		audInpTextFields[43].setColumns(5);
 		GridBagConstraints gbc_audTextField_46 = new GridBagConstraints();
 		gbc_audTextField_46.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_46.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_46.gridx = 1;
 		gbc_audTextField_46.gridy = 23;
-		audInnerPanel.add(audInpTextFields[42], gbc_audTextField_46);
+		audInnerPanel.add(audInpTextFields[43], gbc_audTextField_46);
 
 		JLabel lblLr_1 = new JLabel("LR1 ");
 		GridBagConstraints gbc_audlblLr_1 = new GridBagConstraints();
@@ -2642,14 +2640,14 @@ public class ETRTDriver {
 		gbc_audlblLr_1.gridy = 23;
 		audInnerPanel.add(lblLr_1, gbc_audlblLr_1);
 
-		audInpTextFields[43] = new JTextField();
-		audInpTextFields[43].setColumns(5);
+		audInpTextFields[44] = new JTextField();
+		audInpTextFields[44].setColumns(5);
 		GridBagConstraints gbc_audTextField_47 = new GridBagConstraints();
 		gbc_audTextField_47.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_47.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_47.gridx = 3;
 		gbc_audTextField_47.gridy = 23;
-		audInnerPanel.add(audInpTextFields[43], gbc_audTextField_47);
+		audInnerPanel.add(audInpTextFields[44], gbc_audTextField_47);
 
 		JLabel lblLr_2 = new JLabel("LR2 ");
 		GridBagConstraints gbc_audlblLr_2 = new GridBagConstraints();
@@ -2659,14 +2657,14 @@ public class ETRTDriver {
 		gbc_audlblLr_2.gridy = 23;
 		audInnerPanel.add(lblLr_2, gbc_audlblLr_2);
 
-		audInpTextFields[44] = new JTextField();
-		audInpTextFields[44].setColumns(5);
+		audInpTextFields[45] = new JTextField();
+		audInpTextFields[45].setColumns(5);
 		GridBagConstraints gbc_audTextField_48 = new GridBagConstraints();
 		gbc_audTextField_48.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_48.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_48.gridx = 5;
 		gbc_audTextField_48.gridy = 23;
-		audInnerPanel.add(audInpTextFields[44], gbc_audTextField_48);
+		audInnerPanel.add(audInpTextFields[45], gbc_audTextField_48);
 
 		JLabel lblLr_3 = new JLabel("LR3 ");
 		GridBagConstraints gbc_audlblLr_3 = new GridBagConstraints();
@@ -2676,14 +2674,14 @@ public class ETRTDriver {
 		gbc_audlblLr_3.gridy = 23;
 		audInnerPanel.add(lblLr_3, gbc_audlblLr_3);
 
-		audInpTextFields[45] = new JTextField();
-		audInpTextFields[45].setColumns(5);
+		audInpTextFields[46] = new JTextField();
+		audInpTextFields[46].setColumns(5);
 		GridBagConstraints gbc_audTextField_49 = new GridBagConstraints();
 		gbc_audTextField_49.insets = new Insets(0, 0, 5, 0);
 		gbc_audTextField_49.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_49.gridx = 7;
 		gbc_audTextField_49.gridy = 23;
-		audInnerPanel.add(audInpTextFields[45], gbc_audTextField_49);
+		audInnerPanel.add(audInpTextFields[46], gbc_audTextField_49);
 
 		JLabel lblLr_4 = new JLabel("LR4 ");
 		GridBagConstraints gbc_audlblLr_4 = new GridBagConstraints();
@@ -2693,14 +2691,14 @@ public class ETRTDriver {
 		gbc_audlblLr_4.gridy = 24;
 		audInnerPanel.add(lblLr_4, gbc_audlblLr_4);
 
-		audInpTextFields[46] = new JTextField();
-		audInpTextFields[46].setColumns(5);
+		audInpTextFields[47] = new JTextField();
+		audInpTextFields[47].setColumns(5);
 		GridBagConstraints gbc_audTextField_50 = new GridBagConstraints();
 		gbc_audTextField_50.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_50.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_50.gridx = 1;
 		gbc_audTextField_50.gridy = 24;
-		audInnerPanel.add(audInpTextFields[46], gbc_audTextField_50);
+		audInnerPanel.add(audInpTextFields[47], gbc_audTextField_50);
 
 		JLabel lblLr_5 = new JLabel("LR6 ");
 		GridBagConstraints gbc_audlblLr_5 = new GridBagConstraints();
@@ -2710,14 +2708,14 @@ public class ETRTDriver {
 		gbc_audlblLr_5.gridy = 24;
 		audInnerPanel.add(lblLr_5, gbc_audlblLr_5);
 
-		audInpTextFields[47] = new JTextField();
-		audInpTextFields[47].setColumns(5);
+		audInpTextFields[48] = new JTextField();
+		audInpTextFields[48].setColumns(5);
 		GridBagConstraints gbc_audTextField_51 = new GridBagConstraints();
 		gbc_audTextField_51.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_51.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_51.gridx = 3;
 		gbc_audTextField_51.gridy = 24;
-		audInnerPanel.add(audInpTextFields[47], gbc_audTextField_51);
+		audInnerPanel.add(audInpTextFields[48], gbc_audTextField_51);
 
 		JLabel lblLr_6 = new JLabel("LR8 ");
 		GridBagConstraints gbc_audlblLr_6 = new GridBagConstraints();
@@ -2727,14 +2725,14 @@ public class ETRTDriver {
 		gbc_audlblLr_6.gridy = 24;
 		audInnerPanel.add(lblLr_6, gbc_audlblLr_6);
 
-		audInpTextFields[48] = new JTextField();
-		audInpTextFields[48].setColumns(5);
+		audInpTextFields[49] = new JTextField();
+		audInpTextFields[49].setColumns(5);
 		GridBagConstraints gbc_audTextField_52 = new GridBagConstraints();
 		gbc_audTextField_52.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_52.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_52.gridx = 5;
 		gbc_audTextField_52.gridy = 24;
-		audInnerPanel.add(audInpTextFields[48], gbc_audTextField_52);
+		audInnerPanel.add(audInpTextFields[49], gbc_audTextField_52);
 
 		JLabel lblLr_7 = new JLabel("LR12 ");
 		GridBagConstraints gbc_audlblLr_7 = new GridBagConstraints();
@@ -2744,14 +2742,14 @@ public class ETRTDriver {
 		gbc_audlblLr_7.gridy = 24;
 		audInnerPanel.add(lblLr_7, gbc_audlblLr_7);
 
-		audInpTextFields[49] = new JTextField();
-		audInpTextFields[49].setColumns(5);
+		audInpTextFields[50] = new JTextField();
+		audInpTextFields[50].setColumns(5);
 		GridBagConstraints gbc_audTextField_53 = new GridBagConstraints();
 		gbc_audTextField_53.insets = new Insets(0, 0, 5, 0);
 		gbc_audTextField_53.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_53.gridx = 7;
 		gbc_audTextField_53.gridy = 24;
-		audInnerPanel.add(audInpTextFields[49], gbc_audTextField_53);
+		audInnerPanel.add(audInpTextFields[50], gbc_audTextField_53);
 
 		JLabel lblLrtp = new JLabel("LRTP ");
 		GridBagConstraints gbc_audlblLrtp = new GridBagConstraints();
@@ -2761,14 +2759,14 @@ public class ETRTDriver {
 		gbc_audlblLrtp.gridy = 25;
 		audInnerPanel.add(lblLrtp, gbc_audlblLrtp);
 
-		audInpTextFields[50] = new JTextField();
-		audInpTextFields[50].setColumns(5);
+		audInpTextFields[51] = new JTextField();
+		audInpTextFields[51].setColumns(5);
 		GridBagConstraints gbc_audTextField_54 = new GridBagConstraints();
 		gbc_audTextField_54.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_54.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_54.gridx = 1;
 		gbc_audTextField_54.gridy = 25;
-		audInnerPanel.add(audInpTextFields[50], gbc_audTextField_54);
+		audInnerPanel.add(audInpTextFields[51], gbc_audTextField_54);
 
 		JLabel lblLl = new JLabel("LL.50 ");
 		GridBagConstraints gbc_audlblLl = new GridBagConstraints();
@@ -2778,14 +2776,14 @@ public class ETRTDriver {
 		gbc_audlblLl.gridy = 26;
 		audInnerPanel.add(lblLl, gbc_audlblLl);
 
-		audInpTextFields[51] = new JTextField();
-		audInpTextFields[51].setColumns(5);
+		audInpTextFields[52] = new JTextField();
+		audInpTextFields[52].setColumns(5);
 		GridBagConstraints gbc_audTextField_55 = new GridBagConstraints();
 		gbc_audTextField_55.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_55.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_55.gridx = 1;
 		gbc_audTextField_55.gridy = 26;
-		audInnerPanel.add(audInpTextFields[51], gbc_audTextField_55);
+		audInnerPanel.add(audInpTextFields[52], gbc_audTextField_55);
 
 		JLabel lblLl_1 = new JLabel("LL1 ");
 		GridBagConstraints gbc_audlblLl_1 = new GridBagConstraints();
@@ -2795,14 +2793,14 @@ public class ETRTDriver {
 		gbc_audlblLl_1.gridy = 26;
 		audInnerPanel.add(lblLl_1, gbc_audlblLl_1);
 
-		audInpTextFields[52] = new JTextField();
-		audInpTextFields[52].setColumns(5);
+		audInpTextFields[53] = new JTextField();
+		audInpTextFields[53].setColumns(5);
 		GridBagConstraints gbc_audTextField_56 = new GridBagConstraints();
 		gbc_audTextField_56.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_56.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_56.gridx = 3;
 		gbc_audTextField_56.gridy = 26;
-		audInnerPanel.add(audInpTextFields[52], gbc_audTextField_56);
+		audInnerPanel.add(audInpTextFields[53], gbc_audTextField_56);
 
 		JLabel lblLl_2 = new JLabel("LL2 ");
 		GridBagConstraints gbc_audlblLl_2 = new GridBagConstraints();
@@ -2812,14 +2810,14 @@ public class ETRTDriver {
 		gbc_audlblLl_2.gridy = 26;
 		audInnerPanel.add(lblLl_2, gbc_audlblLl_2);
 
-		audInpTextFields[53] = new JTextField();
-		audInpTextFields[53].setColumns(5);
+		audInpTextFields[54] = new JTextField();
+		audInpTextFields[54].setColumns(5);
 		GridBagConstraints gbc_audTextField_57 = new GridBagConstraints();
 		gbc_audTextField_57.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_57.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_57.gridx = 5;
 		gbc_audTextField_57.gridy = 26;
-		audInnerPanel.add(audInpTextFields[53], gbc_audTextField_57);
+		audInnerPanel.add(audInpTextFields[54], gbc_audTextField_57);
 
 		JLabel lblLl_3 = new JLabel("LL3 ");
 		GridBagConstraints gbc_audlblLl_3 = new GridBagConstraints();
@@ -2829,14 +2827,14 @@ public class ETRTDriver {
 		gbc_audlblLl_3.gridy = 26;
 		audInnerPanel.add(lblLl_3, gbc_audlblLl_3);
 
-		audInpTextFields[54] = new JTextField();
-		audInpTextFields[54].setColumns(5);
+		audInpTextFields[55] = new JTextField();
+		audInpTextFields[55].setColumns(5);
 		GridBagConstraints gbc_audTextField_58 = new GridBagConstraints();
 		gbc_audTextField_58.insets = new Insets(0, 0, 5, 0);
 		gbc_audTextField_58.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_58.gridx = 7;
 		gbc_audTextField_58.gridy = 26;
-		audInnerPanel.add(audInpTextFields[54], gbc_audTextField_58);
+		audInnerPanel.add(audInpTextFields[55], gbc_audTextField_58);
 
 		JLabel lblLl_4 = new JLabel("LL4 ");
 		GridBagConstraints gbc_audlblLl_4 = new GridBagConstraints();
@@ -2846,14 +2844,14 @@ public class ETRTDriver {
 		gbc_audlblLl_4.gridy = 27;
 		audInnerPanel.add(lblLl_4, gbc_audlblLl_4);
 
-		audInpTextFields[55] = new JTextField();
-		audInpTextFields[55].setColumns(5);
+		audInpTextFields[56] = new JTextField();
+		audInpTextFields[56].setColumns(5);
 		GridBagConstraints gbc_audTextField_59 = new GridBagConstraints();
 		gbc_audTextField_59.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_59.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_59.gridx = 1;
 		gbc_audTextField_59.gridy = 27;
-		audInnerPanel.add(audInpTextFields[55], gbc_audTextField_59);
+		audInnerPanel.add(audInpTextFields[56], gbc_audTextField_59);
 
 		JLabel lblLl_5 = new JLabel("LL6 ");
 		GridBagConstraints gbc_audlblLl_5 = new GridBagConstraints();
@@ -2863,14 +2861,14 @@ public class ETRTDriver {
 		gbc_audlblLl_5.gridy = 27;
 		audInnerPanel.add(lblLl_5, gbc_audlblLl_5);
 
-		audInpTextFields[56] = new JTextField();
-		audInpTextFields[56].setColumns(5);
+		audInpTextFields[57] = new JTextField();
+		audInpTextFields[57].setColumns(5);
 		GridBagConstraints gbc_audTextField_60 = new GridBagConstraints();
 		gbc_audTextField_60.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_60.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_60.gridx = 3;
 		gbc_audTextField_60.gridy = 27;
-		audInnerPanel.add(audInpTextFields[56], gbc_audTextField_60);
+		audInnerPanel.add(audInpTextFields[57], gbc_audTextField_60);
 
 		JLabel lblLl_6 = new JLabel("LL8 ");
 		GridBagConstraints gbc_audlblLl_6 = new GridBagConstraints();
@@ -2880,14 +2878,14 @@ public class ETRTDriver {
 		gbc_audlblLl_6.gridy = 27;
 		audInnerPanel.add(lblLl_6, gbc_audlblLl_6);
 
-		audInpTextFields[57] = new JTextField();
-		audInpTextFields[57].setColumns(5);
+		audInpTextFields[58] = new JTextField();
+		audInpTextFields[58].setColumns(5);
 		GridBagConstraints gbc_audTextField_61 = new GridBagConstraints();
 		gbc_audTextField_61.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_61.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_61.gridx = 5;
 		gbc_audTextField_61.gridy = 27;
-		audInnerPanel.add(audInpTextFields[57], gbc_audTextField_61);
+		audInnerPanel.add(audInpTextFields[58], gbc_audTextField_61);
 
 		JLabel lblLl_7 = new JLabel("LL12 ");
 		GridBagConstraints gbc_audlblLl_7 = new GridBagConstraints();
@@ -2897,14 +2895,14 @@ public class ETRTDriver {
 		gbc_audlblLl_7.gridy = 27;
 		audInnerPanel.add(lblLl_7, gbc_audlblLl_7);
 
-		audInpTextFields[58] = new JTextField();
-		audInpTextFields[58].setColumns(5);
+		audInpTextFields[59] = new JTextField();
+		audInpTextFields[59].setColumns(5);
 		GridBagConstraints gbc_audTextField_62 = new GridBagConstraints();
 		gbc_audTextField_62.insets = new Insets(0, 0, 5, 0);
 		gbc_audTextField_62.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_62.gridx = 7;
 		gbc_audTextField_62.gridy = 27;
-		audInnerPanel.add(audInpTextFields[58], gbc_audTextField_62);
+		audInnerPanel.add(audInpTextFields[59], gbc_audTextField_62);
 
 		JLabel lblLltp = new JLabel("LLTP ");
 		GridBagConstraints gbc_audlblLltp = new GridBagConstraints();
@@ -2914,14 +2912,14 @@ public class ETRTDriver {
 		gbc_audlblLltp.gridy = 28;
 		audInnerPanel.add(lblLltp, gbc_audlblLltp);
 
-		audInpTextFields[59] = new JTextField();
-		audInpTextFields[59].setColumns(5);
+		audInpTextFields[60] = new JTextField();
+		audInpTextFields[60].setColumns(5);
 		GridBagConstraints gbc_audTextField_63 = new GridBagConstraints();
 		gbc_audTextField_63.anchor = GridBagConstraints.WEST;
 		gbc_audTextField_63.insets = new Insets(0, 0, 5, 5);
 		gbc_audTextField_63.gridx = 1;
 		gbc_audTextField_63.gridy = 28;
-		audInnerPanel.add(audInpTextFields[59], gbc_audTextField_63);
+		audInnerPanel.add(audInpTextFields[60], gbc_audTextField_63);
 
 		JLabel lblComments1 = new JLabel("Comments ");
 		GridBagConstraints gbc_audlblComments = new GridBagConstraints();
@@ -3427,7 +3425,7 @@ public class ETRTDriver {
 		avBtnAudiology.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 LocalDateTime now = LocalDateTime.now();
 				PatientResponse res = handlers.patientHandler.firstPatientEntry();
                 audPrePopTextFields[0].setText("1");
@@ -3450,6 +3448,21 @@ public class ETRTDriver {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.show(panelContainer, "addVisits");
+			}
+		});
+		audBtnSubmit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] audiologyReport = new String[audInpTextFields.length];
+				for (int i = 0; i < audiologyReport.length; i++) {
+					if(audInpTextFields[i].getText().length() == 0) {
+						audiologyReport[i] = "" + 0;
+					} else {
+						audiologyReport[i] = audInpTextFields[i].getText();
+					}
+				}
+
+				handlers.audiologyHandler.insertAudioLogy(audPrePopTextFields[0].getText(),audTextArea.getText(), audiologyReport);
 			}
 		});
 

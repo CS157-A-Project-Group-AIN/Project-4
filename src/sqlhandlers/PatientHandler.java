@@ -1,6 +1,5 @@
-package handlers;
+package sqlhandlers;
 
-import ResponseObjects.GenericRefResponse;
 import ResponseObjects.PatientResponse;
 import Utils.SQLUtil;
 

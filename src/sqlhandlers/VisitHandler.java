@@ -1,4 +1,4 @@
-package handlers;
+package sqlhandlers;
 
 
 import ResponseObjects.VisitResponse;

@@ -1,4 +1,4 @@
-package handlers;
+package sqlhandlers;
 import java.sql.*;
 import java.util.ArrayList;
 

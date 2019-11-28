@@ -61,7 +61,6 @@ public class SQLBuild {
                     ,
             "create table VISIT (" +
                     "visit_id INTEGER NOT NULL," +
-            		"thc VARCHAR(16) NOT NULL," +
                     "visit_nr SMALLINT NOT NULL," +
                     "date DATETIME," +
                     "comments VARCHAR(16000)," +
