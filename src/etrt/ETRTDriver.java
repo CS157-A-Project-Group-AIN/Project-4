@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -51,7 +50,6 @@ public class ETRTDriver {
 	private JButton patientsViewEdit;
 
 	// add patients page
-	private String newPatientID;
 	private JPanel addPatientPanel;
 	private JLabel apLblThi;
 	private JLabel apLblFirstName;
@@ -123,14 +121,19 @@ public class ETRTDriver {
 
 	// Add/Edit Chemicals page
 	private JPanel aeChemDataPanel;
-	private JTextField chmTextField;
-	private JTextField chmTextField_1;
-	private JTextField chmTextField_2;
-	private JTextField chmTextField_3;
-	private JTextField chmTextField_4;
-	private JTextField chmTextField_5;
+	private JTextField chmTextField_id;
+	private JTextField chmTextField_name;
+	private JTextArea chmTextArea_desc;
+	private JTextField chmTextField_nameSearch;
+	private JTextField chmTextField_idSearch;
+	private JTextField chmTextField_resID;
+	private JTextField chmTextField_resName;
+	private JTextArea chmTextArea_resDesc;
+	private DefaultTableModel chmResModel;
 	private JTable chmResTable;
 	private JButton chmBtnBack;
+	private JButton chmBtnAdd;
+	private JButton chmBtnSearch;
 
 	// Add/Edit Generics page
 	private JPanel aeGenDataPanel;
@@ -158,16 +161,28 @@ public class ETRTDriver {
 
 	// Add/Edit Medication page
 	private JPanel aeMedDataPanel;
-	private JTextField medTextField;
-	private JTextField medTextField_1;
-	private JTextField medTextField_4;
-	private JTextField medTextField_3;
-	private JTextField medTextField_5;
-	private JTextField medTextField_6;
+	private JTextField medTextField_id;
+	private JTextField medTextField_name;
+	private JTextArea medTextArea_desc;
+	private JTextField medTextField_dose;
+	private JTextField medTextField_nameSearch;
+	private JTextField medTextField_idSearch;
+	private JTextField medTextField_resID;
+	private JTextField medTextField_resName;
+	private JTextArea medTextArea_resDesc;
+	private DefaultTableModel medResModel;
 	private JTable medResTable;
-	private JTextField medTextField_2;
-	private JTextField medTextField_7;
+	private JTextField medTextField_resDose;
+	private JComboBox medcomboBox_generic;
+	private JComboBox medcomboBox_chemical;
+	private JComboBox medcomboBox_disease;
+	private JComboBox medcomboBox_resGen;
+	private JComboBox medcomboBox_resChm;
+	private JComboBox medcomboBox_resDis;
+
 	private JButton medBtnBack;
+	private JButton medBtnAdd;
+	private JButton medBtnSearch;
 
 	// audiology page
 	private JPanel audioPanel;
@@ -270,8 +285,6 @@ public class ETRTDriver {
 		addPatientPanel.add(apLblThi, gbc_apLblThi);
 
 		apTxtUuidHere = new JTextField();
-		newPatientID = UUID.randomUUID().toString(); // NEED TO REPLACE TO DB AUTOFILL
-		apTxtUuidHere.setText(newPatientID);
 		apTxtUuidHere.setEditable(false);
 		GridBagConstraints gbc_txtUuidHere = new GridBagConstraints();
 		gbc_txtUuidHere.gridwidth = 4;
@@ -1103,14 +1116,14 @@ public class ETRTDriver {
 		gbc_chmlblId.gridy = 0;
 		addChemPanel.add(chmlblId, gbc_chmlblId);
 
-		chmTextField = new JTextField();
+		chmTextField_id = new JTextField();
 		GridBagConstraints gbc_chmTextField = new GridBagConstraints();
 		gbc_chmTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField.gridx = 1;
 		gbc_chmTextField.gridy = 0;
-		addChemPanel.add(chmTextField, gbc_chmTextField);
-		chmTextField.setColumns(10);
+		addChemPanel.add(chmTextField_id, gbc_chmTextField);
+		chmTextField_id.setColumns(10);
 
 		JLabel chmlblName = new JLabel("Name ");
 		GridBagConstraints gbc_chmlblName = new GridBagConstraints();
@@ -1120,14 +1133,14 @@ public class ETRTDriver {
 		gbc_chmlblName.gridy = 1;
 		addChemPanel.add(chmlblName, gbc_chmlblName);
 
-		chmTextField_1 = new JTextField();
+		chmTextField_name = new JTextField();
 		GridBagConstraints gbc_chmTextField_1 = new GridBagConstraints();
 		gbc_chmTextField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_1.gridx = 1;
 		gbc_chmTextField_1.gridy = 1;
-		addChemPanel.add(chmTextField_1, gbc_chmTextField_1);
-		chmTextField_1.setColumns(10);
+		addChemPanel.add(chmTextField_name, gbc_chmTextField_1);
+		chmTextField_name.setColumns(10);
 
 		JLabel chmlblDescription = new JLabel("Description ");
 		GridBagConstraints gbc_chmlblDescription = new GridBagConstraints();
@@ -1144,10 +1157,10 @@ public class ETRTDriver {
 		gbc_chmscrollPane.gridy = 2;
 		addChemPanel.add(chmscrollPane, gbc_chmscrollPane);
 
-		JTextArea textArea = new JTextArea();
-		chmscrollPane.setViewportView(textArea);
+		chmTextArea_desc = new JTextArea();
+		chmscrollPane.setViewportView(chmTextArea_desc);
 
-		JButton chmBtnAdd = new JButton("Add");
+		chmBtnAdd = new JButton("Add");
 		GridBagConstraints gbc_chmBtnAdd = new GridBagConstraints();
 		gbc_chmBtnAdd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmBtnAdd.gridwidth = 2;
@@ -1173,14 +1186,14 @@ public class ETRTDriver {
 		gbc_chmlblId_1.gridy = 0;
 		editChemPanel.add(chmlblId_1, gbc_chmlblId_1);
 
-		chmTextField_3 = new JTextField();
+		chmTextField_idSearch = new JTextField();
 		GridBagConstraints gbc_chmTextField_3 = new GridBagConstraints();
 		gbc_chmTextField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_chmTextField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_3.gridx = 1;
 		gbc_chmTextField_3.gridy = 0;
-		editChemPanel.add(chmTextField_3, gbc_chmTextField_3);
-		chmTextField_3.setColumns(10);
+		editChemPanel.add(chmTextField_idSearch, gbc_chmTextField_3);
+		chmTextField_idSearch.setColumns(10);
 
 		JLabel chmlblName_1 = new JLabel("Name ");
 		GridBagConstraints gbc_chmlblName_1 = new GridBagConstraints();
@@ -1190,16 +1203,16 @@ public class ETRTDriver {
 		gbc_chmlblName_1.gridy = 0;
 		editChemPanel.add(chmlblName_1, gbc_chmlblName_1);
 
-		chmTextField_2 = new JTextField();
+		chmTextField_nameSearch = new JTextField();
 		GridBagConstraints gbc_chmTextField_2 = new GridBagConstraints();
 		gbc_chmTextField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_2.gridx = 3;
 		gbc_chmTextField_2.gridy = 0;
-		editChemPanel.add(chmTextField_2, gbc_chmTextField_2);
-		chmTextField_2.setColumns(10);
+		editChemPanel.add(chmTextField_nameSearch, gbc_chmTextField_2);
+		chmTextField_nameSearch.setColumns(10);
 
-		JButton chmBtnSearch = new JButton("Search");
+		chmBtnSearch = new JButton("Search");
 		GridBagConstraints gbc_chmBtnSearch = new GridBagConstraints();
 		gbc_chmBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_chmBtnSearch.fill = GridBagConstraints.HORIZONTAL;
@@ -1219,9 +1232,15 @@ public class ETRTDriver {
 
 		// RESULT TABLE HERE***************************
 		// https://www.youtube.com/watch?v=uJUXyhya3YM
+
 		chmResTable = new JTable();
+		chmResModel = new DefaultTableModel();
+		chmResModel.setColumnIdentifiers(new String[]{"id", "name", "description"});
+		chmResTable.setModel(chmResModel);
 		chmResTable.setFillsViewportHeight(true);
 		chmscrollPane_2.setViewportView(chmResTable);
+		chmResTable.setRowSelectionAllowed(true);
+		chmResTable.setDefaultEditor(Object.class, null);
 
 		JLabel chmlblId_2 = new JLabel("ID ");
 		GridBagConstraints gbc_chmlblId_2 = new GridBagConstraints();
@@ -1231,15 +1250,15 @@ public class ETRTDriver {
 		gbc_chmlblId_2.gridy = 3;
 		editChemPanel.add(chmlblId_2, gbc_chmlblId_2);
 
-		chmTextField_4 = new JTextField();
+		chmTextField_resID = new JTextField();
 		GridBagConstraints gbc_chmTextField_4 = new GridBagConstraints();
 		gbc_chmTextField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_4.gridwidth = 3;
 		gbc_chmTextField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_4.gridx = 1;
 		gbc_chmTextField_4.gridy = 3;
-		editChemPanel.add(chmTextField_4, gbc_chmTextField_4);
-		chmTextField_4.setColumns(10);
+		editChemPanel.add(chmTextField_resID, gbc_chmTextField_4);
+		chmTextField_resID.setColumns(10);
 
 		JLabel chmlblName_2 = new JLabel("Name ");
 		GridBagConstraints gbc_chmlblName_2 = new GridBagConstraints();
@@ -1249,15 +1268,15 @@ public class ETRTDriver {
 		gbc_chmlblName_2.gridy = 4;
 		editChemPanel.add(chmlblName_2, gbc_chmlblName_2);
 
-		chmTextField_5 = new JTextField();
+		chmTextField_resName = new JTextField();
 		GridBagConstraints gbc_chmTextField_5 = new GridBagConstraints();
 		gbc_chmTextField_5.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_5.gridwidth = 3;
 		gbc_chmTextField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_5.gridx = 1;
 		gbc_chmTextField_5.gridy = 4;
-		editChemPanel.add(chmTextField_5, gbc_chmTextField_5);
-		chmTextField_5.setColumns(10);
+		editChemPanel.add(chmTextField_resName, gbc_chmTextField_5);
+		chmTextField_resName.setColumns(10);
 
 		JLabel chmlblDescription_1 = new JLabel("Description");
 		GridBagConstraints gbc_chmlblDescription_1 = new GridBagConstraints();
@@ -1275,8 +1294,8 @@ public class ETRTDriver {
 		gbc_chmscrollPane_1.gridy = 5;
 		editChemPanel.add(chmscrollPane_1, gbc_chmscrollPane_1);
 
-		JTextArea textArea_1 = new JTextArea();
-		chmscrollPane_1.setViewportView(textArea_1);
+		chmTextArea_resDesc = new JTextArea();
+		chmscrollPane_1.setViewportView(chmTextArea_resDesc);
 
 		JButton chmBtnSubmit = new JButton("Submit");
 		GridBagConstraints gbc_chmBtnSubmit = new GridBagConstraints();
@@ -3001,14 +3020,14 @@ public class ETRTDriver {
 		gbc_medlblId.gridy = 0;
 		addMedPanel.add(medlblId, gbc_medlblId);
 
-		medTextField = new JTextField();
+		medTextField_id = new JTextField();
 		GridBagConstraints gbc_medTextField = new GridBagConstraints();
 		gbc_medTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_medTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField.gridx = 1;
 		gbc_medTextField.gridy = 0;
-		addMedPanel.add(medTextField, gbc_medTextField);
-		medTextField.setColumns(10);
+		addMedPanel.add(medTextField_id, gbc_medTextField);
+		medTextField_id.setColumns(10);
 
 		JLabel medlblName = new JLabel("Name ");
 		GridBagConstraints gbc_medlblName = new GridBagConstraints();
@@ -3018,14 +3037,14 @@ public class ETRTDriver {
 		gbc_medlblName.gridy = 0;
 		addMedPanel.add(medlblName, gbc_medlblName);
 
-		medTextField_1 = new JTextField();
+		medTextField_name = new JTextField();
 		GridBagConstraints gbc_medTextField_1 = new GridBagConstraints();
 		gbc_medTextField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_medTextField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField_1.gridx = 3;
 		gbc_medTextField_1.gridy = 0;
-		addMedPanel.add(medTextField_1, gbc_medTextField_1);
-		medTextField_1.setColumns(10);
+		addMedPanel.add(medTextField_name, gbc_medTextField_1);
+		medTextField_name.setColumns(10);
 
 		JLabel medlblDescription = new JLabel("Description ");
 		GridBagConstraints gbc_medlblDescription = new GridBagConstraints();
@@ -3043,8 +3062,8 @@ public class ETRTDriver {
 		gbc_medscrollPane.gridy = 1;
 		addMedPanel.add(medscrollPane, gbc_medscrollPane);
 
-		JTextArea medtextArea = new JTextArea();
-		medscrollPane.setViewportView(medtextArea);
+		medTextArea_desc = new JTextArea();
+		medscrollPane.setViewportView(medTextArea_desc);
 
 		JLabel medlblUsualDose = new JLabel("Usual Dose ");
 		GridBagConstraints gbc_medlblUsualDose = new GridBagConstraints();
@@ -3054,14 +3073,14 @@ public class ETRTDriver {
 		gbc_medlblUsualDose.gridy = 2;
 		addMedPanel.add(medlblUsualDose, gbc_medlblUsualDose);
 
-		medTextField_2 = new JTextField();
+		medTextField_dose = new JTextField();
 		GridBagConstraints gbc_medTextField_2 = new GridBagConstraints();
 		gbc_medTextField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_medTextField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField_2.gridx = 1;
 		gbc_medTextField_2.gridy = 2;
-		addMedPanel.add(medTextField_2, gbc_medTextField_2);
-		medTextField_2.setColumns(10);
+		addMedPanel.add(medTextField_dose, gbc_medTextField_2);
+		medTextField_dose.setColumns(10);
 
 		JLabel medlblGenericId = new JLabel("Generic ");
 		GridBagConstraints gbc_medlblGenericId = new GridBagConstraints();
@@ -3071,13 +3090,13 @@ public class ETRTDriver {
 		gbc_medlblGenericId.gridy = 2;
 		addMedPanel.add(medlblGenericId, gbc_medlblGenericId);
 
-		JComboBox medcomboBox = new JComboBox();
+		medcomboBox_generic = new JComboBox();
 		GridBagConstraints gbc_medcomboBox = new GridBagConstraints();
 		gbc_medcomboBox.insets = new Insets(0, 0, 5, 0);
 		gbc_medcomboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medcomboBox.gridx = 3;
 		gbc_medcomboBox.gridy = 2;
-		addMedPanel.add(medcomboBox, gbc_medcomboBox);
+		addMedPanel.add(medcomboBox_generic, gbc_medcomboBox);
 
 		JLabel medlblChemicalCategory = new JLabel("Chemical Category ");
 		GridBagConstraints gbc_medlblChemicalCategory = new GridBagConstraints();
@@ -3087,13 +3106,13 @@ public class ETRTDriver {
 		gbc_medlblChemicalCategory.gridy = 3;
 		addMedPanel.add(medlblChemicalCategory, gbc_medlblChemicalCategory);
 
-		JComboBox medcomboBox_1 = new JComboBox();
+		medcomboBox_chemical = new JComboBox();
 		GridBagConstraints gbc_medcomboBox_1 = new GridBagConstraints();
 		gbc_medcomboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_medcomboBox_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medcomboBox_1.gridx = 1;
 		gbc_medcomboBox_1.gridy = 3;
-		addMedPanel.add(medcomboBox_1, gbc_medcomboBox_1);
+		addMedPanel.add(medcomboBox_chemical, gbc_medcomboBox_1);
 
 		JLabel medlblDisease = new JLabel("Disease ");
 		GridBagConstraints gbc_medlblDisease = new GridBagConstraints();
@@ -3103,15 +3122,15 @@ public class ETRTDriver {
 		gbc_medlblDisease.gridy = 3;
 		addMedPanel.add(medlblDisease, gbc_medlblDisease);
 
-		JComboBox medcomboBox_2 = new JComboBox();
+		medcomboBox_disease = new JComboBox();
 		GridBagConstraints gbc_medcomboBox_2 = new GridBagConstraints();
 		gbc_medcomboBox_2.insets = new Insets(0, 0, 5, 0);
 		gbc_medcomboBox_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medcomboBox_2.gridx = 3;
 		gbc_medcomboBox_2.gridy = 3;
-		addMedPanel.add(medcomboBox_2, gbc_medcomboBox_2);
+		addMedPanel.add(medcomboBox_disease, gbc_medcomboBox_2);
 
-		JButton medBtnAdd = new JButton("Add");
+		medBtnAdd = new JButton("Add");
 		GridBagConstraints gbc_medBtnAdd = new GridBagConstraints();
 		gbc_medBtnAdd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medBtnAdd.gridwidth = 4;
@@ -3136,14 +3155,14 @@ public class ETRTDriver {
 		gbc_medlblId_1.gridy = 0;
 		editMedPanel.add(medlblId_1, gbc_medlblId_1);
 
-		medTextField_3 = new JTextField();
+		medTextField_idSearch = new JTextField();
 		GridBagConstraints gbc_medTextField_3 = new GridBagConstraints();
 		gbc_medTextField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_medTextField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField_3.gridx = 1;
 		gbc_medTextField_3.gridy = 0;
-		editMedPanel.add(medTextField_3, gbc_medTextField_3);
-		medTextField_3.setColumns(10);
+		editMedPanel.add(medTextField_idSearch, gbc_medTextField_3);
+		medTextField_idSearch.setColumns(10);
 
 		JLabel medlblName_1 = new JLabel("Name ");
 		GridBagConstraints gbc_medlblName_1 = new GridBagConstraints();
@@ -3153,16 +3172,16 @@ public class ETRTDriver {
 		gbc_medlblName_1.gridy = 0;
 		editMedPanel.add(medlblName_1, gbc_medlblName_1);
 
-		medTextField_4 = new JTextField();
+		medTextField_nameSearch = new JTextField();
 		GridBagConstraints gbc_medTextField_4 = new GridBagConstraints();
 		gbc_medTextField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_medTextField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField_4.gridx = 3;
 		gbc_medTextField_4.gridy = 0;
-		editMedPanel.add(medTextField_4, gbc_medTextField_4);
-		medTextField_4.setColumns(10);
+		editMedPanel.add(medTextField_nameSearch, gbc_medTextField_4);
+		medTextField_nameSearch.setColumns(10);
 
-		JButton medBtnSearch = new JButton("Search");
+		medBtnSearch = new JButton("Search");
 		GridBagConstraints gbc_medBtnSearch = new GridBagConstraints();
 		gbc_medBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_medBtnSearch.fill = GridBagConstraints.HORIZONTAL;
@@ -3182,8 +3201,13 @@ public class ETRTDriver {
 
 		// RESULT TABLE HERE***************************
 		medResTable = new JTable();
+		medResModel = new DefaultTableModel();
+		medResModel.setColumnIdentifiers(new String[]{"id", "name", "description", "dose", "generic", "chemical", "disease"});
+		medResTable.setModel(medResModel);
 		medResTable.setFillsViewportHeight(true);
 		medscrollPane_2.setViewportView(medResTable);
+		medResTable.setRowSelectionAllowed(true);
+		medResTable.setDefaultEditor(Object.class, null);
 
 		JLabel medlblId_2 = new JLabel("ID ");
 		GridBagConstraints gbc_medlblId_2 = new GridBagConstraints();
@@ -3193,14 +3217,14 @@ public class ETRTDriver {
 		gbc_medlblId_2.gridy = 3;
 		editMedPanel.add(medlblId_2, gbc_medlblId_2);
 
-		medTextField_5 = new JTextField();
+		medTextField_resID = new JTextField();
 		GridBagConstraints gbc_medTextField_5 = new GridBagConstraints();
 		gbc_medTextField_5.insets = new Insets(0, 0, 5, 5);
 		gbc_medTextField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField_5.gridx = 1;
 		gbc_medTextField_5.gridy = 3;
-		editMedPanel.add(medTextField_5, gbc_medTextField_5);
-		medTextField_5.setColumns(10);
+		editMedPanel.add(medTextField_resID, gbc_medTextField_5);
+		medTextField_resID.setColumns(10);
 
 		JLabel medlblName_2 = new JLabel("Name ");
 		GridBagConstraints gbc_medlblName_2 = new GridBagConstraints();
@@ -3210,15 +3234,15 @@ public class ETRTDriver {
 		gbc_medlblName_2.gridy = 3;
 		editMedPanel.add(medlblName_2, gbc_medlblName_2);
 
-		medTextField_6 = new JTextField();
+		medTextField_resName = new JTextField();
 		GridBagConstraints gbc_medTextField_6 = new GridBagConstraints();
 		gbc_medTextField_6.insets = new Insets(0, 0, 5, 0);
 		gbc_medTextField_6.gridwidth = 3;
 		gbc_medTextField_6.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField_6.gridx = 3;
 		gbc_medTextField_6.gridy = 3;
-		editMedPanel.add(medTextField_6, gbc_medTextField_6);
-		medTextField_6.setColumns(10);
+		editMedPanel.add(medTextField_resName, gbc_medTextField_6);
+		medTextField_resName.setColumns(10);
 
 		JLabel medlblDescription_1 = new JLabel("Description ");
 		GridBagConstraints gbc_medlblDescription_1 = new GridBagConstraints();
@@ -3237,8 +3261,8 @@ public class ETRTDriver {
 		gbc_medscrollPane_1.gridy = 4;
 		editMedPanel.add(medscrollPane_1, gbc_medscrollPane_1);
 
-		JTextArea medtextArea_2 = new JTextArea();
-		medscrollPane_1.setViewportView(medtextArea_2);
+		medTextArea_resDesc = new JTextArea();
+		medscrollPane_1.setViewportView(medTextArea_resDesc);
 
 		JLabel medlblUsualDose_2 = new JLabel("Usual Dose ");
 		GridBagConstraints gbc_medlblUsualDose_2 = new GridBagConstraints();
@@ -3248,14 +3272,14 @@ public class ETRTDriver {
 		gbc_medlblUsualDose_2.gridy = 5;
 		editMedPanel.add(medlblUsualDose_2, gbc_medlblUsualDose_2);
 
-		medTextField_7 = new JTextField();
-		medTextField_7.setColumns(10);
+		medTextField_resDose = new JTextField();
+		medTextField_resDose.setColumns(10);
 		GridBagConstraints gbc_medTextField_7 = new GridBagConstraints();
 		gbc_medTextField_7.insets = new Insets(0, 0, 5, 5);
 		gbc_medTextField_7.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medTextField_7.gridx = 1;
 		gbc_medTextField_7.gridy = 5;
-		editMedPanel.add(medTextField_7, gbc_medTextField_7);
+		editMedPanel.add(medTextField_resDose, gbc_medTextField_7);
 
 		JLabel medlblGeneric = new JLabel("Generic ");
 		GridBagConstraints gbc_medlblGeneric = new GridBagConstraints();
@@ -3265,13 +3289,13 @@ public class ETRTDriver {
 		gbc_medlblGeneric.gridy = 5;
 		editMedPanel.add(medlblGeneric, gbc_medlblGeneric);
 
-		JComboBox medcomboBox_3 = new JComboBox();
+		medcomboBox_resGen = new JComboBox();
 		GridBagConstraints gbc_medcomboBox_3 = new GridBagConstraints();
 		gbc_medcomboBox_3.insets = new Insets(0, 0, 5, 0);
 		gbc_medcomboBox_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medcomboBox_3.gridx = 3;
 		gbc_medcomboBox_3.gridy = 5;
-		editMedPanel.add(medcomboBox_3, gbc_medcomboBox_3);
+		editMedPanel.add(medcomboBox_resGen, gbc_medcomboBox_3);
 
 		JLabel medlblChemicalCategory_1 = new JLabel("Chemical Category ");
 		GridBagConstraints gbc_medlblChemicalCategory_1 = new GridBagConstraints();
@@ -3281,13 +3305,13 @@ public class ETRTDriver {
 		gbc_medlblChemicalCategory_1.gridy = 6;
 		editMedPanel.add(medlblChemicalCategory_1, gbc_medlblChemicalCategory_1);
 
-		JComboBox medcomboBox_4 = new JComboBox();
+		medcomboBox_resChm = new JComboBox();
 		GridBagConstraints gbc_medcomboBox_4 = new GridBagConstraints();
 		gbc_medcomboBox_4.insets = new Insets(0, 0, 5, 5);
 		gbc_medcomboBox_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medcomboBox_4.gridx = 1;
 		gbc_medcomboBox_4.gridy = 6;
-		editMedPanel.add(medcomboBox_4, gbc_medcomboBox_4);
+		editMedPanel.add(medcomboBox_resChm, gbc_medcomboBox_4);
 
 		JLabel medlblDisease_1 = new JLabel("Disease ");
 		GridBagConstraints gbc_medlblDisease_1 = new GridBagConstraints();
@@ -3297,13 +3321,13 @@ public class ETRTDriver {
 		gbc_medlblDisease_1.gridy = 6;
 		editMedPanel.add(medlblDisease_1, gbc_medlblDisease_1);
 
-		JComboBox medcomboBox_5 = new JComboBox();
+		medcomboBox_resDis = new JComboBox();
 		GridBagConstraints gbc_medcomboBox_5 = new GridBagConstraints();
 		gbc_medcomboBox_5.insets = new Insets(0, 0, 5, 0);
 		gbc_medcomboBox_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_medcomboBox_5.gridx = 3;
 		gbc_medcomboBox_5.gridy = 6;
-		editMedPanel.add(medcomboBox_5, gbc_medcomboBox_5);
+		editMedPanel.add(medcomboBox_resDis, gbc_medcomboBox_5);
 
 		JButton medBtnSubmit = new JButton("Submit");
 		GridBagConstraints gbc_medBtnSubmit = new GridBagConstraints();
@@ -3371,8 +3395,6 @@ public class ETRTDriver {
 		patientsAddNew.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				newPatientID = UUID.randomUUID().toString(); // NEED TO REPLACE WITH DB AUTOFILL
-				apTxtUuidHere.setText(newPatientID);
 				cardLayout.show(panelContainer, "addPatients");
 			}
 		});
@@ -3442,7 +3464,7 @@ public class ETRTDriver {
 				cardLayout.show(panelContainer, "visPharm");
 			}
 		});
-		
+
 		//VISIT AUDIOLOGY LISTENERS
 		audBtnBack.addActionListener(new ActionListener() {
 			@Override
@@ -3527,6 +3549,23 @@ public class ETRTDriver {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.show(panelContainer, "medData");
+				String[] gens = handlers.genericRefHandler.getAllGenericNames();
+				for(int i =0; i < gens.length; i++) {
+					medcomboBox_generic.addItem(gens[i]);
+					medcomboBox_resGen.addItem(gens[i]);
+				}
+
+				String[] chems = handlers.chemicalRefHandler.getAllChemicalNames();
+				for(int i =0; i < chems.length; i++)  {
+					medcomboBox_chemical.addItem(chems[i]);
+					medcomboBox_resChm.addItem(chems[i]);
+				}
+
+				String[] dis = handlers.diseaseRefHandler.getAllDiseaseNames();
+				for(int i=0; i <dis.length; i++) {
+					medcomboBox_disease.addItem(dis[i]);
+					medcomboBox_resDis.addItem(dis[i]);
+				}
 			}
 		});
 
@@ -3535,8 +3574,89 @@ public class ETRTDriver {
 		chmBtnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				chmTextField_id.setText("");
+				chmTextField_name.setText("");
+				chmTextArea_desc.setText("");
+				chmTextField_resID.setText("");
+				chmTextField_resName.setText("");
+				chmTextArea_resDesc.setText("");
+				chmResModel.setRowCount(0);
+				chmTextField_idSearch.setText("");
+				chmTextField_nameSearch.setText("");
 				cardLayout.show(panelContainer, "pharmData");
 
+			}
+		});
+
+		chmBtnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = chmTextField_id.getText();
+				String name = chmTextField_name.getText();
+				String description = chmTextArea_desc.getText();
+				try {
+					handlers.chemicalRefHandler.insertChemical(id, name, description);
+					chmTextField_id.setText("");
+					chmTextField_name.setText("");
+					chmTextArea_desc.setText("");
+
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		chmBtnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = chmTextField_idSearch.getText();
+				String name = chmTextField_nameSearch.getText();
+				ChemicalRefResponse res = new ChemicalRefResponse(0, "", "");
+				Object[][] results;
+				try {
+					if (id.length() > 0)
+						res = handlers.chemicalRefHandler.finById(id);
+					else if (name.length() > 0)
+						res = handlers.chemicalRefHandler.finByName(name);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				System.out.println("GET:" + res.chemical_id + " " + res.name);
+				chmResModel.setRowCount(0);
+				chmResModel.addRow(new Object[]{res.chemical_id, res.name, res.description});
+				chmResTable.setVisible(true);
+				chmResModel.fireTableDataChanged();
+			}
+		});
+
+		chmResTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (chmResTable.getSelectedRow() > -1) {
+					chmTextField_resID.setText(chmResTable.getValueAt(chmResTable.getSelectedRow(), 0).toString());
+					chmTextField_resName.setText(chmResTable.getValueAt(chmResTable.getSelectedRow(), 1).toString());
+					chmTextArea_resDesc.setText(chmResTable.getValueAt(chmResTable.getSelectedRow(), 2).toString());
+				}
+			}
+		});
+
+		chmBtnSubmit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = chmTextField_resID.getText();
+				String name = chmTextField_resName.getText();
+				String description = chmTextArea_resDesc.getText();
+				try {
+					handlers.chemicalRefHandler.updateChemical(id, name, description);
+					chmTextField_resID.setText("");
+					chmTextField_resName.setText("");
+					chmTextArea_resDesc.setText("");
+					chmResModel.setRowCount(0);
+					chmTextField_idSearch.setText("");
+					chmTextField_nameSearch.setText("");
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -3580,12 +3700,188 @@ public class ETRTDriver {
 			}
 		});
 
-		// MEDICAL DATA PAGE
+		disBtnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = disTextField_id.getText();
+				String name = disTextField_name.getText();
+				String description = disTextArea_desc.getText();
+				try {
+					//Generic handler insert
+					handlers.diseaseRefHandler.insertDisease(id, name, description);
+					disTextField_id.setText("");
+					disTextField_name.setText("");
+					disTextArea_desc.setText("");
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		disBtnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = disTextField_idSearch.getText();
+				String name = disTextField_nameSearch.getText();
+				DiseaseRefResponse res = new DiseaseRefResponse(0, "", "");
+				Object[][] results;
+				try {
+					if (id.length() > 0)
+						res = handlers.diseaseRefHandler.finById(id);
+					else if (name.length() > 0)
+						res = handlers.diseaseRefHandler.finByName(name);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				System.out.println("GET:" + res.disease_id + " " + res.name);
+				disResModel.setRowCount(0);
+				disResModel.addRow(new Object[]{res.disease_id, res.name, res.description});
+				disResTable.setVisible(true);
+				disResModel.fireTableDataChanged();
+			}
+		});
+
+		disResTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (disResTable.getSelectedRow() > -1) {
+					disTextField_resID.setText(disResTable.getValueAt(disResTable.getSelectedRow(), 0).toString());
+					disTextField_resName.setText(disResTable.getValueAt(disResTable.getSelectedRow(), 1).toString());
+					disTextArea_resDesc.setText(disResTable.getValueAt(disResTable.getSelectedRow(), 2).toString());
+				}
+			}
+		});
+
+		disBtnSubmit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = disTextField_resID.getText();
+				String name = disTextField_resName.getText();
+				String description = disTextArea_resDesc.getText();
+				try {
+					handlers.diseaseRefHandler.updateDisease(id, name, description);
+					disTextField_resID.setText("");
+					disTextField_resName.setText("");
+					disTextArea_resDesc.setText("");
+					disResModel.setRowCount(0);
+					disTextField_idSearch.setText("");
+					disTextField_nameSearch.setText("");
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		// MEDICAMENT DATA PAGE
 		medBtnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.show(panelContainer, "pharmData");
 
+			}
+		});
+
+		medBtnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = medTextField_id.getText();
+				String name = medTextField_name.getText();
+				String description = medTextArea_desc.getText();
+				String dose = medTextField_dose.getText();
+				GenericRefResponse gen = new GenericRefResponse(0, "", "");
+				ChemicalRefResponse chm = new ChemicalRefResponse(0, "", "");
+				DiseaseRefResponse dis = new DiseaseRefResponse(0, "", "");
+				try {
+					//Generic handler insert
+					gen = handlers.genericRefHandler.finByName(medcomboBox_generic.getSelectedItem().toString());
+					chm = handlers.chemicalRefHandler.finByName(medcomboBox_chemical.getSelectedItem().toString());
+					dis = handlers.diseaseRefHandler.finByName(medcomboBox_disease.getSelectedItem().toString());
+					//Generic handler insert
+					handlers.medicamentRefHandler.insertMedicament(id, name, description, dose, gen.generic_id + "", chm.chemical_id + "", dis.disease_id + "");
+
+					//handlers.diseaseRefHandler.insertDisease(id, name, description);
+					medTextField_id.setText("");
+					medTextField_name.setText("");
+					medTextArea_desc.setText("");
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		medBtnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = medTextField_idSearch.getText();
+				String name = medTextField_nameSearch.getText();
+				MedicamentRefResponse res = new MedicamentRefResponse(0, "", "", 0, 0,0,0);
+				Object[][] results;
+				String resGenName = "";
+				String resChmName = "";
+				String resDisName = "";
+				try {
+					if (id.length() > 0)
+						res = handlers.medicamentRefHandler.finById(id);
+					else if (name.length() > 0)
+						res = handlers.medicamentRefHandler.finByName(name);
+					resGenName = handlers.genericRefHandler.finById(res.generic_id + "").name;
+					resChmName = handlers.chemicalRefHandler.finById(res.chem_id + "").name;
+					resDisName = handlers.diseaseRefHandler.finById(res.disease_id + "").name;
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				System.out.println("GET:" + res.medicament_id + " " + res.name);
+				medResModel.setRowCount(0);
+				medResModel.addRow(new Object[]{res.medicament_id, res.name, res.description, res.usual_dose, resGenName, resChmName, resDisName});
+				medResTable.setVisible(true);
+				medResModel.fireTableDataChanged();
+			}
+		});
+
+		medResTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (medResTable.getSelectedRow() > -1) {
+					medTextField_resID.setText(medResTable.getValueAt(medResTable.getSelectedRow(), 0).toString());
+					medTextField_resName.setText(medResTable.getValueAt(medResTable.getSelectedRow(), 1).toString());
+					medTextArea_resDesc.setText(medResTable.getValueAt(medResTable.getSelectedRow(), 2).toString());
+					medTextField_resDose.setText(medResTable.getValueAt(medResTable.getSelectedRow(), 3).toString());
+					medcomboBox_resGen.setSelectedItem(medResTable.getValueAt(medResTable.getSelectedRow(), 4));
+					medcomboBox_resChm.setSelectedItem(medResTable.getValueAt(medResTable.getSelectedRow(), 5));
+					medcomboBox_resDis.setSelectedItem(medResTable.getValueAt(medResTable.getSelectedRow(), 6));
+
+				}
+			}
+		});
+
+		medBtnSubmit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = medTextField_resID.getText();
+				String name = medTextField_resName.getText();
+				String description = medTextArea_resDesc.getText();
+				String dose = medTextField_resDose.getText();
+				GenericRefResponse gen = new GenericRefResponse(0, "", "");
+				ChemicalRefResponse chm = new ChemicalRefResponse(0, "", "");
+				DiseaseRefResponse dis = new DiseaseRefResponse(0, "", "");
+				try {
+					gen = handlers.genericRefHandler.finByName(medcomboBox_resGen.getSelectedItem().toString());
+					chm = handlers.chemicalRefHandler.finByName(medcomboBox_resChm.getSelectedItem().toString());
+					dis = handlers.diseaseRefHandler.finByName(medcomboBox_resDis.getSelectedItem().toString());
+					handlers.medicamentRefHandler.updateMedicament(id, name, description, dose, gen.generic_id + "", chm.chemical_id + "", dis.disease_id + "");
+					medTextField_resID.setText("");
+					medTextField_resName.setText("");
+					medTextArea_resDesc.setText("");
+					medTextField_dose.setText("");
+					medResModel.setRowCount(0);
+					medTextField_idSearch.setText("");
+					medTextField_nameSearch.setText("");
+					medcomboBox_resGen.setSelectedIndex(0);
+					medcomboBox_resChm.setSelectedIndex(0);
+					medcomboBox_resDis.setSelectedIndex(0);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 

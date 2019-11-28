@@ -1,9 +1,10 @@
-package QueryHandlers;
+package handlers;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import ResponseObjects.DiseaseRefResponse;
 import Utils.SQLUtil;
@@ -56,6 +57,28 @@ public class DiseaseRefHandler {
 			SQLUtil.printSQLExceptions(e);
 		}
 		return false;
+	}
+
+
+	public String[] getAllDiseaseNames(){
+		String names[];
+		try {
+			ArrayList<String> disNames = new ArrayList<String>();
+			Statement stmt = con.createStatement();
+			String query = "SELECT * FROM REF_DISEASE;";
+			System.out.println("Getting Diseases");
+			ResultSet res = stmt.executeQuery(query);
+			while(res.next()) {
+				disNames.add(res.getString("name"));
+			}
+			stmt.close();
+			return disNames.toArray(new String[disNames.size()]);
+		}
+		catch (SQLException e) {
+			SQLUtil.printSQLExceptions(e);
+		}
+
+		return new String[0];
 	}
 
 	public DiseaseRefResponse finById(String id) throws ClassNotFoundException {

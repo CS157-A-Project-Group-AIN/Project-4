@@ -19,7 +19,6 @@ public class Handlers {
     public PatientHandler patientHandler;
 
 
-
     public Handlers() {
         try {
             Connection con = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
