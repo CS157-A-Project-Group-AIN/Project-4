@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import javax.swing.BorderFactory;
@@ -26,6 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
+import ResponseObjects.PatientResponse;
 import handlers.GenericRefHandler;
 import handlers.Handler;
 
@@ -474,6 +477,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblVisitId, gbc_lblVisitId);
 
 		avTextField = new JTextField();
+		avTextField.setEditable(false);
 		GridBagConstraints gbc_avTextField = new GridBagConstraints();
 		gbc_avTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -491,6 +495,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblNewLabel, gbc_lblNewLabel);
 
 		avTextField_1 = new JTextField();
+		avTextField_1.setEditable(false);
 		GridBagConstraints gbc_avTextField_1 = new GridBagConstraints();
 		gbc_avTextField_1.gridwidth = 3;
 		gbc_avTextField_1.insets = new Insets(0, 0, 5, 0);
@@ -509,6 +514,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblPatient, gbc_lblPatient);
 
 		avTextField_2 = new JTextField();
+		avTextField_2.setEditable(false);
 		GridBagConstraints gbc_avTextField_2 = new GridBagConstraints();
 		gbc_avTextField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_2.fill = GridBagConstraints.HORIZONTAL;
@@ -526,6 +532,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblThc, gbc_lblThc);
 
 		avTextField_4 = new JTextField();
+		avTextField_4.setEditable(false);
 		GridBagConstraints gbc_avTextField_4 = new GridBagConstraints();
 		gbc_avTextField_4.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_4.fill = GridBagConstraints.HORIZONTAL;
@@ -543,6 +550,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblVisitNo, gbc_lblVisitNo);
 
 		avTextField_3 = new JTextField();
+		avTextField_3.setEditable(false);
 		GridBagConstraints gbc_avTextField_3 = new GridBagConstraints();
 		gbc_avTextField_3.insets = new Insets(0, 0, 5, 0);
 		gbc_avTextField_3.fill = GridBagConstraints.HORIZONTAL;
@@ -691,6 +699,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblComments, gbc_lblComments);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setEnabled(false);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 5;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
@@ -3418,7 +3427,14 @@ public class ETRTDriver {
 		avBtnAudiology.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				cardLayout.show(panelContainer, "visAudio");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+				PatientResponse res = handlers.patientHandler.firstPatientEntry();
+                audPrePopTextFields[0].setText("1");
+                audPrePopTextFields[1].setText(dtf.format(now));
+                audPrePopTextFields[2].setText(res.first_name + " " + res.middle_name + " " + res.sur_name);
+                audPrePopTextFields[3].setText(res.thc);
+			    cardLayout.show(panelContainer, "visAudio");
 			}
 		});
 
