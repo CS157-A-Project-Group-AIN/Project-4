@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import javax.swing.BorderFactory;
@@ -29,8 +31,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+
+import ResponseObjects.PatientResponse;
+import handlers.GenericRefHandler;
 import ResponseObjects.DiseaseRefResponse;
 import ResponseObjects.GenericRefResponse;
+
 import handlers.Handler;
 
 public class ETRTDriver {
@@ -125,17 +131,14 @@ public class ETRTDriver {
 
 	// Add/Edit Chemicals page
 	private JPanel aeChemDataPanel;
-	private JTextField chmTextField_id;
-	private JTextField chmTextField_name;
-	private JTextArea chmTextArea_desc;
-	private JTextField chmTextField_nameSearch;
-	private JTextField chmTextField_idSearch;
-	private JTextField chmTextField_resID;
-	private JTextField chmTextField_resName;
-	private JTextArea chmTextArea_resDesc;
+	private JTextField chmTextField;
+	private JTextField chmTextField_1;
+	private JTextField chmTextField_2;
+	private JTextField chmTextField_3;
+	private JTextField chmTextField_4;
+	private JTextField chmTextField_5;
 	private JTable chmResTable;
 	private JButton chmBtnBack;
-	private JButton chmBtnSearch;
 
 	// Add/Edit Generics page
 	private JPanel aeGenDataPanel;
@@ -491,6 +494,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblVisitId, gbc_lblVisitId);
 
 		avTextField = new JTextField();
+		avTextField.setEditable(false);
 		GridBagConstraints gbc_avTextField = new GridBagConstraints();
 		gbc_avTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -508,6 +512,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblNewLabel, gbc_lblNewLabel);
 
 		avTextField_1 = new JTextField();
+		avTextField_1.setEditable(false);
 		GridBagConstraints gbc_avTextField_1 = new GridBagConstraints();
 		gbc_avTextField_1.gridwidth = 3;
 		gbc_avTextField_1.insets = new Insets(0, 0, 5, 0);
@@ -526,6 +531,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblPatient, gbc_lblPatient);
 
 		avTextField_2 = new JTextField();
+		avTextField_2.setEditable(false);
 		GridBagConstraints gbc_avTextField_2 = new GridBagConstraints();
 		gbc_avTextField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_2.fill = GridBagConstraints.HORIZONTAL;
@@ -543,6 +549,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblThc, gbc_lblThc);
 
 		avTextField_4 = new JTextField();
+		avTextField_4.setEditable(false);
 		GridBagConstraints gbc_avTextField_4 = new GridBagConstraints();
 		gbc_avTextField_4.insets = new Insets(0, 0, 5, 5);
 		gbc_avTextField_4.fill = GridBagConstraints.HORIZONTAL;
@@ -560,6 +567,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblVisitNo, gbc_lblVisitNo);
 
 		avTextField_3 = new JTextField();
+		avTextField_3.setEditable(false);
 		GridBagConstraints gbc_avTextField_3 = new GridBagConstraints();
 		gbc_avTextField_3.insets = new Insets(0, 0, 5, 0);
 		gbc_avTextField_3.fill = GridBagConstraints.HORIZONTAL;
@@ -708,6 +716,7 @@ public class ETRTDriver {
 		addVisitPanel.add(lblComments, gbc_lblComments);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setEnabled(false);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 5;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
@@ -1112,14 +1121,14 @@ public class ETRTDriver {
 		gbc_chmlblId.gridy = 0;
 		addChemPanel.add(chmlblId, gbc_chmlblId);
 
-		chmTextField_id = new JTextField();
+		chmTextField = new JTextField();
 		GridBagConstraints gbc_chmTextField = new GridBagConstraints();
 		gbc_chmTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField.gridx = 1;
 		gbc_chmTextField.gridy = 0;
-		addChemPanel.add(chmTextField_id, gbc_chmTextField);
-		chmTextField_id.setColumns(10);
+		addChemPanel.add(chmTextField, gbc_chmTextField);
+		chmTextField.setColumns(10);
 
 		JLabel chmlblName = new JLabel("Name ");
 		GridBagConstraints gbc_chmlblName = new GridBagConstraints();
@@ -1129,14 +1138,14 @@ public class ETRTDriver {
 		gbc_chmlblName.gridy = 1;
 		addChemPanel.add(chmlblName, gbc_chmlblName);
 
-		chmTextField_name = new JTextField();
+		chmTextField_1 = new JTextField();
 		GridBagConstraints gbc_chmTextField_1 = new GridBagConstraints();
 		gbc_chmTextField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_1.gridx = 1;
 		gbc_chmTextField_1.gridy = 1;
-		addChemPanel.add(chmTextField_name, gbc_chmTextField_1);
-		chmTextField_name.setColumns(10);
+		addChemPanel.add(chmTextField_1, gbc_chmTextField_1);
+		chmTextField_1.setColumns(10);
 
 		JLabel chmlblDescription = new JLabel("Description ");
 		GridBagConstraints gbc_chmlblDescription = new GridBagConstraints();
@@ -1153,8 +1162,8 @@ public class ETRTDriver {
 		gbc_chmscrollPane.gridy = 2;
 		addChemPanel.add(chmscrollPane, gbc_chmscrollPane);
 
-		chmTextArea_desc = new JTextArea();
-		chmscrollPane.setViewportView(chmTextArea_desc);
+		JTextArea textArea = new JTextArea();
+		chmscrollPane.setViewportView(textArea);
 
 		JButton chmBtnAdd = new JButton("Add");
 		GridBagConstraints gbc_chmBtnAdd = new GridBagConstraints();
@@ -1182,14 +1191,14 @@ public class ETRTDriver {
 		gbc_chmlblId_1.gridy = 0;
 		editChemPanel.add(chmlblId_1, gbc_chmlblId_1);
 
-		chmTextField_idSearch = new JTextField();
+		chmTextField_3 = new JTextField();
 		GridBagConstraints gbc_chmTextField_3 = new GridBagConstraints();
 		gbc_chmTextField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_chmTextField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_3.gridx = 1;
 		gbc_chmTextField_3.gridy = 0;
-		editChemPanel.add(chmTextField_idSearch, gbc_chmTextField_3);
-		chmTextField_idSearch.setColumns(10);
+		editChemPanel.add(chmTextField_3, gbc_chmTextField_3);
+		chmTextField_3.setColumns(10);
 
 		JLabel chmlblName_1 = new JLabel("Name ");
 		GridBagConstraints gbc_chmlblName_1 = new GridBagConstraints();
@@ -1199,16 +1208,16 @@ public class ETRTDriver {
 		gbc_chmlblName_1.gridy = 0;
 		editChemPanel.add(chmlblName_1, gbc_chmlblName_1);
 
-		chmTextField_nameSearch = new JTextField();
+		chmTextField_2 = new JTextField();
 		GridBagConstraints gbc_chmTextField_2 = new GridBagConstraints();
 		gbc_chmTextField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_2.gridx = 3;
 		gbc_chmTextField_2.gridy = 0;
-		editChemPanel.add(chmTextField_nameSearch, gbc_chmTextField_2);
-		chmTextField_nameSearch.setColumns(10);
+		editChemPanel.add(chmTextField_2, gbc_chmTextField_2);
+		chmTextField_2.setColumns(10);
 
-		chmBtnSearch = new JButton("Search");
+		JButton chmBtnSearch = new JButton("Search");
 		GridBagConstraints gbc_chmBtnSearch = new GridBagConstraints();
 		gbc_chmBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_chmBtnSearch.fill = GridBagConstraints.HORIZONTAL;
@@ -1240,15 +1249,15 @@ public class ETRTDriver {
 		gbc_chmlblId_2.gridy = 3;
 		editChemPanel.add(chmlblId_2, gbc_chmlblId_2);
 
-		chmTextField_resID = new JTextField();
+		chmTextField_4 = new JTextField();
 		GridBagConstraints gbc_chmTextField_4 = new GridBagConstraints();
 		gbc_chmTextField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_4.gridwidth = 3;
 		gbc_chmTextField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_4.gridx = 1;
 		gbc_chmTextField_4.gridy = 3;
-		editChemPanel.add(chmTextField_resID, gbc_chmTextField_4);
-		chmTextField_resID.setColumns(10);
+		editChemPanel.add(chmTextField_4, gbc_chmTextField_4);
+		chmTextField_4.setColumns(10);
 
 		JLabel chmlblName_2 = new JLabel("Name ");
 		GridBagConstraints gbc_chmlblName_2 = new GridBagConstraints();
@@ -1258,15 +1267,15 @@ public class ETRTDriver {
 		gbc_chmlblName_2.gridy = 4;
 		editChemPanel.add(chmlblName_2, gbc_chmlblName_2);
 
-		chmTextField_resName = new JTextField();
+		chmTextField_5 = new JTextField();
 		GridBagConstraints gbc_chmTextField_5 = new GridBagConstraints();
 		gbc_chmTextField_5.insets = new Insets(0, 0, 5, 0);
 		gbc_chmTextField_5.gridwidth = 3;
 		gbc_chmTextField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_chmTextField_5.gridx = 1;
 		gbc_chmTextField_5.gridy = 4;
-		editChemPanel.add(chmTextField_resName, gbc_chmTextField_5);
-		chmTextField_resName.setColumns(10);
+		editChemPanel.add(chmTextField_5, gbc_chmTextField_5);
+		chmTextField_5.setColumns(10);
 
 		JLabel chmlblDescription_1 = new JLabel("Description");
 		GridBagConstraints gbc_chmlblDescription_1 = new GridBagConstraints();
@@ -1284,8 +1293,8 @@ public class ETRTDriver {
 		gbc_chmscrollPane_1.gridy = 5;
 		editChemPanel.add(chmscrollPane_1, gbc_chmscrollPane_1);
 
-		chmTextArea_resDesc = new JTextArea();
-		chmscrollPane_1.setViewportView(chmTextArea_resDesc);
+		JTextArea textArea_1 = new JTextArea();
+		chmscrollPane_1.setViewportView(textArea_1);
 
 		JButton chmBtnSubmit = new JButton("Submit");
 		GridBagConstraints gbc_chmBtnSubmit = new GridBagConstraints();
@@ -3451,7 +3460,14 @@ public class ETRTDriver {
 		avBtnAudiology.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				cardLayout.show(panelContainer, "visAudio");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+				PatientResponse res = handlers.patientHandler.firstPatientEntry();
+                audPrePopTextFields[0].setText("1");
+                audPrePopTextFields[1].setText(dtf.format(now));
+                audPrePopTextFields[2].setText(res.first_name + " " + res.middle_name + " " + res.sur_name);
+                audPrePopTextFields[3].setText(res.thc);
+			    cardLayout.show(panelContainer, "visAudio");
 			}
 		});
 
@@ -3461,7 +3477,7 @@ public class ETRTDriver {
 				cardLayout.show(panelContainer, "visPharm");
 			}
 		});
-		
+
 		//VISIT AUDIOLOGY LISTENERS
 		audBtnBack.addActionListener(new ActionListener() {
 			@Override

@@ -14,7 +14,7 @@ public class SQLBuild {
     static String[] Tables = {
             "create table REF_DISEASE (" +
                     "disease_id SMALLINT NOT NULL," +
-                    "name VARCHAR(25)," +
+                    "name VARCHAR(25) UNIQUE," +
                     "description VARCHAR(16000)," + //16000 used for max
                     "PRIMARY KEY (disease_id)" +
                     ");"
@@ -28,7 +28,7 @@ public class SQLBuild {
             ,
             "create table REF_CHEMICAL (" +
                     "chem_id SMALLINT NOT NULL, " +
-                    "name VARCHAR(25), " +
+                    "name VARCHAR(25) UNIQUE, " +
                     "description VARCHAR(16000)," +
                     "PRIMARY KEY (chem_id)" +
                     ");"

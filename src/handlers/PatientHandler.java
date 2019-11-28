@@ -49,4 +49,39 @@ public class PatientHandler {
                 "ERROR");
     }
 
+    public PatientResponse firstPatientEntry(){
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT * FROM PATIENT" ;
+            System.out.println("Getting Patient");
+            ResultSet res = stmt.executeQuery(query);
+            res.next();//crucial, you will get a SQ100 Error if you do not do this function call
+            PatientResponse populatedRes =
+                    new PatientResponse(
+                            res.getString("thc"),
+                            res.getString("surname"),
+                            res.getString("first_name"),
+                            res.getString("middle_name"),
+                            res.getString("SSN"),
+                            res.getString("DOB"),
+                            res.getString("Insurance"));
+            stmt.close();
+            return populatedRes;
+        }
+        catch (SQLException e) {
+            System.out.println("Status: 200 OK");
+            SQLUtil.printSQLExceptions(e);
+        }
+        return new PatientResponse(
+                "ERROR",
+                "ERROR",
+                "ERROR",
+                "ERROR",
+                "ERROR",
+                "ERROR",
+                "ERROR");
+
+
+    }
+
 }
