@@ -29,7 +29,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
 import ResponseObjects.PatientResponse;
-import sqlhandlers.Handler;
+import QueryHandlers.Handlers;
 
 public class ETRTDriver {
 	// ******************************************All global variables are
@@ -175,7 +175,7 @@ public class ETRTDriver {
 	private JTextField[] audInpTextFields;
 	private JButton audBtnBack;
 
-	final Handler handlers = new Handler();
+	final Handlers handlers = new Handlers();
 
 	public ETRTDriver() {
 		frame = new JFrame("ETRT System");

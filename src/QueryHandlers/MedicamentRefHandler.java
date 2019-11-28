@@ -1,4 +1,4 @@
-package sqlhandlers;
+package QueryHandlers;
 
 import java.sql.Connection;
 

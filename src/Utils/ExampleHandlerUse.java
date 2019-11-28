@@ -1,6 +1,6 @@
 package Utils;
 import  ResponseObjects.GenericRefResponse;
-import sqlhandlers.Handler;
+import QueryHandlers.Handlers;
 
 import java.lang.reflect.Field;
 
@@ -13,7 +13,7 @@ public class ExampleHandlerUse {
         final String name = "Drug13";
         final String description = "This is drug 13";
 
-        final Handler handlers = new Handler();
+        final Handlers handlers = new Handlers();
 
         try {
             handlers.genericRefHandler.insertGeneric(id, name,description);//Inserting

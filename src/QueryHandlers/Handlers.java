@@ -1,11 +1,11 @@
-package sqlhandlers;
+package QueryHandlers;
 import  Utils.Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Handler {
+public class Handlers {
     private  String USERNAME = Config.USERNAME;
     private  String PASSWORD = Config.PASSWORD;
     private  String DB_URL = Config.DB_URL;
@@ -17,10 +17,10 @@ public class Handler {
     public  PharmocologyHandler pharmocologyHandler;
     public  GenericRefHandler genericRefHandler;
     public PatientHandler patientHandler;
-    public VisitHandler visitHandler;
 
 
-    public Handler() {
+
+    public Handlers() {
         try {
             Connection con = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             this.genericRefHandler = new GenericRefHandler(con);
@@ -30,7 +30,6 @@ public class Handler {
             this.chemicalRefHandler = new ChemicalRefHandler(con);
             this.audiologyHandler = new AudiologyHandler(con);
             this.patientHandler = new PatientHandler(con);
-            this.visitHandler = new VisitHandler(con);
 
         } catch (SQLException e){
             e.printStackTrace();
