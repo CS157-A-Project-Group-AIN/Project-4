@@ -10,23 +10,22 @@ Irina Voronova Commit for Quiz 11/13 #2
 
 Enviroment Setup:
 
-1. Download and install MySql and create an instance with whatever name you want https://dev.mysql.com/downloads/mysql/
+1. Download and install MySql and create an instance and name it e_trt https://dev.mysql.com/downloads/mysql/
 2. Download and save the mysql-connector-java https://dev.mysql.com/downloads/connector/j/5.1.html
-3. Add mysql-connector-java into your project
-4. Insert your mysql instance credentials and location in the config file Located in ./src/Utils.Config
+3. Download and install IntelliJ Community edition from https://www.jetbrains.com/idea/download/
+4. Start IntelliJ and click File->New->Project from existing resources
+5. Select our project folder and click through the setup guide.
+6. Add mysql-connector-java into your project (if needed)
+7. Insert your mysql instance configurations in the respective fields in the config file Located in ./src/Utils.Config
 
 
 DataBase Initialization:
 
 1.Run SQLBuild script inside ./src/Utils/SQLBuild
 
-2.Since our requirements don't require us to implement full patient
+2.Since our requirements don't require us to implement full patient and visit
 functionality you will need to run a seed script that
-adds initial patient data. this script is located in ./src/Utils/Seed
-!!!Make Sure this is run in a terminal that won't close on completion!!!
-!!!You will need to gather the outputted details for later use!!!
-!!!These details include patient data to use for the Visit Screen!!!
-
+adds initial  data. this script is located in ./src/Utils/Seed
 
 
 Running Front end Program:
