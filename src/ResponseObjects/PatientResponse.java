@@ -1,4 +1,5 @@
 package ResponseObjects;
+
 /** Represents a column for a patient in the patient table.
  * @author Nathaniel Boas
  * @version 1.0

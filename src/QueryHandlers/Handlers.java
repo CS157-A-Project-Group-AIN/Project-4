@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * This class allows you to create an instance for all the handlers through a single connection to handle queries
+ * on all tables.
+ * @Author Nathaniel Boas
+ */
 public class Handlers {
     private  String USERNAME = Config.USERNAME;
     private  String PASSWORD = Config.PASSWORD;
