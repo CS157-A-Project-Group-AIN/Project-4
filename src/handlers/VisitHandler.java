@@ -108,7 +108,16 @@ public class VisitHandler {
     }
 
     private int generateId(){
-        return 1;
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select count(*) from VISIT");
+            rs.next();
+            return rs.getInt(1);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 
 }
