@@ -99,7 +99,8 @@ public class GenericRefHandler {
 
 		try {
 			Statement stmt = con.createStatement();
-			String query = "SELECT * FROM REF_GENERIC WHERE name = " + "'" + name  + "'";
+			//SELECT * FROM e_trt.REF_GENERIC WHERE name = 'testname';
+			String query = "SELECT * FROM REF_GENERIC WHERE name = '" + name  + "'";
 			System.out.println("Getting Generic with name: " + name);
 			ResultSet res = stmt.executeQuery(query);
 			res.next();//crucial, you will get an Error if you do not do this function call
