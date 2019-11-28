@@ -1,6 +1,6 @@
 package Utils;
 
-import handlers.Handlers;
+import QueryHandlers.Handlers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,8 +24,13 @@ public class Seed {
     private static Handlers handlers;
 
     public static void main(String args[]) {
+        handlers = new Handlers();
         addPatient();
+        addVisit();
+        addChemicals();
+        addDiseases();
         addGenerics();
+
     }
 
     private static void addPatient() {
@@ -66,14 +71,66 @@ public class Seed {
             e.printStackTrace();
         }
     }
+    private static void addVisit() {
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection con = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = con.createStatement();
 
+
+            String insertStmt = "insert into Visit values (" +
+                    1 + ",'" +
+                    Patient.THC + "'," +
+                    1 + ",'" +
+                    "2019-11-27" + "'," +
+                    "'This is comments'"+
+                    ");";
+
+            System.out.println(insertStmt);
+
+            int status = stmt.executeUpdate(insertStmt);
+            stmt.close();
+            con.close();
+            if (status == 1) {
+                System.out.println("Satus: 200");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     private static void addGenerics() {
-        handlers = new Handlers();
+
 
         for(int i =1; i <=12; i++) {
             try {
                 handlers.genericRefHandler.insertGeneric(Integer.toString(i), "Drug" + i, "this is drug" + i);
-                System.out.println("Added Drug "+ i);
+                System.out.println("Inserted  into ref_generic( " + i + ", Drug"+ i + ", this is drug" + i + ")");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+    }
+    private static void addChemicals() {
+
+
+        for(int i =1; i <=12; i++) {
+            try {
+                handlers.chemicalRefHandler.insertChemical(Integer.toString(i), "Chemical" + i, "this is chemical" + i);
+                System.out.println("Inserted  into ref_chemical( " + i + ", Chemical"+ i + ", this is chemical" + i + ")");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+    }
+    private static void addDiseases() {
+
+
+        for(int i =1; i <=12; i++) {
+            try {
+                handlers.diseaseRefHandler.insertDisease(Integer.toString(i), "disease" + i, "this is disease" + i);
+                System.out.println("Inserted  into ref_disease ( " + Integer.toString(i) + ", disease"+ i + ", this is disease" + i + ")" );
             } catch (Exception e){
                 e.printStackTrace();
             }
