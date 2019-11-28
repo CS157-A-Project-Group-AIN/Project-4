@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 import ResponseObjects.ChemicalRefResponse;
@@ -57,6 +58,27 @@ public class ChemicalRefHandler {
 			SQLUtil.printSQLExceptions(e);
 		}
 		return false;
+	}
+
+	public String[] getAllChemicalNames(){
+		String names[];
+		try {
+			ArrayList<String> chemNames = new ArrayList<String>();
+			Statement stmt = con.createStatement();
+			String query = "SELECT * FROM REF_CHEMICAL;";
+			System.out.println("Getting Chemicals");
+			ResultSet res = stmt.executeQuery(query);
+			while(res.next()) {
+				chemNames.add(res.getString("name"));
+			}
+			stmt.close();
+			return chemNames.toArray(new String[chemNames.size()]);
+		}
+		catch (SQLException e) {
+			SQLUtil.printSQLExceptions(e);
+		}
+
+		return new String[0];
 	}
 
 	public ChemicalRefResponse finById(String id) throws ClassNotFoundException {

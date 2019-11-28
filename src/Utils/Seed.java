@@ -1,6 +1,6 @@
 package Utils;
 
-import handlers.Handler;
+import handlers.Handlers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ class Patient {
 
 public class Seed {
 
-    private static Handler handler;
+    private static Handlers handlers;
 
     public static void main(String args[]) {
         addPatient();
@@ -68,11 +68,11 @@ public class Seed {
     }
 
     private static void addGenerics() {
-        handler = new Handler();
+        handlers = new Handlers();
 
         for(int i =1; i <=12; i++) {
             try {
-                handler.genericRefHandler.insertGeneric(Integer.toString(i), "Drug" + i, "this is drug" + i);
+                handlers.genericRefHandler.insertGeneric(Integer.toString(i), "Drug" + i, "this is drug" + i);
                 System.out.println("Added Drug "+ i);
             } catch (Exception e){
                 e.printStackTrace();
