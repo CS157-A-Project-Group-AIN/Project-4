@@ -1,4 +1,4 @@
-package handlers;
+package QueryHandlers;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

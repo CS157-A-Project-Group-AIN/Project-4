@@ -1,4 +1,4 @@
-package handlers;
+package QueryHandlers;
 
 import ResponseObjects.GenericRefResponse;
 import ResponseObjects.MedicamentRefResponse;

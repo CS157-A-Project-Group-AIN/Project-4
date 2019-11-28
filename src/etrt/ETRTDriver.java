@@ -26,8 +26,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
-import ResponseObjects.PatientResponse;
+import ResponseObjects.*;
 import QueryHandlers.Handlers;
 
 public class ETRTDriver {
@@ -139,25 +142,36 @@ public class ETRTDriver {
 	private JPanel aeGenDataPanel;
 	private JTextField genTextField_id;
 	private JTextField genTextField_name;
-	private JTextArea gentextArea_description;
-	private JTextField genTextField_2;
-	private JTextField genTextField_3;
-	private JTextField genTextField_4;
-	private JTextField genTextField_5;
+	private JTextArea genTextArea_desc;
+	private JTextField genTextField_nameSearch;
+	private JTextField genTextField_idSearch;
+	private JTextField genTextField_resID;
+	private JTextField genTextField_resName;
+	private JTextArea genTextArea_resDesc;
+	private DefaultTableModel genResModel;
 	private JTable genResTable;
 	private JButton genBtnBack;
 	private JButton genBtnAdd;
+	private JButton genBtnSearch;
+	private JButton genBtnSubmit;
+
 
 	// Add/Edit Disease page
 	private JPanel aeDisDataPanel;
-	private JTextField disTextField;
-	private JTextField disTextField_1;
-	private JTextField disTextField_2;
-	private JTextField disTextField_3;
-	private JTextField disTextField_4;
-	private JTextField disTextField_5;
+	private JTextField disTextField_id;
+	private JTextField disTextField_name;
+	private JTextArea disTextArea_desc;
+	private JTextField disTextField_nameSearch;
+	private JTextField disTextField_idSearch;
+	private JTextField disTextField_resID;
+	private JTextField disTextField_resName;
+	private JTextArea disTextArea_resDesc;
 	private JTable disResTable;
+	private DefaultTableModel disResModel;
 	private JButton disBtnBack;
+	private JButton disBtnAdd;
+	private JButton disBtnSearch;
+	private JButton disBtnSubmit;
 
 	// Add/Edit Medication page
 	private JPanel aeMedDataPanel;
@@ -1387,8 +1401,8 @@ public class ETRTDriver {
 		gbc_genscrollPane.gridy = 2;
 		addgenPanel.add(genscrollPane, gbc_genscrollPane);
 
-		gentextArea_description = new JTextArea();
-		genscrollPane.setViewportView(gentextArea_description);
+		genTextArea_desc = new JTextArea();
+		genscrollPane.setViewportView(genTextArea_desc);
 
 		genBtnAdd = new JButton("Add");
 		GridBagConstraints gbc_genBtnAdd = new GridBagConstraints();
@@ -1416,14 +1430,14 @@ public class ETRTDriver {
 		gbc_genlblId_1.gridy = 0;
 		editgenPanel.add(genlblId_1, gbc_genlblId_1);
 
-		genTextField_3 = new JTextField();
+		genTextField_idSearch = new JTextField();
 		GridBagConstraints gbc_genTextField_3 = new GridBagConstraints();
 		gbc_genTextField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_genTextField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genTextField_3.gridx = 1;
 		gbc_genTextField_3.gridy = 0;
-		editgenPanel.add(genTextField_3, gbc_genTextField_3);
-		genTextField_3.setColumns(10);
+		editgenPanel.add(genTextField_idSearch, gbc_genTextField_3);
+		genTextField_idSearch.setColumns(10);
 
 		JLabel genlblName_1 = new JLabel("Name");
 		GridBagConstraints gbc_genlblName_1 = new GridBagConstraints();
@@ -1433,16 +1447,16 @@ public class ETRTDriver {
 		gbc_genlblName_1.gridy = 0;
 		editgenPanel.add(genlblName_1, gbc_genlblName_1);
 
-		genTextField_2 = new JTextField();
+		genTextField_nameSearch = new JTextField();
 		GridBagConstraints gbc_genTextField_2 = new GridBagConstraints();
 		gbc_genTextField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_genTextField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genTextField_2.gridx = 3;
 		gbc_genTextField_2.gridy = 0;
-		editgenPanel.add(genTextField_2, gbc_genTextField_2);
-		genTextField_2.setColumns(10);
+		editgenPanel.add(genTextField_nameSearch, gbc_genTextField_2);
+		genTextField_nameSearch.setColumns(10);
 
-		JButton genBtnSearch = new JButton("Search");
+		genBtnSearch = new JButton("Search");
 		GridBagConstraints gbc_genBtnSearch = new GridBagConstraints();
 		gbc_genBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_genBtnSearch.fill = GridBagConstraints.HORIZONTAL;
@@ -1460,11 +1474,14 @@ public class ETRTDriver {
 		gbc_genscrollPane_2.gridy = 2;
 		editgenPanel.add(genscrollPane_2, gbc_genscrollPane_2);
 
-		// RESULT TABLE HERE***************************
-		// https://www.youtube.com/watch?v=uJUXyhya3YM
 		genResTable = new JTable();
+		genResModel = new DefaultTableModel();
+		genResModel.setColumnIdentifiers(new String[]{"id", "name", "description"});
+		genResTable.setModel(genResModel);
 		genResTable.setFillsViewportHeight(true);
 		genscrollPane_2.setViewportView(genResTable);
+		genResTable.setRowSelectionAllowed(true);
+		genResTable.setDefaultEditor(Object.class, null);
 
 		JLabel genlblId_2 = new JLabel("ID ");
 		GridBagConstraints gbc_genlblId_2 = new GridBagConstraints();
@@ -1474,15 +1491,16 @@ public class ETRTDriver {
 		gbc_genlblId_2.gridy = 3;
 		editgenPanel.add(genlblId_2, gbc_genlblId_2);
 
-		genTextField_4 = new JTextField();
+		genTextField_resID = new JTextField();
 		GridBagConstraints gbc_genTextField_4 = new GridBagConstraints();
 		gbc_genTextField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_genTextField_4.gridwidth = 3;
 		gbc_genTextField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genTextField_4.gridx = 1;
 		gbc_genTextField_4.gridy = 3;
-		editgenPanel.add(genTextField_4, gbc_genTextField_4);
-		genTextField_4.setColumns(10);
+		editgenPanel.add(genTextField_resID, gbc_genTextField_4);
+		genTextField_resID.setColumns(10);
+		genTextField_resID.setEditable(false);
 
 		JLabel genlblName_2 = new JLabel("Name ");
 		GridBagConstraints gbc_genlblName_2 = new GridBagConstraints();
@@ -1492,15 +1510,15 @@ public class ETRTDriver {
 		gbc_genlblName_2.gridy = 4;
 		editgenPanel.add(genlblName_2, gbc_genlblName_2);
 
-		genTextField_5 = new JTextField();
+		genTextField_resName = new JTextField();
 		GridBagConstraints gbc_genTextField_5 = new GridBagConstraints();
 		gbc_genTextField_5.insets = new Insets(0, 0, 5, 0);
 		gbc_genTextField_5.gridwidth = 3;
 		gbc_genTextField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genTextField_5.gridx = 1;
 		gbc_genTextField_5.gridy = 4;
-		editgenPanel.add(genTextField_5, gbc_genTextField_5);
-		genTextField_5.setColumns(10);
+		editgenPanel.add(genTextField_resName, gbc_genTextField_5);
+		genTextField_resName.setColumns(10);
 
 		JLabel genlblDescription_1 = new JLabel("Description");
 		GridBagConstraints gbc_genlblDescription_1 = new GridBagConstraints();
@@ -1518,10 +1536,10 @@ public class ETRTDriver {
 		gbc_genscrollPane_1.gridy = 5;
 		editgenPanel.add(genscrollPane_1, gbc_genscrollPane_1);
 
-		JTextArea gentextArea_1 = new JTextArea();
-		genscrollPane_1.setViewportView(gentextArea_1);
+		genTextArea_resDesc = new JTextArea();
+		genscrollPane_1.setViewportView(genTextArea_resDesc);
 
-		JButton genBtnSubmit = new JButton("Submit");
+		genBtnSubmit = new JButton("Submit");
 		GridBagConstraints gbc_genBtnSubmit = new GridBagConstraints();
 		gbc_genBtnSubmit.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genBtnSubmit.gridwidth = 4;
@@ -1570,14 +1588,14 @@ public class ETRTDriver {
 		gbc_dislblId.gridy = 0;
 		addDisPanel.add(dislblId, gbc_dislblId);
 
-		disTextField = new JTextField();
+		disTextField_id = new JTextField();
 		GridBagConstraints gbc_disTextField = new GridBagConstraints();
 		gbc_disTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_disTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disTextField.gridx = 1;
 		gbc_disTextField.gridy = 0;
-		addDisPanel.add(disTextField, gbc_disTextField);
-		disTextField.setColumns(10);
+		addDisPanel.add(disTextField_id, gbc_disTextField);
+		disTextField_id.setColumns(10);
 
 		JLabel dislblName = new JLabel("Name ");
 		GridBagConstraints gbc_dislblName = new GridBagConstraints();
@@ -1587,14 +1605,14 @@ public class ETRTDriver {
 		gbc_dislblName.gridy = 1;
 		addDisPanel.add(dislblName, gbc_dislblName);
 
-		disTextField_1 = new JTextField();
+		disTextField_name = new JTextField();
 		GridBagConstraints gbc_disTextField_1 = new GridBagConstraints();
 		gbc_disTextField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_disTextField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disTextField_1.gridx = 1;
 		gbc_disTextField_1.gridy = 1;
-		addDisPanel.add(disTextField_1, gbc_disTextField_1);
-		disTextField_1.setColumns(10);
+		addDisPanel.add(disTextField_name, gbc_disTextField_1);
+		disTextField_name.setColumns(10);
 
 		JLabel dislblDescription = new JLabel("Description ");
 		GridBagConstraints gbc_dislblDescription = new GridBagConstraints();
@@ -1611,10 +1629,10 @@ public class ETRTDriver {
 		gbc_disscrollPane.gridy = 2;
 		addDisPanel.add(disscrollPane, gbc_disscrollPane);
 
-		JTextArea distextArea = new JTextArea();
-		disscrollPane.setViewportView(distextArea);
+		disTextArea_desc = new JTextArea();
+		disscrollPane.setViewportView(disTextArea_desc);
 
-		JButton disBtnAdd = new JButton("Add");
+		disBtnAdd = new JButton("Add");
 		GridBagConstraints gbc_disBtnAdd = new GridBagConstraints();
 		gbc_disBtnAdd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disBtnAdd.gridwidth = 2;
@@ -1640,14 +1658,14 @@ public class ETRTDriver {
 		gbc_dislblId_1.gridy = 0;
 		editDisPanel.add(dislblId_1, gbc_dislblId_1);
 
-		disTextField_3 = new JTextField();
+		disTextField_idSearch = new JTextField();
 		GridBagConstraints gbc_disTextField_3 = new GridBagConstraints();
 		gbc_disTextField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_disTextField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disTextField_3.gridx = 1;
 		gbc_disTextField_3.gridy = 0;
-		editDisPanel.add(disTextField_3, gbc_disTextField_3);
-		disTextField_3.setColumns(10);
+		editDisPanel.add(disTextField_idSearch, gbc_disTextField_3);
+		disTextField_idSearch.setColumns(10);
 
 		JLabel dislblName_1 = new JLabel("Name");
 		GridBagConstraints gbc_dislblName_1 = new GridBagConstraints();
@@ -1657,16 +1675,16 @@ public class ETRTDriver {
 		gbc_dislblName_1.gridy = 0;
 		editDisPanel.add(dislblName_1, gbc_dislblName_1);
 
-		disTextField_2 = new JTextField();
+		disTextField_nameSearch = new JTextField();
 		GridBagConstraints gbc_disTextField_2 = new GridBagConstraints();
 		gbc_disTextField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_disTextField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disTextField_2.gridx = 3;
 		gbc_disTextField_2.gridy = 0;
-		editDisPanel.add(disTextField_2, gbc_disTextField_2);
-		disTextField_2.setColumns(10);
+		editDisPanel.add(disTextField_nameSearch, gbc_disTextField_2);
+		disTextField_nameSearch.setColumns(10);
 
-		JButton disBtnSearch = new JButton("Search");
+		disBtnSearch = new JButton("Search");
 		GridBagConstraints gbc_disBtnSearch = new GridBagConstraints();
 		gbc_disBtnSearch.insets = new Insets(0, 0, 5, 0);
 		gbc_disBtnSearch.fill = GridBagConstraints.HORIZONTAL;
@@ -1685,10 +1703,22 @@ public class ETRTDriver {
 		editDisPanel.add(disscrollPane_2, gbc_disscrollPane_2);
 
 		// RESULT TABLE HERE***************************
-		// https://www.youtube.com/watch?v=uJUXyhya3YM
+		// 		genResTable = new JTable();
+		//		genResModel = new DefaultTableModel();
+		//		genResModel.setColumnIdentifiers(new String[]{"id", "name", "description"});
+		//		genResTable.setModel(genResModel);
+		//		genResTable.setFillsViewportHeight(true);
+		//		genscrollPane_2.setViewportView(genResTable);
+		//		genResTable.setRowSelectionAllowed(true);
+		//		genResTable.setDefaultEditor(Object.class, null);
 		disResTable = new JTable();
+		disResModel = new DefaultTableModel();
+		disResModel.setColumnIdentifiers(new String[]{"id", "name", "description"});
+		disResTable.setModel(disResModel);
 		disResTable.setFillsViewportHeight(true);
 		disscrollPane_2.setViewportView(disResTable);
+		disResTable.setRowSelectionAllowed(true);
+		disResTable.setDefaultEditor(Object.class, null);
 
 		JLabel dislblId_2 = new JLabel("ID ");
 		GridBagConstraints gbc_dislblId_2 = new GridBagConstraints();
@@ -1698,15 +1728,15 @@ public class ETRTDriver {
 		gbc_dislblId_2.gridy = 3;
 		editDisPanel.add(dislblId_2, gbc_dislblId_2);
 
-		disTextField_4 = new JTextField();
+		disTextField_resID = new JTextField();
 		GridBagConstraints gbc_disTextField_4 = new GridBagConstraints();
 		gbc_disTextField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_disTextField_4.gridwidth = 3;
 		gbc_disTextField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disTextField_4.gridx = 1;
 		gbc_disTextField_4.gridy = 3;
-		editDisPanel.add(disTextField_4, gbc_disTextField_4);
-		disTextField_4.setColumns(10);
+		editDisPanel.add(disTextField_resID, gbc_disTextField_4);
+		disTextField_resID.setColumns(10);
 
 		JLabel dislblName_2 = new JLabel("Name ");
 		GridBagConstraints gbc_dislblName_2 = new GridBagConstraints();
@@ -1716,15 +1746,15 @@ public class ETRTDriver {
 		gbc_dislblName_2.gridy = 4;
 		editDisPanel.add(dislblName_2, gbc_dislblName_2);
 
-		disTextField_5 = new JTextField();
+		disTextField_resName = new JTextField();
 		GridBagConstraints gbc_disTextField_5 = new GridBagConstraints();
 		gbc_disTextField_5.insets = new Insets(0, 0, 5, 0);
 		gbc_disTextField_5.gridwidth = 3;
 		gbc_disTextField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disTextField_5.gridx = 1;
 		gbc_disTextField_5.gridy = 4;
-		editDisPanel.add(disTextField_5, gbc_disTextField_5);
-		disTextField_5.setColumns(10);
+		editDisPanel.add(disTextField_resName, gbc_disTextField_5);
+		disTextField_resName.setColumns(10);
 
 		JLabel dislblDescription_1 = new JLabel("Description");
 		GridBagConstraints gbc_dislblDescription_1 = new GridBagConstraints();
@@ -1742,10 +1772,10 @@ public class ETRTDriver {
 		gbc_disscrollPane_1.gridy = 5;
 		editDisPanel.add(disscrollPane_1, gbc_disscrollPane_1);
 
-		JTextArea distextArea_1 = new JTextArea();
-		disscrollPane_1.setViewportView(distextArea_1);
+		disTextArea_resDesc = new JTextArea();
+		disscrollPane_1.setViewportView(disTextArea_resDesc);
 
-		JButton disBtnSubmit = new JButton("Submit");
+		disBtnSubmit = new JButton("Submit");
 		GridBagConstraints gbc_disBtnSubmit = new GridBagConstraints();
 		gbc_disBtnSubmit.fill = GridBagConstraints.HORIZONTAL;
 		gbc_disBtnSubmit.gridwidth = 4;
@@ -3518,7 +3548,7 @@ public class ETRTDriver {
 			}
 		});
 
-		// PHARMACOLOGY DATA PAGE
+// PHARMACOLOGY DATA PAGE
 		pdBtnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -3549,6 +3579,14 @@ public class ETRTDriver {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.show(panelContainer, "medData");
+
+				medcomboBox_generic.removeAllItems();
+				medcomboBox_resGen.removeAllItems();
+				medcomboBox_resChm.removeAllItems();
+				medcomboBox_chemical.removeAllItems();
+				medcomboBox_disease.removeAllItems();
+				medcomboBox_resDis.removeAllItems();
+
 				String[] gens = handlers.genericRefHandler.getAllGenericNames();
 				for(int i =0; i < gens.length; i++) {
 					medcomboBox_generic.addItem(gens[i]);
@@ -3664,14 +3702,16 @@ public class ETRTDriver {
 		genBtnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				genTextField_id.setText("");
+				genTextField_name.setText("");
+				genTextArea_desc.setText("");
+				genTextField_resID.setText("");
+				genTextField_resName.setText("");
+				genTextArea_resDesc.setText("");
+				genResModel.setRowCount(0);
+				genTextField_idSearch.setText("");
+				genTextField_nameSearch.setText("");
 				cardLayout.show(panelContainer, "pharmData");
-			}
-		});
-
-		genBtnAdd.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
 			}
 		});
 
@@ -3680,21 +3720,86 @@ public class ETRTDriver {
 			public void actionPerformed(ActionEvent arg0) {
 				String id = genTextField_id.getText();
 				String name = genTextField_name.getText();
-				String description = gentextArea_description.getText();
+				String description = genTextArea_desc.getText();
 				try {
 					//Generic handler insert
 					handlers.genericRefHandler.insertGeneric(id, name, description);
+					genTextField_id.setText("");
+					genTextField_name.setText("");
+					genTextArea_desc.setText("");
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		});
+
+		genBtnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = genTextField_idSearch.getText();
+				String name = genTextField_nameSearch.getText();
+				GenericRefResponse res = new GenericRefResponse(0, "", "");
+				Object[][] results;
+				try {
+					if (id.length() > 0)
+						res = handlers.genericRefHandler.finById(id);
+					else if (name.length() > 0)
+						res = handlers.genericRefHandler.finByName(name);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				System.out.println("GET:" + res.generic_id + " " + res.name);
+				genResModel.setRowCount(0);
+				genResModel.addRow(new Object[]{res.generic_id, res.name, res.description});
+				genResTable.setVisible(true);
+				genResModel.fireTableDataChanged();
+			}
+		});
+
+		genResTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (genResTable.getSelectedRow() > -1) {
+					genTextField_resID.setText(genResTable.getValueAt(genResTable.getSelectedRow(), 0).toString());
+					genTextField_resName.setText(genResTable.getValueAt(genResTable.getSelectedRow(), 1).toString());
+					genTextArea_resDesc.setText(genResTable.getValueAt(genResTable.getSelectedRow(), 2).toString());
+				}
+			}
+		});
+
+		genBtnSubmit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String id = genTextField_resID.getText();
+				String name = genTextField_resName.getText();
+				String description = genTextArea_resDesc.getText();
+				try {
+					handlers.genericRefHandler.updateGeneric(id, name, description);
+					genTextField_resID.setText("");
+					genTextField_resName.setText("");
+					genTextArea_resDesc.setText("");
+					genResModel.setRowCount(0);
+					genTextField_idSearch.setText("");
+					genTextField_nameSearch.setText("");
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		// DISEASE DATA PAGE
 		disBtnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				disTextField_id.setText("");
+				disTextField_name.setText("");
+				disTextArea_desc.setText("");
+				disTextField_resID.setText("");
+				disTextField_resName.setText("");
+				disTextArea_resDesc.setText("");
+				disResModel.setRowCount(0);
+				disTextField_idSearch.setText("");
+				disTextField_nameSearch.setText("");
 				cardLayout.show(panelContainer, "pharmData");
 
 			}
@@ -3900,5 +4005,4 @@ public class ETRTDriver {
 			}
 		});
 	}
-
 }
