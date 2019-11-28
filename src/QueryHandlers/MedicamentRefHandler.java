@@ -17,6 +17,18 @@ public class MedicamentRefHandler {
         this.con = con;
     }
 
+    /**
+     * Inserts a medicament row into the medicament table
+     * @param id refers to the primary key in the medicament table of a medicament
+     * @param name refers to the column in the medicament table for the name of a medicament
+     * @param description refers to the column in the medicament table for description of a medicament
+     * @param dose refers to the column in the medicament table for a dosage of a medicament
+     * @param genID refers to the column in the medicament table that references a generic entity
+     * @param chmID refers to the column in the medicament table that references a chemical entity
+     * @param disID refers to the column in the medicament table that references a disease entity
+     * @return Returns a boolean to identify whether or not the insert query Succeeded
+     * @throws ClassNotFoundException
+     */
     public boolean insertMedicament(String id, String name, String description, String dose, String genID, String chmID, String disID) throws ClassNotFoundException {
         try {
             Statement stmt = con.createStatement();
@@ -42,7 +54,13 @@ public class MedicamentRefHandler {
         }
         return false;
     }
-
+    /**
+     * This method finds a medicament in the database by its primary key
+     * @param id refers to the primary key of a medicament in the medicament table
+     * @return returns a GenericRefResponse object that represents the row of the medicament in the database
+     * @throws ClassNotFoundException
+     * @see   MedicamentRefResponse
+     */
     public MedicamentRefResponse finById(String id) throws ClassNotFoundException {
         try {
             Statement stmt = con.createStatement();
@@ -61,6 +79,13 @@ public class MedicamentRefHandler {
         return new MedicamentRefResponse(-1, "ERROR", "ERROR", -1, -1, -1, -1);
     }
 
+    /**
+     * This method finds a medicament in the database with its unique name
+     * @param name refers to the column for the name of a medicament in the medicament table
+     * @return returns a GenericRefResponse object that represents the row of the medicament in the database
+     * @throws ClassNotFoundException
+     * @see   MedicamentRefResponse
+     */
     public MedicamentRefResponse finByName(String name) throws ClassNotFoundException {
 
         try {
@@ -80,6 +105,18 @@ public class MedicamentRefHandler {
         return new MedicamentRefResponse(-1, "ERROR", "ERROR", -1, -1, -1, -1);
     }
 
+    /**
+     * Updates a medicament row in the medicament table
+     * @param id refers to the primary key in the medicament table of a medicament
+     * @param name refers to the column in the medicament table for the name of a medicament
+     * @param description refers to the column in the medicament table for description of a medicament
+     * @param dose refers to the column in the medicament table for a dosage of a medicament
+     * @param genID refers to the column in the medicament table that references a generic entity
+     * @param chmID refers to the column in the medicament table that references a chemical entity
+     * @param disID refers to the column in the medicament table that references a disease entity
+     * @return Returns a boolean to identify whether or not the update query Succeeded
+     * @throws ClassNotFoundException
+     */
     public boolean updateMedicament(String id, String name, String description, String dose, String genID, String chmID, String disID) throws ClassNotFoundException {
 
         try {

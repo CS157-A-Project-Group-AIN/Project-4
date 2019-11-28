@@ -10,6 +10,13 @@ public class AudiologyHandler {
         this.con = con;
     }
 
+    /**
+     * This method inserts a Audiology Entity into the database.
+     * @param visit_id This represents the column for a foreing key id to reference a visit entity
+     * @param comments This refers to the column for comments in the Audiology table
+     * @param readings This is an array that contains all the values recorded in the audiology report and the values get mapped to to each of there respective columns in the visit table
+     * @return Returns a boolean to idtentify whether or not the insert query Succeeded
+     */
     public boolean insertAudioLogy(String visit_id, String comments, String[] readings){
 
         StringBuilder queryBuilder = new StringBuilder();

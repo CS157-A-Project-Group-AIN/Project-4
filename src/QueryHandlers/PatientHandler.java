@@ -15,6 +15,13 @@ public class PatientHandler {
         this.con = con;
     }
 
+    /**
+     * Method uses mysql query to find a patient in the database by using a thc number.
+     * @param thc this is the unique key for a patient in the database
+     * @return
+     * @throws ClassNotFoundException
+     * @see PatientResponse
+     */
     public PatientResponse finById(String thc) throws ClassNotFoundException {
 
         try {
@@ -48,6 +55,11 @@ public class PatientHandler {
                 "ERROR");
     }
 
+    /**
+     * Method finds the first patient in the database and returns it
+     * @return Returns an instance of Patient Response Object
+     * @see PatientResponse
+     */
     public PatientResponse firstPatientEntry(){
         try {
             Statement stmt = con.createStatement();

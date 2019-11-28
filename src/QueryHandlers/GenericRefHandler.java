@@ -13,6 +13,14 @@ public class GenericRefHandler {
 		this.con = con;
 	}
 
+	/**
+	 * Inserts a generic row into the generic table
+	 * @param id refers to the primary key of a generic in the generic table
+	 * @param name refers to the column for the name of a generic in the generic table
+	 * @param description refers to the column for description of a generic in the generic table
+	 * @return Returns a boolean to identify whether or not the insert query Succeeded
+	 * @throws ClassNotFoundException
+	 */
 	public boolean insertGeneric(String id, String name, String description) throws ClassNotFoundException {
 
 		try {
@@ -35,6 +43,14 @@ public class GenericRefHandler {
 		return false;
 	}
 
+	/**
+	 * Updates a generic row in the generic table
+	 * @param id refers to the primary key of a generic in the generic table
+	 * @param name refers to the column for the name of a generic in the generic table
+	 * @param description refers to the column for description of a generic in the generic table
+	 * @return Returns a boolean to identify whether or not the update query Succeeded
+	 * @throws ClassNotFoundException
+	 */
 	public boolean updateGeneric(String id, String name, String description) throws ClassNotFoundException {
 
 		try {
@@ -54,6 +70,10 @@ public class GenericRefHandler {
 		return false;
 	}
 
+	/**
+	 * This method gets all the names of generics in the generic table
+	 * @return String array with all names of generics in the database
+	 */
 	public String[] getAllGenericNames(){
 
 		String names[];
@@ -77,6 +97,13 @@ public class GenericRefHandler {
 		return new String[0];
 	}
 
+	/**
+	 * This method finds a generic in the database by its primary key
+	 * @param id refers to the primary key of a generic in the generic table
+	 * @return returns a GenericRefResponse object that represents the row of the generic in the database
+	 * @throws ClassNotFoundException
+	 * @see   GenericRefResponse
+	 */
 	public GenericRefResponse finById(String id) throws ClassNotFoundException {
 
 		try {
@@ -95,6 +122,13 @@ public class GenericRefHandler {
 		return new GenericRefResponse(-1, "ERROR", "ERROR");
 	}
 
+	/**
+	 * This method finds a generic in the database with its unique name
+	 * @param name refers to the column for the name of a generic in the generic table
+	 * @return returns a GenericRefResponse object that represents the row of the generic in the database
+	 * @throws ClassNotFoundException
+	 * @see   GenericRefResponse
+	 */
 	public GenericRefResponse finByName(String name) throws ClassNotFoundException {
 
 		try {

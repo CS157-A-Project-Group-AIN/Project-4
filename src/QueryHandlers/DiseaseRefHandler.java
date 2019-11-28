@@ -16,6 +16,14 @@ public class DiseaseRefHandler {
         this.con = con;
     }
 
+	/**
+	 * Inserts a disease row into the disease table
+	 * @param id refers to the primary key of a disease in the disease table
+	 * @param name refers to the column for the name of a disease in the disease table
+	 * @param description refers to the column for description of a disease in the disease table
+	 * @return Returns a boolean to identify whether or not the insert query Succeeded
+	 * @throws ClassNotFoundException
+	 */
     public boolean insertDisease(String id, String name, String description) throws ClassNotFoundException {
 
 		try {
@@ -39,6 +47,14 @@ public class DiseaseRefHandler {
 		return false;
 	}
 
+	/**
+	 * Updates a disease row in the disease table
+	 * @param id refers to the primary key of a disease in the disease table
+	 * @param name refers to the column for the name of a disease in the disease table
+	 * @param description refers to the column for description of a disease in the disease table
+	 * @return Returns a boolean to identify whether or not the update query Succeeded
+	 * @throws ClassNotFoundException
+	 */
 	public boolean updateDisease(String id, String name, String description) throws ClassNotFoundException {
 
 		try {
@@ -59,7 +75,10 @@ public class DiseaseRefHandler {
 		return false;
 	}
 
-
+	/**
+	 * This method gets all the names of diseases in the disease table
+	 * @return String array with all names of diseases in the database
+	 */
 	public String[] getAllDiseaseNames(){
 		String names[];
 		try {
@@ -81,6 +100,13 @@ public class DiseaseRefHandler {
 		return new String[0];
 	}
 
+	/**
+	 * This method finds a disease in the database by its primary key
+	 * @param id refers to the primary key of a disease in the disease table
+	 * @return returns a DiseaseRefResponse object that represents the row of the disease in the database
+	 * @throws ClassNotFoundException
+	 * @see   DiseaseRefResponse
+	 */
 	public DiseaseRefResponse finById(String id) throws ClassNotFoundException {
 
 		try {
@@ -100,6 +126,13 @@ public class DiseaseRefHandler {
 		return new DiseaseRefResponse(-1, "ERROR", "ERROR");
 	}
 
+	/**
+	 * This method finds a disease in the database with its unique name
+	 * @param name refers to the column for the name of a disease in the disease table
+	 * @return returns a ChemicalRefResponse object that represents the row of the disease in the database
+	 * @throws ClassNotFoundException
+	 * @see   DiseaseRefResponse
+	 */
 	public DiseaseRefResponse finByName(String name) throws ClassNotFoundException {
 
 		try {

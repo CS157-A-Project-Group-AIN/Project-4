@@ -16,7 +16,15 @@ public class ChemicalRefHandler {
     public ChemicalRefHandler(Connection con){
         this.con = con;
     }
-    
+
+	/**
+	 * Inserts a chemical row into the chemical table
+	 * @param id refers to the primary key of a chemical in the chemical table
+	 * @param name refers to the column for the name of a chemical in the chemical table
+	 * @param description refers to the column for description of a chemical in the chemical table
+	 * @return Returns a boolean to identify whether or not the insert query Succeeded
+	 * @throws ClassNotFoundException
+	 */
     public boolean insertChemical(String id, String name, String description) throws ClassNotFoundException {
 
 		try {
@@ -40,6 +48,15 @@ public class ChemicalRefHandler {
 		return false;
 	}
 
+
+	/**
+	 * Updates a chemical row in the chemical table
+	 * @param id refers to the primary key of a chemical in the chemical table
+	 * @param name refers to the column for the name of a chemical in the chemical table
+	 * @param description refers to the column for description of a chemical in the chemical table
+	 * @return Returns a boolean to identify whether or not the update query Succeeded
+	 * @throws ClassNotFoundException
+	 */
 	public boolean updateChemical(String id, String name, String description) throws ClassNotFoundException {
 
 		try {
@@ -60,6 +77,10 @@ public class ChemicalRefHandler {
 		return false;
 	}
 
+	/**
+	 * This method gets all the names of chemicals in the chemical table
+	 * @return String array with all names of chemicals in the database
+	 */
 	public String[] getAllChemicalNames(){
 		String names[];
 		try {
@@ -81,6 +102,13 @@ public class ChemicalRefHandler {
 		return new String[0];
 	}
 
+	/**
+	 * This method finds a chemical in the database by its primary key
+	 * @param id refers to the primary key of a chemical in the chemical table
+	 * @return returns a ChemicalRefResponse object that represents the row of the chemical in the database
+	 * @throws ClassNotFoundException
+	 * @see   ChemicalRefResponse
+	 */
 	public ChemicalRefResponse finById(String id) throws ClassNotFoundException {
 
 		try {
@@ -100,6 +128,12 @@ public class ChemicalRefHandler {
 		return new ChemicalRefResponse(-1, "ERROR", "ERROR");
 	}
 
+	/**
+	 * This method finds a chemical in the database with its unique name
+	 * @param name refers to the column for the name of a chemical in the chemical table
+	 * @return returns a ChemicalRefResponse object that represents the row of the chemical in the database
+	 * @throws ClassNotFoundException
+	 */
 	public ChemicalRefResponse finByName(String name) throws ClassNotFoundException {
 
 		try {
